@@ -1,0 +1,68 @@
+---
+pageable: true
+per_page: 25
+---
+<div class="blog-cover" style="background-image:url(/<%= images_dir %>/<%= site[:cover_image] %>);">
+    <section>
+        <div class="container">
+            <h1><%= site[:title] %></h1>
+            <% if site[:subtitle] %><h3><%= site[:subtitle] %></h3><% end %>
+            <% if site[:social][:twitter] %><a href="https://twitter.com/<%= site[:social][:twitter] %>" title="Twitter" target="_blank"><i class="icon icon-twitter"></i></a><% end %>
+            <% if site[:social][:facebook] %><a href="https://facebook.com/<%= site[:social][:facebook] %>" title="Facebook" target="_blank"><i class="icon icon-facebook"></i></a><% end %>
+            <% if site[:social][:github] %><a class="github-iconx" href="https://github.com/<%= site[:social][:github] %>" title="GitHub" target="_blank"><i class="icon icon-github white"></i></a><% end %>
+            <a href="/feed.xml" title="RSS Feed"><i class="icon icon-rss"></i></a>
+        </div>
+    </section>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+            <div id="search-area" class="hidden-xs">
+                <form id="search_form" onsubmit="return false;">
+                    <input type="text" class="form-control" name="search_keyword" id="search_keyword">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<article class="container">
+    <%= partial "partials/list_posts", :locals => {
+        :page_articles => page_articles,
+    } %>
+    <%= partial "partials/pagination", :locals => {
+        :prev_page => prev_page,
+        :next_page => next_page,
+        :num_pages => num_pages,
+        :page_number => page_number,
+    } %>
+</article>
+
+<% content_for :extra_css do %>
+    <%= stylesheet_link_tag 'easy-autocomplete.css' %>
+<% end %>
+
+<% content_for :javascript do %>
+    <%= javascript_include_tag 'jquery.easy-autocomplete.js' %>
+    <script>
+    $(document).ready(function(){
+        var search_options = {
+            url: "/search.json",
+            placeholder: 'Başlık ve etiketler içinde arayabilirsiniz...',
+            getValue: "title",
+            list: {
+                maxNumberOfElements: 25,
+                match: { enabled: true },
+                onChooseEvent: function(){
+                    var selected = $("#search_keyword").getSelectedItemData().url;
+                    window.location.href = selected;
+                },
+            }
+        };
+
+        $("#search_keyword").easyAutocomplete(search_options);
+    });
+    </script>
+<% end %>

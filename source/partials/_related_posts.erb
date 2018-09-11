@@ -1,0 +1,24 @@
+<%
+related_articles = []
+current_page.tags.each do |tag|
+  blog.tags[tag].each do |article|
+    unless article == current_page
+      related_articles << article unless related_articles.include?(article)
+    end
+  end
+end
+%>
+<% if related_articles.count > 0 %>
+    <section class="index related-articles">
+        <h2 class="title"><%= t('messages.related_articles', count: related_articles.count) %> (<%= related_articles.count %>)</h2>
+    </section>
+    
+    <% related_articles.each_with_index do |article, i| %>
+    <section class="index related-articles">
+        <div class="links">
+            <%= link_to article.title + " &raquo;", article, :rel => "prefetch", :title => t('messages.click_for_details') %>
+        </div>
+    </section>
+    <% end %>
+    <section class="index related-articles"><hr/></section>
+<% end %>

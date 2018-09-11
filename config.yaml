@@ -1,0 +1,16 @@
+site:
+  production_url: "https://arge.biges.com"
+  title: "Biges Ar-Ge Merkezi"
+  subtitle: "Yazılım Geliştirme Blogu"
+  logo: "logo.png"
+  cover_image: "cover.jpg"
+  social:
+    twitter: "BigesEng"
+    github: "biges"
+    google_analytics: "UA-125596610-1"
+  main_author:
+    name: "Uğur Özyılmazel"
+    email: "ugur.ozyilmazel@biges.com"
+    link: "https://biges.com"
+    bio: "Yazılım Çözümleri Mimarı"
+    twitter: "vigobronx"
