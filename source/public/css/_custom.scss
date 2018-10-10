@@ -90,3 +90,32 @@ article.archive {
     padding: 0 1em;
   }
 }
+
+table {
+//  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+  margin-bottom: 2em;
+  tr {
+    background-color: #fff;
+    border-bottom: 1px solid $table-border-color;
+  }
+  tr:nth-child(2n) {
+    background-color: $table-tr-zebra-color;
+  }
+  thead {
+    tr {
+      border-bottom: 1px solid $table-th-color;
+    }
+  }
+  th {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: $table-th-color;
+  }
+  th, td {
+    padding: 6px 13px;
+  }
+}

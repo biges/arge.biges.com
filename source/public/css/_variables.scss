@@ -17,3 +17,7 @@ $h1_color: #04267E;
 $h2_color: lighten($h1_color, 5);
 $h3_color: lighten($h2_color, 5);
 $h4_color: lighten($h3_color, 5);
+
+$table-th-color: lighten(#586298, 10);
+$table-border-color: #ddd;
+$table-tr-zebra-color: lighten($table-border-color, 10);
