@@ -8,6 +8,7 @@ site:
     twitter: "BigesEng"
     github: "biges"
     google_analytics: "UA-125596610-1"
+    disqus: "bigesarge"
   main_author:
     name: "Uğur Özyılmazel"
     email: "ugur.ozyilmazel@biges.com"
