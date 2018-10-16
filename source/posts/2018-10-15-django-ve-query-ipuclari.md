@@ -1,10 +1,8 @@
 ---
 title: "Django ve Query İpuçları"
 date: Oct 15, 2018 10:00
-# tags: tag1,tag2
-# subtitle: 
-# published: false
-# cover: 
+tags: django
+cover: "django-ve-query-tips.jpg"
 author:
   name: Erdi Mollahüseyinoğlu
   email: erdi@biges.com
@@ -123,7 +121,17 @@ yapıyor. Bu sayede aynı sorgu tekrar edilmiyor.
 Şimdi tekrar baktığımda, başlangıçta 80 tane tekrar eden sorgu varken şimdi
 sayfanın oluşturulması sonucunda toplam sorgu sayısı **12**’ye düştü.
 
+---
+
+#### Krediler
+
+Kapak fotoğrafı: [Anthony Albright][05]  
+https://flic.kr/p/92KA9C
+
+
+
 [01]: https://github.com/jazzband/django-debug-toolbar "Django Debug Toolbar"
 [02]: https://docs.djangoproject.com/en/2.1/ref/models/querysets/ "Django QuerySet API Doc"
 [03]: https://docs.djangoproject.com/en/2.1/ref/models/querysets/#select-related "Django QuerySet - select_related"
 [04]: https://docs.djangoproject.com/en/2.1/ref/models/querysets/#prefetch-related "Django QuerySet - prefetch_related"
+[05]: https://www.flickr.com/photos/anthonyalbright/ "Kapak Fotoğrafı"

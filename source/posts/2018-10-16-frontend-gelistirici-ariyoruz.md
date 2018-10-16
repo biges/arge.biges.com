@@ -1,6 +1,6 @@
 ---
-title: "Backend Geliştirici Arıyoruz"
-date: Oct 09, 2018 16:42
+title: "Frontend Geliştirici Arıyoruz"
+date: Oct 16, 2018 17:00
 tags: kariyer
 cover: "kariyer.jpg"
 author:
@@ -36,23 +36,28 @@ Beraber çalışırsak yapacaklarınız:
 
 - Projelendirme aşamasında tecrübelerinizle katkıda bulunmak.
 - Ürün geliştirme aşamasında etkin rol almak.
-- Ürünlerde ve bulut platformunda yer alan servisleri yazmak, yazan geliştiricilerle birlikte çalışmak.
-- Geliştirdiğiniz servislerin belgelerini yazmak.
-- Güvenlik teknolojileri konusunda yeni tecrübeler kazanmak.
-- Gömülü sistemlerle entegrasyon çözümleri geliştirmek.
+- Ürünlerde ve bulut platformunda yer alan arayüzleri yazmak, yazan
+  geliştiricilerle birlikte çalışmak.
+- Geliştirdiğiniz arayüzlerin testlerini yazmak.
+- Güvenlik teknolojileri konusunda kullanıcı deneyimi araştırmaları yapmak ve
+  bu kullanıcıları yakından tanımak.
 
 Aradığımız özellikler:
 
-- Basit bir PR döngüsünü (branch -> commit -> push -> pr -> merge) tamamlayacak kadar Git kullanabilmek.
-- TCP/IP, UDP, HTTP protokolleri hakkında bilgi sahibi olmak.
-- SOA, REST, gRPC gibi anahtar kelimeleri ilk defa bizden duymamış olmak.
-
+- Basit bir PR döngüsünü (branch -> commit -> push -> pr -> merge)
+  tamamlayacak kadar Git kullanabilmek.
+- HTTP, WebSockets, REST, OAuth hakkında bilgi sahibi olmak.
+- İyi derecede JavaScript bilmek.
+- Modern design pattern ve frontend mimarileri hakkında bilgi sahibi olmak.
 
 Olsa iyi olur dediğimiz özellikler:
 
-- Go ile geliştirme yapmış olmak.
-- Gömülü sistemlerle çalışmış olmak.
-- gRPC, MongoDB, RabbitMQ, Docker, Kubernetes, Google Cloud Platform, AWS, Kafka, WebSockets kullanmış olmak.
+- Vue.js, React.js ya da benzeri kütüphanelerden biri ile geliştirme yapmış
+  olmak.
+- npm paketiniz olması.
+- Webpack kullanmış olmanız.
+- CSS grid bilgisi.
+- Responsive ve adaptive layoutlar konusunda tecrübe.
 
 ### Yan Haklar
 
@@ -68,7 +73,7 @@ Olsa iyi olur dediğimiz özellikler:
 | Konu              | Bilgi                    |
 |:------------------|:-------------------------|
 | Tecrübe seviyesi  | Intermediate/Senior      |
-| Rol               | Backend Geliştirici      |
+| Rol               | Frontend Geliştirici     |
 | Sektör            | Güvenlik Teknolojileri   |
 | Çalışan sayısı    | 80-100                   |
 | Çalışma süresi    | Tam zamanlı              |
@@ -77,6 +82,6 @@ Olsa iyi olur dediğimiz özellikler:
 | Konum             | Okmeydanı / Istanbul     |
 | Joel Puanı        | 8/12                     |
 
-Başvurmak için GitHub/Gitlab/Bitbucket profilinizi, varsa Go ile
+Başvurmak için GitHub/Gitlab/Bitbucket profilinizi, varsa JavaScript ile
 geliştirdiğiniz, inceleyebileceğimiz kaynakları ve özgeçmişinizi
 (*LinkedIn profili olur*) kariyer@biges.com ’a gönderebilirsiniz.
