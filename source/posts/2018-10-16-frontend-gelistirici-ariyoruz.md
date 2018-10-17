@@ -87,7 +87,7 @@ Olsa iyi olur dediğimiz özellikler:
 Başvurmak için;
 
 - GitHub/Gitlab/Bitbucket profilinizi;
-- varsa Go ile geliştirdiğiniz, inceleyebileceğimiz kaynakları
+- varsa geliştirdiğiniz, inceleyebileceğimiz kaynakları
 - Özgeçmişinizi (*LinkedIn profili olur*)
 
 kariyer@biges.com ’a gönderebilirsiniz.
