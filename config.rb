@@ -70,6 +70,7 @@ activate :directory_indexes
 
 proxy "/arsiv/index.html", "/pages/archive.html"
 proxy "/hakkinda/index.html", "/pages/about.html"
+proxy "/yazilim-ekibi/index.html", "/pages/team.html"
 
 activate :deploy do |deploy|
   deploy.build_before = true

@@ -13,10 +13,13 @@ $text: #21272d;
 $textmuted: #848484;
 $accent: #2077b2;
 
-$h1_color: #04267E;
-$h2_color: lighten($h1_color, 5);
-$h3_color: lighten($h2_color, 5);
-$h4_color: lighten($h3_color, 5);
+
+$h1-color: #04267E;
+$h2-color: lighten($h1-color, 10);
+$h3-color: lighten($h1-color, 15);
+$h4-color: lighten($h1-color, 20);
+$h5-color: lighten($h1-color, 25);
+$h6-color: lighten($h1-color, 30);
 
 $table-th-color: lighten(#586298, 10);
 $table-border-color: #ddd;

@@ -14,12 +14,12 @@ author:
 Silahlı Kuvvetleri ve Emniyet Genel Müdürlüğü dahil bir çok kamu kurumunun,
 bankanın, zincir mağazanın ve büyük kuruluşların referansına sahip,
 Türkiye’nin en güçlü, dinamik ve yenilikçi teknoloji şirketlerinden birisi
-olan Biges Güvenli Hayat Teknolojileri A.Ş. ailesi, yeni takım arkadaşlarını
+olan **Biges Güvenli Hayat Teknolojileri A.Ş.** ailesi, yeni takım arkadaşlarını
 bekliyor.
 
 READ_MORE
 
-Biges Ar-Ge ekibi, günümüzde teknolojinin en popüler alanlarından birisi olan
+**Biges Ar-Ge** ekibi, günümüzde teknolojinin en popüler alanlarından birisi olan
 Nesnelerin İnterneti (*IoT*), kullanıcıların bulut tabanlı uygulamalara ve
 çözümlere dilediği platformdan kolayca ulaşmasını sağlamak amacıyla
 geliştirilen SaaS (*Software as a Service*) modeli ve buna bağlı güçlü bulut
@@ -44,20 +44,22 @@ Beraber çalışırsak yapacaklarınız:
 
 Aradığımız özellikler:
 
-- Basit bir PR döngüsünü (branch -> commit -> push -> pr -> merge)
+- Basit bir PR döngüsünü (`branch -> commit -> push -> pr -> merge`)
   tamamlayacak kadar Git kullanabilmek.
-- HTTP, WebSockets, REST, OAuth hakkında bilgi sahibi olmak.
-- İyi derecede JavaScript bilmek.
+- `HTTP`, `WebSockets`, `REST`, `OAuth` hakkında bilgi sahibi olmak.
+- İyi derecede `JavaScript` bilmek.
 - Modern design pattern ve frontend mimarileri hakkında bilgi sahibi olmak.
 
 Olsa iyi olur dediğimiz özellikler:
 
-- Vue.js, React.js ya da benzeri kütüphanelerden biri ile geliştirme yapmış
+- `Vue.js`, `React.js` ya da benzeri kütüphanelerden biri ile geliştirme yapmış
   olmak.
 - npm paketiniz olması.
-- Webpack kullanmış olmanız.
-- CSS grid bilgisi.
+- `Webpack` kullanmış olmanız.
+- `CSS` grid bilgisi.
 - Responsive ve adaptive layoutlar konusunda tecrübe.
+
+---
 
 ### Yan Haklar
 
@@ -82,6 +84,10 @@ Olsa iyi olur dediğimiz özellikler:
 | Konum             | Okmeydanı / Istanbul     |
 | Joel Puanı        | 8/12                     |
 
-Başvurmak için GitHub/Gitlab/Bitbucket profilinizi, varsa JavaScript ile
-geliştirdiğiniz, inceleyebileceğimiz kaynakları ve özgeçmişinizi
-(*LinkedIn profili olur*) kariyer@biges.com ’a gönderebilirsiniz.
+Başvurmak için;
+
+- GitHub/Gitlab/Bitbucket profilinizi;
+- varsa Go ile geliştirdiğiniz, inceleyebileceğimiz kaynakları
+- Özgeçmişinizi (*LinkedIn profili olur*)
+
+kariyer@biges.com ’a gönderebilirsiniz.

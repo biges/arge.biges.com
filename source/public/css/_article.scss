@@ -1,54 +1,53 @@
 article {
-    background:#fff;
-    padding:60px 0;
-    font-size:18px;
+    background: #fff;
+    padding: 60px 0;
+    font-size: 18px;
 
     .container > header, .container > section, .container > footer {
-        margin:0 8em;
+        margin: 0 8em;
     }
 
     .social {
-        height:40px;
-        padding:10px 0;
+        height: 40px;
+        padding: 10px 0;
         
         > div {
-            display:inline-block;
-            min-width:120px;
+            display: inline-block;
+            min-width: 120px;
         }
     }
 
     .container > footer {
-        border-top:1px solid #ddd;
-        border-bottom:1px solid #ddd;
-        padding-top:1.5em;
-        padding-bottom:1.5em;
-        margin-top:1.5em;
-        margin-bottom:1.5em;
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        padding-top: 1.5em;
+        padding-bottom: 1.5em;
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
     }
 
     header {
-        margin-top:2em;
-        margin-bottom:2em;
+        margin-top: 2em;
+        margin-bottom: 2em;
 
         &::after {
-            content:" ";
-            display:block;
-            width:1.5em;
-            height:0.2em;
-            background:#ddd;
-            margin:1em 0;
+            content: " ";
+            display: block;
+            width: 1.5em;
+            height: 0.2em;
+            background: #ddd;
+            margin: 1em 0;
         }
     }
 
-
     address {
-        margin:0;
-        font-size:0.9em;
-        max-height:48px;
+        margin: 0;
+        font-size: 0.9em;
+        max-height: 48px;
         
         p {
-            margin:0;
-            display:inline-block;
+            margin: 0;
+            display: inline-block;
         }
 
         img {
@@ -61,17 +60,17 @@ article {
         }       
         
         .follow {
-            margin:1em 0 0;
+            margin: 1em 0 0;
         }
 
     }
 
     p {
-        font-size:1em;
-        line-height:1.5;
-        color:$text;
-        font-weight:400;
-        margin:0 0 1.5em;
+        font-size: 1em;
+        line-height: 1.5;
+        color: $text;
+        font-weight: 400;
+        margin: 0 0 1.5em;
     }
     
     
@@ -83,45 +82,57 @@ article {
         padding-left: 1.5em;
         
         li {
-            font-weight:400;
-            margin-bottom:0.5em;
+            font-weight: 400;
+            margin-bottom: 0.5em;
         }
     }
     
     blockquote {
-        border:0;
-        font-size:24px;
-        margin:1.2em -4em 1.2em 0;
-        padding:0;
+        border: 0;
+        font-size: 24px;
+        margin: 1.2em -4em 1.2em 0;
+        padding: 0;
 
         p {
-            font-size:30px;
-            line-height:1.1;
-            color:$accent;
-            font-weight:600;
+            font-size: 30px;
+            line-height: 1.1;
+            color: $accent;
+            font-weight: 600;
         }
     }
 
     h1 {
-        font-weight:600;
-        font-size:2.1em;
-        margin:0.5em 0 1em;
+        font-weight: 600;
+        font-size: 2.1em;
+        margin: 0.5em 0 1em;
+        color: $h1-color;
     }
 
     h2 {
-        font-size:1.5em;
-        margin:0.5em 0 1em;
-        font-weight:600;
+        font-size: 1.5em;
+        margin: 0.5em 0 1em;
+        font-weight: 600;
+        color: $h2-color;
     }
 
     h3 {
-        font-size:1.3em;
-        font-weight:600;
+        font-size: 1.3em;
+        font-weight: 600;
+        color: $h3-color;
     }
 
     h4 {
-        font-size:1.2em;
-        font-weight:600;
+        font-size: 1.2em;
+        font-weight: 600;
+        color: $h4-color;
+    }
+    
+    h5 {
+      color: $h5-color;
+    }
+
+    h6 {
+      color: $h6-color;
     }
 
     hr {
@@ -129,39 +140,38 @@ article {
     }
 
     .meta {
-        color:$textmuted;
-        font-size:13px;
-        text-transform:uppercase;
-        margin-bottom:0.3em;
-        font-weight:400;
-        letter-spacing:1px;
+        color: $textmuted;
+        font-size: 13px;
+        text-transform: uppercase;
+        margin-bottom: 0.3em;
+        font-weight: 400;
+        letter-spacing: 1px;
 
         time, address {
-            display:inline;
-            font-size:13px;
+            display: inline;
+            font-size: 13px;
         }
 
         a {
-            border:0;
-            color:$textmuted;
+            border: 0;
+            color: $textmuted;
         }
     }
 
     img {
-        max-width:100%;
-        margin:1em 0;
+        max-width: 100%;
+        margin: 1em 0;
+        border: 1px solid #eee;
     }
-
 
     .title {
-        margin:0.2em 0;
-        font-weight:900;
+        margin: 0.2em 0;
+        font-weight: 900;
 
         a {
-            border:0;
+            border: 0;
         }
     }
-
 
     .subtitle {
         font-size: 1.4em;
@@ -172,10 +182,10 @@ article {
 
 
     .highlight {
-        border:0;
+        border: 0;
 
         .lineno {
-            color:$textmuted;
+            color: $textmuted;
         }
     }
 
@@ -185,49 +195,44 @@ article {
         padding: 1.5em;
         margin-bottom: 1.5em;
         line-height: 1.6em;
-//        margin:0 -3em 1.5em;
-//        background: whitesmoke;
         border: 0;
         border-radius: 2px;
-//        border-bottom:1px solid #eee;
-        width:100%;
-//        font-size:0.8em;
+        width: 100%;
         overflow-x: auto;
-        display:block;
-//        
+        display: block;
+
         code {
             border:0;
         }
     }
     
     code {
-        border-bottom:1px solid #ddd;
-        border-radius:2px;
+        border-bottom: 1px solid #ddd;
+        border-radius: 2px;
     } 
 
     .rounded img {
-        border-radius:6px;
+        border-radius: 6px;
     }
     
     .border img {
-        border:1px solid #ddd;
+        border: 1px solid #ddd;
     }
 
     .full {
-        margin:1.5em -6em;
-        padding:0;
-        text-align:center;
+        margin: 1.5em -6em;
+        padding: 0;
+        text-align: center;
 
         iframe {
-            max-width:100% !important;
+            max-width: 100% !important;
         }
 
         img {
-            max-width:100%;
-            margin:0;
-            transition:0.5s all ease;
+            max-width: 100%;
+            margin: 0;
+            transition: 0.5s all ease;
         }
-
 
         &.zoomable {
             img {
@@ -240,9 +245,9 @@ article {
         }
 
         &.zoomable img.zoom {
-            -webkit-transform:scale(1.2);
-            transition:0.4s all ease;
-            box-shadow:0 2px 5px rgba(0,0,0,0.5);
+            -webkit-transform: scale(1.2);
+            transition: 0.4s all ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
         }
     }
 
