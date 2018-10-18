@@ -1,5 +1,5 @@
 ---
-title: "Pythonistalar için Nesnin String() Görüntüsü"
+title: "Pythonistalar için Nesnenin String() Görüntüsü"
 date: Oct 18, 2018 13:21
 tags: golang,python+golang
 cover: "girl-gopher.png"
