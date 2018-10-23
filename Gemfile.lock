@@ -120,7 +120,7 @@ GEM
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     redcarpet (3.2.3)
-    rouge (1.9.0)
+    rouge (1.11.1)
     sanitize (4.6.6)
       crass (~> 1.0.2)
       nokogiri (>= 1.4.4)
@@ -167,4 +167,4 @@ RUBY VERSION
    ruby 2.2.2p95
 
 BUNDLED WITH
-   1.16.0
+   1.16.4

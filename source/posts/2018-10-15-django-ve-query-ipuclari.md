@@ -1,7 +1,7 @@
 ---
 title: "Django ve Query İpuçları"
 date: Oct 15, 2018 10:00
-tags: django
+tags: django,django-query
 cover: "django-ve-query-tips.jpg"
 author:
   name: Erdi Mollahüseyinoğlu

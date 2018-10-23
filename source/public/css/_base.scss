@@ -26,12 +26,13 @@ h1, h2, h3, h4, h5, h6 {
 
 a {
     color: $accent;
+    font-weight: 600;
     text-decoration: none;
     transition: all 0.2s ease;
     
     &:hover {
         color: darken($accent, 10);
-        text-decoration: none;
+        text-decoration: underline;
     }
 }
 
