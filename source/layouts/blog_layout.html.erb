@@ -19,12 +19,14 @@
     author_email = site[:main_author][:email]
     author_link = site[:main_author][:link]
     author_bio = site[:main_author][:bio]
+    author_twitter = site[:main_author][:twitter] || nil 
     
     if current_page.metadata[:page]["author"]
         author_name = current_page.metadata[:page]["author"]["name"] if current_page.metadata[:page]["author"]["name"]
         author_email = current_page.metadata[:page]["author"]["email"] if current_page.metadata[:page]["author"]["email"]
         author_link = current_page.metadata[:page]["author"]["link"] if current_page.metadata[:page]["author"]["link"]
         author_bio = current_page.metadata[:page]["author"]["bio"] if current_page.metadata[:page]["author"]["bio"]
+        author_twitter = current_page.metadata[:page]["author"]["twitter"] if current_page.metadata[:page]["author"]["twitter"]
     end
     %>
 
@@ -55,8 +57,11 @@
                 <address>
                     <img class="avatar" src="<%= gravatar_for(author_email) %>" />
                     <p>
-                        <strong><a rel="author" href="<%= author_link %>" title="<%= author_name %>" target="_blank"><%= author_name %></a></strong><br>
-                        <span class="muted"><%= author_bio %></span>
+                        <strong>
+                            <a rel="author" href="<%= author_link %>" title="<%= t('messages.authors_homepage', author: author_name) %>" target="_blank"><%= author_name %></a>
+                            <% if author_twitter %><a ref="author-twitter-account" title="<%= t('messages.authors_twitter_page', twitter: author_twitter) %>" target="_blank" href="https://twitter.com/<%= author_twitter %>"><i class="icon icon-twitter black"></i></a><% end %>
+                        </strong><br>
+                        <span class="muted"><%= author_bio %></span><br />
                     </p>
                 </address>
             </footer>

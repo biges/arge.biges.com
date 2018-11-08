@@ -214,6 +214,7 @@ tr:
       other: "kilometre"
     billion: "gazilyon metre"
   messages:
+    career: Kariyer
     devteam: Yazılım Ekibi
     written_by: Yazan
     click_for_details: Detaylar için tıklayın
