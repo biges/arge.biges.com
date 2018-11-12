@@ -233,3 +233,5 @@ tr:
     related_articles:
       one: İlişkili Makale
       other: İlişkili Makaleler
+    authors_homepage: "%{author} - sitesine gitmek için tıklayın."
+    authors_twitter_page: "@%{twitter} - Twitter sayfasına gitmek için tıklayın."

@@ -238,3 +238,5 @@ en:
     related_articles:
       one: Related Post
       other: Related Posts
+    authors_homepage: "Click to visit %{author} homepage."
+    authors_twitter_page: "Click to visit @%{twitter} Twitter page."
