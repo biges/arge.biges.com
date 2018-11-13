@@ -1,5 +1,12 @@
-<% unless development? && site[:social][:disqus] %>
+<%
+show_comments = false
+show_comments = true unless development? && site[:social][:disqus]
+if current_page.metadata[:page].has_key?("comments")
+  show_comments = current_page.metadata[:page]["comments"] 
+end
+%>
 
+<% if show_comments %>
 <div id="disqus_thread"></div>
 <script>
 /**

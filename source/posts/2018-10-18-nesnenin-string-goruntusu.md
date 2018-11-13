@@ -8,6 +8,7 @@ author:
   email: "ugur.ozyilmazel@biges.com"
   link: "https://github.com/vigo"
   bio: "Retrolog"
+  twitter: "vigobronx"
 ---
 
 `python`’daki `__str__` ve `__repr__` metodlarının `golang` karşılığını

@@ -6,6 +6,7 @@ author:
   email: "fatih.kilic@biges.com"
   link: https://github.com/mfk-smart
   bio: "Ar-Ge ve Stratejik İş Geliştirme Direktörü"
+  twitter: "_mfk"
 ---
 
 Türkiye'nin önde gelen güvenlik sistemleri distribütörlerinden olan Biges, 20

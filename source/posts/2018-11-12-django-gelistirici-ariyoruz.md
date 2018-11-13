@@ -3,6 +3,7 @@ title: "Django Geliştirici Arıyoruz"
 date: Nov 12, 2018 16:17
 tags: kariyer
 cover: "kariyer.jpg"
+comments: false
 author:
   name: Biges Ar-Ge
   email: arge@biges.com

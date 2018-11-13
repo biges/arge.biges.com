@@ -51,13 +51,15 @@ task :post, [:post_title, :post_date] do |t, args|
   output << "date: #{post_time.strftime(POST_DATE_FORMAT)}"
   output << "# tags: tag1,tag2"
   output << "# subtitle: "
-  output << "# published: false"
   output << "# cover: "
+  output << "# published: false"
+  output << "# comments: false "
   output << "author:"
   output << "  name: #{main_author['name']}"
   output << "  email: #{main_author['email']}"
   output << "  link: #{main_author['link']}"
   output << "  bio: #{main_author['bio']}"
+  output << "  twitter: #{main_author['twitter']}"
   output << "---"
   File.write post_file, output.join("\n")
 

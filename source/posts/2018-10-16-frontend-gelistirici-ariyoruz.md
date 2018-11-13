@@ -3,11 +3,13 @@ title: "Frontend Geliştirici Arıyoruz"
 date: Oct 16, 2018 17:00
 tags: kariyer
 cover: "kariyer.jpg"
+comments: false
 author:
   name: Biges Ar-Ge
   email: arge@biges.com
   link: https://arge.biges.com
   bio: Biges Ar-Ge
+  twitter: "BigesEng"
 ---
 
 1998 yılından bu yana güvenlik teknolojileri konusunda çalışmakta olan, Türk
