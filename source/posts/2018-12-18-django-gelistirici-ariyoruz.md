@@ -1,6 +1,6 @@
 ---
-title: "Django Geliştirici Arıyoruz"
-date: Nov 12, 2018 16:17
+title: "Sr. Django Geliştirici Arıyoruz"
+date: Dec 18, 2018 11:31
 tags: kariyer
 cover: "kariyer.jpg"
 comments: false
@@ -21,6 +21,8 @@ bekliyor.
 
 READ_MORE
 
+---
+
 Siz de geleceğin güvenlik teknolojilerini ülkemize kazandıran, dünyanın en
 başarılı markalarının temsilciliğini başarıyla yürüten, şirket başarısını
 çalışanlarının başarısı ile mümkün olduğuna inanan, bu genç ve dinamik ekibin
@@ -29,18 +31,18 @@ misiniz?
 
 Beraber çalışırsak yapacaklarınız:
 
-- Hali hazırda **.net framework** ile geliştirilmiş **B2B e-ticaret** platformunun
-  Python/Django’ya aktarılmasına katkıda bulunmak
 - B2B e-ticaret platformunun ürün olarak geliştirilmesi aşamasında etkin rol 
   almak. Platformu iyileştirmek ve daha ileri götürmek için katkı yapmak
 - Platformun API uçlarını tasarlamak ve geliştirmek
+- Platformun sorumlusu (*teknik anlamda*) olmak
+- Yeni geliştirilecek projelerin mimarı/teknik yapılarını planlamak, yönetmek
 
 Aradığımız özellikler:
 
-- Daha önce hayatında en az 2 tane Django uygulamasında çalışmış olmak
-- Django ORM, PostgreSQL hakkında bilgi sahibi olmak
+- **Senior** yani hatırı sayılır derece Django tecrübesine sahip olmak
+- Django ORM, PostgreSQL, Query Optimization hakkında bilgi sahibi olmak
 - `DRF` hakkında bilgi ve tecrübe sahibi olmak
-- `TDD`, `Mocking` gibi konuları nefes almak kadar benimsemiş olmak
+- `TDD`, `Mocking` gibi konuları nefes almak kadar benimsemiş olmak, testi yazılmamış kodu merge etmemek!
 
 Bonus özellikler (*eğer varsa müthiş olur*):
 
@@ -64,8 +66,8 @@ Bonus özellikler (*eğer varsa müthiş olur*):
 
 | Konu              | Bilgi                    |
 |:------------------|:-------------------------|
-| Tecrübe seviyesi  | Intermediate/Senior      |
-| Rol               | Django Geliştirici       |
+| Tecrübe seviyesi  | Senior                   |
+| Rol               | Django Project Lead      |
 | Sektör            | Güvenlik Teknolojileri   |
 | Çalışan sayısı    | 80-100                   |
 | Çalışma süresi    | Tam zamanlı              |
