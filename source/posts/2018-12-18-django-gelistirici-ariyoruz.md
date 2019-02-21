@@ -31,10 +31,10 @@ misiniz?
 
 Beraber çalışırsak yapacaklarınız:
 
-- B2B e-ticaret platformunun ürün olarak geliştirilmesi aşamasında etkin rol 
+- B2B e-ticaret platformunun ürün olarak geliştirilmesi aşamasında etkin rol
   almak. Platformu iyileştirmek ve daha ileri götürmek için katkı yapmak
 - Platformun API uçlarını tasarlamak ve geliştirmek
-- Platformun sorumlusu (*teknik anlamda*) olmak
+- Platformun sorumlusu (_teknik anlamda_) olmak
 - Yeni geliştirilecek projelerin mimarı/teknik yapılarını planlamak, yönetmek
 
 Aradığımız özellikler:
@@ -44,7 +44,7 @@ Aradığımız özellikler:
 - `DRF` hakkında bilgi ve tecrübe sahibi olmak
 - `TDD`, `Mocking` gibi konuları nefes almak kadar benimsemiş olmak, testi yazılmamış kodu merge etmemek!
 
-Bonus özellikler (*eğer varsa müthiş olur*):
+Bonus özellikler (_eğer varsa müthiş olur_):
 
 - `HTML`, `CSS` konularından tecrübe
 - Orta seviyede `JavaScript` bilgisi
@@ -64,22 +64,22 @@ Bonus özellikler (*eğer varsa müthiş olur*):
 
 ---
 
-| Konu              | Bilgi                    |
-|:------------------|:-------------------------|
-| Tecrübe seviyesi  | Senior                   |
-| Rol               | Django Project Lead      |
-| Sektör            | Güvenlik Teknolojileri   |
-| Çalışan sayısı    | 80-100                   |
-| Çalışma süresi    | Tam zamanlı              |
-| Çalışma saatleri  | Hafta içi, 8:30 - 18:30  |
-| Departman         | Araştırma ve Geliştirme  |
-| Konum             | Okmeydanı / Istanbul     |
-| Joel Puanı        | 8/12                     |
+| Konu             | Bilgi                   |
+| :--------------- | :---------------------- |
+| Tecrübe seviyesi | Senior                  |
+| Rol              | Django Project Lead     |
+| Sektör           | Güvenlik Teknolojileri  |
+| Çalışan sayısı   | 80-100                  |
+| Çalışma süresi   | Tam zamanlı             |
+| Çalışma saatleri | Hafta içi, 9:00 - 18:00 |
+| Departman        | Araştırma ve Geliştirme |
+| Konum            | Okmeydanı / Istanbul    |
+| Joel Puanı       | 8/12                    |
 
 Başvurmak için;
 
 - GitHub/Gitlab/Bitbucket profilinizi;
 - varsa Python/Django ile geliştirdiğiniz, inceleyebileceğimiz kaynakları
-- Özgeçmişinizi (*LinkedIn profili olur*)
+- Özgeçmişinizi (_LinkedIn profili olur_)
 
 kariyer@biges.com ’a gönderebilirsiniz.

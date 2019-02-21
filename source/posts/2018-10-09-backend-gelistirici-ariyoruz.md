@@ -22,9 +22,9 @@ bekliyor.
 READ_MORE
 
 **Biges Ar-Ge** ekibi, günümüzde teknolojinin en popüler alanlarından birisi olan
-Nesnelerin İnterneti (*IoT*), kullanıcıların bulut tabanlı uygulamalara ve
+Nesnelerin İnterneti (_IoT_), kullanıcıların bulut tabanlı uygulamalara ve
 çözümlere dilediği platformdan kolayca ulaşmasını sağlamak amacıyla
-geliştirilen SaaS (*Software as a Service*) modeli ve buna bağlı güçlü bulut
+geliştirilen SaaS (_Software as a Service_) modeli ve buna bağlı güçlü bulut
 altyapısı ve otonom sistemler gibi konularda benzersiz projeler üzerinde
 çalışmaktadır.
 
@@ -51,7 +51,6 @@ Aradığımız özellikler:
 - `TCP/IP`, `UDP`, `HTTP` protokolleri hakkında bilgi sahibi olmak.
 - `SOA`, `REST`, `gRPC` gibi anahtar kelimeleri ilk defa bizden duymamış olmak.
 
-
 Olsa iyi olur dediğimiz özellikler:
 
 - `Golang` ile geliştirme yapmış olmak.
@@ -71,22 +70,22 @@ Olsa iyi olur dediğimiz özellikler:
 
 ---
 
-| Konu              | Bilgi                    |
-|:------------------|:-------------------------|
-| Tecrübe seviyesi  | Intermediate/Senior      |
-| Rol               | Backend Geliştirici      |
-| Sektör            | Güvenlik Teknolojileri   |
-| Çalışan sayısı    | 80-100                   |
-| Çalışma süresi    | Tam zamanlı              |
-| Çalışma saatleri  | Hafta içi, 8:30 - 18:30  |
-| Departman         | Araştırma ve Geliştirme  |
-| Konum             | Okmeydanı / Istanbul     |
-| Joel Puanı        | 8/12                     |
+| Konu             | Bilgi                   |
+| :--------------- | :---------------------- |
+| Tecrübe seviyesi | Intermediate/Senior     |
+| Rol              | Backend Geliştirici     |
+| Sektör           | Güvenlik Teknolojileri  |
+| Çalışan sayısı   | 80-100                  |
+| Çalışma süresi   | Tam zamanlı             |
+| Çalışma saatleri | Hafta içi, 9:00 - 18:00 |
+| Departman        | Araştırma ve Geliştirme |
+| Konum            | Okmeydanı / Istanbul    |
+| Joel Puanı       | 8/12                    |
 
 Başvurmak için;
 
 - GitHub/Gitlab/Bitbucket profilinizi;
 - varsa Go ile geliştirdiğiniz, inceleyebileceğimiz kaynakları
-- Özgeçmişinizi (*LinkedIn profili olur*)
+- Özgeçmişinizi (_LinkedIn profili olur_)
 
 kariyer@biges.com ’a gönderebilirsiniz.
