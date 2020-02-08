@@ -1,6 +1,6 @@
 <%
-linkedin_prefix = 'https://www.linkedin.com/in/'
-github_prefix = 'https://www.github.com/'
+linkedin_prefix = 'https://linkedin.com/in/'
+github_prefix = 'https://github.com/'
 
 team = [
     # fullname, linkedin, github
@@ -8,13 +8,18 @@ team = [
     ['Ahmet Rıdvan Çağlar', 'arcaglar', 'arcaglar'],
     ['Buket Demir', 'buket-akın-demir', 'BuketDemir'],
     ['Cem Kıy', 'cemkiy', 'cemkiy'],
-    ['Cem Safa', 'cem-safa-37594420', 'cemsafa'],
-    ['Erdi Mollahüseyinoğlu', 'erdi-mollahuseyinoglu', 'erdimollahuseyin'],
     ['Ferhat Karataş', 'ferhat-karataş-88132541', 'ferhatkaratas'],
     ['M. Fatih Kılıç', 'mehmet-fatih-kilic-b62a3814', 'mfk-smart'],
     ['Onur Kağan Aldemir', 'onur-kagan-aldemir', 'onurkagan'],
     ['Utkucan Bıyıklı', 'utkucanbiyikli', 'UtkucanBykl'],
     ['Yusuf Tunç', 'yusuf-tunç-bba97764', 'yusuftnc'],
+    ['Onur Aslan', 'aslanon', 'aslanon'],
+    ['Kaan Karaca', 'kaan-karaca-7a623b107', 'h4yfans'],
+    ['Kübra Yalçın', 'kübra-yalçın-36246292', ''],
+    ['Derya Güney', 'derya-guney-53aa572a', ''],
+    ['Soner Boztaş', 'soner-boztas', 'SonerBoztas'],
+    ['Atakan Yıldız', '', 'atakanakyildiz'],
+    ['Semih Kuvvet', '', 'semihkuvvet'],
 ]
 %>
 
@@ -24,8 +29,12 @@ team = [
     <section class="index">
         <h1>Yazılım Ekibi</h1>
         <table>
-            <% team.each do |row| %>
-            <tr><td><%= row[0] %></td><td align="right" width="2%"><a target="_blank" href="<%= linkedin_prefix + row[1] %>/"><i class="fab fa-linkedin-in"></i></a></td><td align="right" width="2%"><a target="_blank" href="<%= github_prefix + row[2] %>"><i class="fab fa-github"></i></a></td></tr>
+            <% team.sort_by{|person| person.first }.each do |row| %>
+            <tr>
+                <td><%= row[0] %></td>
+                <td align="right" width="2%"><% if row[1].length > 0 %><a target="_blank" href="<%= "#{linkedin_prefix}#{row[1]}"%>/"><i class="fab fa-linkedin-in"></i></a><% else %> <% end %></td>
+                <td align="right" width="2%"><% if row[2].length > 0 %><a target="_blank" href="<%= "#{github_prefix}#{row[2]}"%>"><i class="fab fa-github"></i></a><% else %> <% end %></td>
+            </tr>
             <% end %>
         </table>
     </section>

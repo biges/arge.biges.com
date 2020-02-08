@@ -1,7 +1,15 @@
+<%
+# date, link, title
+# ['18 Aralık, 2018', '/2018/12/18/django-gelistirici-ariyoruz/', 'Sr. Django Geliştirici Arıyoruz']
+jobs = []
+%>
+
 <article class="container team">
     <section class="index">
         <h1>Kariyer</h1>
         <p>Ar-Ge merkezimizdeki açık pozisyonları bu sayfadan takip edebilirsiniz.</p>        
+
+        <% unless jobs.empty? %>
         <table>
             <thead>
                 <tr>
@@ -9,10 +17,15 @@
                     <th>Pozisyon</th>
                 </tr>
             </thead>
-            <%# <tr>
-                <td>18 Aralık, 2018</td>
-                <td><a href="/2018/12/18/django-gelistirici-ariyoruz/">Sr. Django Geliştirici Arıyoruz</a></td>
-            </tr> %>
+            <tbody>
+                <% jobs.each do |el| %>
+                <tr>
+                    <td><%= el[0] %></td>
+                    <td><a href="<%= el[1] %>"><%= el[2] %></a></td>
+                </tr>
+                <% end %>
+            <tbody>
         </table>
+        <% end %>
     </section>
 </article>
