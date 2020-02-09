@@ -5,7 +5,7 @@ tags: regulator
 cover: "electronics.jpg"
 author:
   name: Soner Boztaş
-  email: soner.boztas@biges.com
+  email: soner@biges.dev
   link: https://sonerboztas.blogspot.com
   bio: Elektronik Mühendisi
 ---
