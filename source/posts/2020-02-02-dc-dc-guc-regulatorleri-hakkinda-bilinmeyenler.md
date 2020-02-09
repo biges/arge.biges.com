@@ -7,6 +7,7 @@ author:
   name: Soner Boztaş
   email: soner@biges.dev
   link: https://sonerboztas.blogspot.com
+  twitter: "SonerBoztas"
   bio: Elektronik Mühendisi
 ---
 
