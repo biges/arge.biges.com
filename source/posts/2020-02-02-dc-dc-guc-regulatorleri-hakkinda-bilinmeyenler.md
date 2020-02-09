@@ -4,7 +4,7 @@ date: Feb 02, 2020 10:00
 tags: regulator
 cover: "electronics.jpg"
 author:
-  name: Soner Boztal
+  name: Soner Boztaş
   email: soner.boztas@biges.com
   link: https://sonerboztas.blogspot.com
   bio: Elektronik Mühendisi
