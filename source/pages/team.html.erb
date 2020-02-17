@@ -15,11 +15,14 @@ team = [
     ['Yusuf Tunç', 'yusuf-tunç-bba97764', 'yusuftnc'],
     ['Onur Aslan', 'aslanon', 'aslanon'],
     ['Kaan Karaca', 'kaan-karaca-7a623b107', 'h4yfans'],
-    ['Kübra Yalçın', 'kübra-yalçın-36246292', ''],
-    ['Derya Güney', 'derya-guney-53aa572a', ''],
+    ['Kübra Yalçın', 'kübra-yalçın-36246292'],
+    ['Derya Güney', 'derya-guney-53aa572a'],
     ['Soner Boztaş', 'soner-boztas', 'SonerBoztas'],
     ['Atakan Yıldız', '', 'atakanakyildiz'],
     ['Semih Kuvvet', '', 'semihkuvvet'],
+    ['Burak Kurtcebe', 'burak-kurtcebe-44b2347b'],
+    ['Cihan Okyay', 'cihanokyay', 'cihann'],
+    ['Nedim Kıvanç', 'nedim-kivanc-3791591a2'],
 ]
 %>
 
@@ -33,7 +36,7 @@ team = [
             <tr>
                 <td><%= row[0] %></td>
                 <td align="right" width="2%"><% if row[1].length > 0 %><a target="_blank" href="<%= "#{linkedin_prefix}#{row[1]}"%>/"><i class="fab fa-linkedin-in"></i></a><% else %> <% end %></td>
-                <td align="right" width="2%"><% if row[2].length > 0 %><a target="_blank" href="<%= "#{github_prefix}#{row[2]}"%>"><i class="fab fa-github"></i></a><% else %> <% end %></td>
+                <td align="right" width="2%"><% if row.values_at(2) %><a target="_blank" href="<%= "#{github_prefix}#{row[2]}"%>"><i class="fab fa-github"></i></a><% else %> <% end %></td>
             </tr>
             <% end %>
         </table>
