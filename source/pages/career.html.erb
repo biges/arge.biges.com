@@ -1,9 +1,31 @@
 <%
 # date, link, title
 # ['18 Aralık, 2018', '/2018/12/18/django-gelistirici-ariyoruz/', 'Sr. Django Geliştirici Arıyoruz']
-jobs = []
-%>
 
+ikon = {
+    git: 'fab fa-git-alt',
+    js: 'fab fa-js-square',
+    vue: 'fab fa-vuejs',
+    python: 'fab fa-python',
+    raspberry: 'fab fa-raspberry-pi',
+    yarn: 'fab fa-yarn',
+    terminal: 'fas fa-terminal',
+}
+
+jobs = [
+    ['16 Nisan, 2020', '/2020/04/16/arayuz-gelistiricileri-ariyoruz/', 'Arayüz Geliştiricileri Arıyoruz', [ikon[:js], ikon[:yarn], ikon[:vue], ikon[:git]]],
+    ['16 Nisan, 2020', '/2020/04/16/pythonistalar-ariyoruz/', 'Pythonistalar Arıyoruz', [ikon[:python], ikon[:terminal], ikon[:git], ikon[:raspberry]]],
+]
+%>
+<style>
+    td.job-icon {
+        text-align: right;
+    }
+    td.job-icon i {
+        color: #2077b2;
+        margin-left: .4em;
+    }
+</style>
 <article class="container team">
     <section class="index">
         <h1>Kariyer</h1>
@@ -13,15 +35,26 @@ jobs = []
         <table>
             <thead>
                 <tr>
-                    <th>Tarih</th>
+                    <th width="20%">Tarih</th>
                     <th>Pozisyon</th>
+                    <th width="16%"></th>
                 </tr>
             </thead>
             <tbody>
                 <% jobs.each do |el| %>
+                <%
+                    job_date = el[0]
+                    job_url = el[1]
+                    job_title = el[2]
+                    job_icons = ''
+                    el[3].each do |kls|
+                        job_icons += "<i class=\"#{kls}\"></i>"
+                    end
+                %>
                 <tr>
-                    <td><%= el[0] %></td>
-                    <td><a href="<%= el[1] %>"><%= el[2] %></a></td>
+                    <td><%= job_date %></td>
+                    <td><a href="<%= job_url %>"><%= job_title %></a></td>
+                    <td class="job-icon"><% if job_icons %><%= job_icons %><% else %>&nbsp;<% end %></td>
                 </tr>
                 <% end %>
             <tbody>
