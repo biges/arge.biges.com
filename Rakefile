@@ -5,6 +5,8 @@ require "time"
 require "stringex"
 require "yaml"
 
+ENV['THOR_SILENCE_DEPRECATION'] = "1"
+
 FILE_DATE_FORMAT = "%Y-%m-%d"
 POST_DATE_FORMAT = "%b %d, %Y %H:%M"
 
