@@ -1,6 +1,6 @@
 ---
-title: "Pythonistalar Arıyoruz"
-date: Apr 16, 2020 18:07
+title: "Django Geliştiricileri Arıyoruz"
+date: Jan 13, 2021 13:32
 tags: kariyer
 cover: "kariyer.jpg"
 author:
@@ -11,37 +11,36 @@ author:
   twitter: BigesEng
 ---
 
-Biges Ar-Ge ekibi olarak geliştirdiğimiz ve geliştirmekte olduğumuz yazılım ve
-donanım projeleri için Python programcıları aramaktayız.
-
+Biges Ar-Ge ekibi olarak Django kütüphanesini çok seviyoruz ve projelerimizde
+kullanıyoruz. Bize katılmak ister misiniz?
 
 READ_MORE
 
+Django ve Python’u öncelikle kendi projemiz olan B2B sistemimizde kullanıyoruz.
+2019 yılında yayına aldığımız [sitemizi][b2b] yeniliyoruz. Yeni entegrasyonlarla
+beraber tamamen RESTful servis haline dönüştürdük.
 
-Aşağıdaki kriterleri sağlıyor veya kendinizi bu konularda hızla
-geliştirebileceğinizi düşünüyorsanız bizimle iletişime geçebilirsiniz.
+Ürünümüzün devamlılığını sağlamak ve yeni özellikler katmak adına, Django
+ekibimizi büyütmek istiyoruz.
+
+B2B’ye ek olarak, hali hazırda süren Ar-Ge projelerimizde de Django
+kullanıyoruz. Ekibimize katılacak yeni arkadaşlar arıyoruz.
 
 ### Yetkinlik ve Nitelikler
 
-- Python uygulaması, paketleme ve dağıtma bilgisi
-- Python standart kütüphaneye hakimiyet
-- Test Driven Development metodolojisi
-- Python ve Networking konuları
-- Python ve I/O - GPIO ve ilgili konular
-- Async Python
-- Unix/Shell command-line
-- Komut satırından `git` kullanabilmek
-- Tercihen IoT konularıyla ilgili olmak
-- Tercihen Python web frameworkleri hakkında bilgi sahibi olmak
-- Bonus, Ruby ile aşina olmak
-- Bonus, Golang ile haşır-neşir olmak
+- Django ile uygulama geliştirme tecrübesi
+- Django ORM, Query optimization, DRF gibi konular
+- API tasarım bilgisi
+- Test Driven Development
+- Komut satırı; giriş seviyesinde `git`, `bash` gibi konular
+- PostgreSQL veritabanı ile uygulama geliştirmiş olmak
 
 ### Yan Haklar
 
 - Yüksek lisans ve doktora programlarına katılım için teşvik.
 - Patent başvuruları için teşvik.
 - Ticarileştirilebilir projeler için teşvik.
-- Esnek çalışma saatleri.
+- Esnek ve uzaktan çalışma imkanları
 
 Başvurmak için GitHub/Gitlab/Bitbucket profilinizi, varsa Python ile
 geliştirdiğiniz, inceleyebileceğimiz kaynakları ve özgeçmişinizi (*varsa
@@ -62,3 +61,5 @@ LinkedIn linkinizi*) aşağıdaki adrese e-posta ile gönderiniz:
 | Bölüm             | Araştırma ve Geliştirme  |
 | Konum             | Okmeydanı / Istanbul     |
 
+
+[b2b]: https://biges.com
