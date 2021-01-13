@@ -1,6 +1,6 @@
 ---
-title: "Pythonistalar Arıyoruz"
-date: Jan 13, 2021 10:00
+title: "Gopher'lar Neredesiniz?"
+date: Jan 13, 2021 20:38
 tags: kariyer
 cover: "kariyer.jpg"
 author:
@@ -11,23 +11,25 @@ author:
   twitter: BigesEng
 ---
 
-Biges Ar-Ge ekibi olarak geliştirdiğimiz ve geliştirmekte olduğumuz yazılım ve
-donanım projelerinde sıkça Python programlama dilini kullanıyoruz.
+`Golang` mi `Go` mu? neden `ServeHTTP` request’i pointer olarak alıyor da
+ResonseWriter’ı almıyor? Cevap biliyorsan bizim ekiple çalışmaya ne dersin?
 
 READ_MORE
 
-Aşağıdaki kriterleri sağlıyor veya kendinizi bu konularda hızla
-geliştirebileceğinizi düşünüyorsanız bizimle iletişime geçebilirsiniz.
+Demekki daha önce standart kütüphane kullanarak bir http server yazmış
+olabilirsin?
 
-### Yetkinlik ve Nitelikler
+Ar-Ge merkezimizde geliştirdiğimiz [Hybrone][hybrone] platformumuzda
+backend olarak `golang` kullanıyoruz ve bir süre mikroservisimiz,
+kuruk sistemleirmiz, in-memory-db’lerimiz ve buna benzer kendi
+imalatımız göz bebeğimiz `golang` uygulamalarımız bulunuyor.
 
-- Python 3 familyasında geliştirme yapan
-- Test Driven Development metodolojisini seven
-- Networking konularına ilgi duyan
-- Python ve I/O - GPIO ve ilgili konulara meraklı
-- Pylint, Flake8, Black, isort gibi şeyleri daha önce kullanmış olan
-
-Python programcıları arıyoruz!
+- tcp/socket ve network dinleme/işleme tam benim kalem,
+- çok güzel golang paketi yazmarım, open-source edersiniz,
+- servis tasarımı, http status ok’dir
+- rest api benden sorulur, ister fiber ister echo
+- **concurrency is not parallelism** diyorsan
+- en az 2 yıldır "eğer derleniyorsa yayına al" demişsen
 
 ### Yan Haklar
 
@@ -55,3 +57,6 @@ LinkedIn linkinizi*) aşağıdaki adrese e-posta ile gönderiniz:
 | Bölüm             | Araştırma ve Geliştirme  |
 | Konum             | Okmeydanı / Istanbul     |
 
+
+
+[hybrone]: https://hybrone.com

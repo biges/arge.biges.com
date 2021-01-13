@@ -1,6 +1,6 @@
 ---
-title: "Pythonistalar Arıyoruz"
-date: Jan 13, 2021 10:00
+title: "DevOPS Arıyoruz"
+date: Jan 13, 2021 21:00
 tags: kariyer
 cover: "kariyer.jpg"
 author:
@@ -11,23 +11,19 @@ author:
   twitter: BigesEng
 ---
 
-Biges Ar-Ge ekibi olarak geliştirdiğimiz ve geliştirmekte olduğumuz yazılım ve
-donanım projelerinde sıkça Python programlama dilini kullanıyoruz.
+**Google Cloud Computing** benim işimdir, **Kubernetes** candır, Pod ile iPod
+arasında fark var diyorsanız bizim size ihtiyacımız var!
 
 READ_MORE
 
-Aşağıdaki kriterleri sağlıyor veya kendinizi bu konularda hızla
-geliştirebileceğinizi düşünüyorsanız bizimle iletişime geçebilirsiniz.
+Bir kısım mikroservisler, veritabanları, kuyruk sistemleri, ölçeklemeler,
+gitops, deployment, cloudbuild, CI/CD...
 
-### Yetkinlik ve Nitelikler
+- **devOPS** işlerimizi çekip çevirecek
+- servislerimizi ayakta tutacak
 
-- Python 3 familyasında geliştirme yapan
-- Test Driven Development metodolojisini seven
-- Networking konularına ilgi duyan
-- Python ve I/O - GPIO ve ilgili konulara meraklı
-- Pylint, Flake8, Black, isort gibi şeyleri daha önce kullanmış olan
-
-Python programcıları arıyoruz!
+kısacası tüm cloud işlerimizi çekip çevirecek konusunda uzman
+arkadaşlar arıyoruz.
 
 ### Yan Haklar
 
@@ -54,4 +50,3 @@ LinkedIn linkinizi*) aşağıdaki adrese e-posta ile gönderiniz:
 | Çalışma süresi    | Tam zamanlı              |
 | Bölüm             | Araştırma ve Geliştirme  |
 | Konum             | Okmeydanı / Istanbul     |
-

@@ -1,6 +1,6 @@
 ---
 title: "Arayüz Geliştiricileri Arıyoruz"
-date: Apr 16, 2020 16:08
+date: Jan 13, 2021 16:08
 tags: kariyer
 cover: "kariyer.jpg"
 author:
@@ -11,6 +11,11 @@ author:
   twitter: BigesEng
 ---
 
+React, React Native, Vue, Vanilla, jQuery daha ne olsun? Sen olsan hangisini
+seçerdin? Bizimle beraber heyecanlı işlere girmek ister misin?
+
+READ_MORE
+
 Biges Ar-Ge ekibi, günümüzde teknolojinin en popüler alanlarından birisi olan
 Nesnelerin İnterneti (*IoT*), kullanıcıların bulut tabanlı uygulamalara ve
 çözümlere dilediği platformdan kolayca ulaşmasını sağlamak amacıyla
@@ -18,39 +23,31 @@ geliştirilen SaaS (*Software as a Service*) modeli ve buna bağlı güçlü bul
 altyapısı ve otonom sistemler gibi konularda benzersiz projeler üzerinde
 çalışmaktadır.
 
-READ_MORE
-
 Siz de geleceğin güvenlik teknolojilerini ülkemize kazandıran, dünyanın en
 başarılı markalarının temsilciliğini başarıyla yürüten, şirket başarısını
 çalışanlarının başarısı ile mümkün olduğuna inanan, bu genç ve dinamik ekibin
 bir parçası olmak ve gelecek başarılarında pay sahibi olmak ister misiniz?
-
 
 Aşağıdaki kriterleri sağlıyor veya kendinizi bu konularda hızla
 geliştirebileceğinizi düşünüyorsanız bizimle iletişime geçebilirsiniz.
 
 ### Yetkinlik ve Nitelikler
 
-- İyi derecede JavaScript bilgisine sahip,
-- **VueJS** ve front-end teknolojileri konusunda tecrübeli,
-- HTML ve CSS konularına hakim,
+- İyi derece JavaScript bilmek,
+- Front-end teknolojilerine meraklı olmak,
+- Tercih ettiğiniz kütüphane ile en az bir proje yapmış/tamamlamış olmak
 - Tarayıcı uyumluluğu ve responsive tasarım konusunda deneyimli,
+- HTML ve CSS konularına hakim,
 - RESTful API ve tasarımı ve kullanımı konularında deneyimli,
-- İlgili pozisyonda en az 2 yıl çalışma deneyimi olan,
-- Erkek adaylar için askerlikle en az 2 sene ilişiği olmayan,
-- Tercihen ReactJS, React Native deneyimi bulunan,
-- Tercihen Google Firebase ve Google Cloud Teknolojileri deneyimi bulunan,
-- Tercihen Webpack, npm vb. konularda bilgi sahibi olan,
-- Tercihen ilgili üniversitelerden mezun olan,
-- Tercihen Revizyon kontrol sistemi git ile çalışmış olan,
-- Tercihen Unix/Shell kullanmış olan.
+
+arkadaşlar arıyoruz.
 
 ### Yan Haklar
 
 - Yüksek lisans ve doktora programlarına katılım için teşvik.
 - Patent başvuruları için teşvik.
 - Ticarileştirilebilir projeler için teşvik.
-- Esnek çalışma saatleri.
+- Esnek ve uzaktan çalışma imkanları.
 
 Başvurmak için GitHub/Gitlab/Bitbucket profilinizi, varsa JavaScript ile
 geliştirdiğiniz, inceleyebileceğimiz kaynakları ve özgeçmişinizi (*varsa
