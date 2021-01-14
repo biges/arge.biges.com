@@ -17,14 +17,15 @@ Eğer cevabınız evet ise sizi aramızda görmek istiyoruz!
 READ_MORE
 
 2 yıldır geliştirdiğimiz SaaS (*Software as a Service*) platformun hem web
-hem de mobil client’ları bulunuyor. React Native ile geliştirdiğim iOS ve
-Android uygulamamız için React Native geliştiricileri arıyoruz!
+hem de mobil client’ları bulunuyor. React Native ile geliştirdiğimiz iOS ve
+Android uygulamalarımız için React Native geliştiricileri arıyoruz!
 
 ### Yetkinlik ve Nitelikler
 
 - JavaScript bilmek,
+- Firebase’e inanmak ve güvenmek,
 - React / React Native bilmek,
-- RESTful API’ler iletişim,
+- RESTful API’lerle iletişim,
 
 ### Yan Haklar
 
@@ -33,7 +34,7 @@ Android uygulamamız için React Native geliştiricileri arıyoruz!
 - Ticarileştirilebilir projeler için teşvik.
 - Esnek ve uzaktan çalışma imkanları.
 
-Başvurmak için GitHub/Gitlab/Bitbucket profilinizi, varsa JavaScript ile
+Başvurmak için GitHub/Gitlab/Bitbucket profilinizi, varsa React Native ile
 geliştirdiğiniz, inceleyebileceğimiz kaynakları ve özgeçmişinizi (*varsa
 LinkedIn linkinizi*) aşağıdaki adrese e-posta ile gönderiniz:
 
@@ -45,7 +46,7 @@ LinkedIn linkinizi*) aşağıdaki adrese e-posta ile gönderiniz:
 | Konu              | Bilgi                    |
 |:------------------|:-------------------------|
 | Tecrübe seviyesi  | Intermediate/Senior      |
-| Rol               | Frontend Geliştirici     |
+| Rol               | Mobil Geliştirici        |
 | Sektör            | Güvenlik Teknolojileri   |
 | Çalışan sayısı    | 80-140                   |
 | Çalışma süresi    | Tam zamanlı              |

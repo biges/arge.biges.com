@@ -12,15 +12,19 @@ author:
 ---
 
 **Google Cloud Computing** benim işimdir, **Kubernetes** candır, Pod ile iPod
-arasında fark var diyorsanız bizim size ihtiyacımız var!
+arasında fark var diyorsanız bize ulaşın!
 
 READ_MORE
 
 Bir kısım mikroservisler, veritabanları, kuyruk sistemleri, ölçeklemeler,
-gitops, deployment, cloudbuild, CI/CD...
+gitops, deployment, cloud-build, CI/CD...
 
-- **devOPS** işlerimizi çekip çevirecek
-- servislerimizi ayakta tutacak
+- CI/CD özellikle `argocd` (*dvd ya da vcd değil!*),
+- docker, kubernetes,
+- `infrastructure as a code` (*terraform*) deneyimi
+- Cloud build, Ingress, Cloud Armor gibi konular
+- tercihen MongoDB, RabbitMQ, Cloud Pub/Sub, Kafka, Redis, gRPC ve `golang`
+  stack hakkında bilgi sahibi olmak
 
 kısacası tüm cloud işlerimizi çekip çevirecek konusunda uzman
 arkadaşlar arıyoruz.
@@ -32,9 +36,9 @@ arkadaşlar arıyoruz.
 - Ticarileştirilebilir projeler için teşvik.
 - Esnek ve uzaktan çalışma imkanları.
 
-Başvurmak için GitHub/Gitlab/Bitbucket profilinizi, varsa Python ile
-geliştirdiğiniz, inceleyebileceğimiz kaynakları ve özgeçmişinizi (*varsa
-LinkedIn linkinizi*) aşağıdaki adrese e-posta ile gönderiniz:
+Başvurmak için GitHub/Gitlab/Bitbucket profilinizi, inceleyebileceğimiz
+kaynakları ve özgeçmişinizi (*varsa LinkedIn linkinizi*) aşağıdaki adrese
+e-posta ile gönderiniz:
 
 > kariyer@biges.com
 
@@ -44,7 +48,7 @@ LinkedIn linkinizi*) aşağıdaki adrese e-posta ile gönderiniz:
 | Konu              | Bilgi                    |
 |:------------------|:-------------------------|
 | Tecrübe seviyesi  | Intermediate/Senior      |
-| Rol               | Python Geliştirici       |
+| Rol               | devOPS                   |
 | Sektör            | Güvenlik Teknolojileri   |
 | Çalışan sayısı    | 80-140                   |
 | Çalışma süresi    | Tam zamanlı              |

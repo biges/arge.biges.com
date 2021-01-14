@@ -12,22 +12,22 @@ author:
 ---
 
 `Golang` mi `Go` mu? neden `ServeHTTP` request’i pointer olarak alıyor da
-ResonseWriter’ı almıyor? Cevap biliyorsan bizim ekiple çalışmaya ne dersin?
+`ResponseWriter`’ı almıyor? Cevap biliyorsan bizim ekiple çalışmaya ne dersin?
 
 READ_MORE
 
-Demekki daha önce standart kütüphane kullanarak bir http server yazmış
-olabilirsin?
+Demek ki daha önce standart kütüphane kullanarak bir http server yazmış
+olabilir misin?
 
 Ar-Ge merkezimizde geliştirdiğimiz [Hybrone][hybrone] platformumuzda
 backend olarak `golang` kullanıyoruz ve bir süre mikroservisimiz,
-kuruk sistemleirmiz, in-memory-db’lerimiz ve buna benzer kendi
+kuyruk sistemlerimiz, in-memory-db’lerimiz ve buna benzer kendi
 imalatımız göz bebeğimiz `golang` uygulamalarımız bulunuyor.
 
 - tcp/socket ve network dinleme/işleme tam benim kalem,
-- çok güzel golang paketi yazmarım, open-source edersiniz,
+- çok güzel golang paketi yazarım, open-source edersiniz,
 - servis tasarımı, http status ok’dir
-- rest api benden sorulur, ister fiber ister echo
+- rest api benden sorulur, ister `fiber` ister `echo`
 - **concurrency is not parallelism** diyorsan
 - en az 2 yıldır "eğer derleniyorsa yayına al" demişsen
 
@@ -38,9 +38,9 @@ imalatımız göz bebeğimiz `golang` uygulamalarımız bulunuyor.
 - Ticarileştirilebilir projeler için teşvik.
 - Esnek ve uzaktan çalışma imkanları.
 
-Başvurmak için GitHub/Gitlab/Bitbucket profilinizi, varsa Python ile
-geliştirdiğiniz, inceleyebileceğimiz kaynakları ve özgeçmişinizi (*varsa
-LinkedIn linkinizi*) aşağıdaki adrese e-posta ile gönderiniz:
+Başvurmak için GitHub/Gitlab/Bitbucket profilinizi, varsa geliştirdiğiniz,
+inceleyebileceğimiz kaynakları ve özgeçmişinizi (*varsa LinkedIn linkinizi*)
+aşağıdaki adrese e-posta ile gönderiniz:
 
 > kariyer@biges.com
 
@@ -50,7 +50,7 @@ LinkedIn linkinizi*) aşağıdaki adrese e-posta ile gönderiniz:
 | Konu              | Bilgi                    |
 |:------------------|:-------------------------|
 | Tecrübe seviyesi  | Intermediate/Senior      |
-| Rol               | Python Geliştirici       |
+| Rol               | Backend Geliştirici      |
 | Sektör            | Güvenlik Teknolojileri   |
 | Çalışan sayısı    | 80-140                   |
 | Çalışma süresi    | Tam zamanlı              |

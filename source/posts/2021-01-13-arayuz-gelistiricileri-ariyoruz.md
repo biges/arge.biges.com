@@ -11,8 +11,9 @@ author:
   twitter: BigesEng
 ---
 
-React, React Native, Vue, Vanilla, jQuery daha ne olsun? Sen olsan hangisini
-seçerdin? Bizimle beraber heyecanlı işlere girmek ister misin?
+React, React Native, Vue, Vanilla, jQuery mi ne? Svelte? yok Stimulus? daha ne
+olsun? Sen olsan hangisini seçerdin? Bizimle beraber heyecanlı işlere girmek
+ister misin?
 
 READ_MORE
 

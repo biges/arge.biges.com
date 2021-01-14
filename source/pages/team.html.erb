@@ -2,51 +2,61 @@
 linkedin_prefix = 'https://linkedin.com/in/'
 github_prefix = 'https://github.com/'
 
-team = [
-    # 0,        1,        2,        3,
-    # sort-key, fullname, linkedin, github
+team_software = [
     ['buket',              'Buket Demir',         'buket-akın-demir',          'BuketDemir'],
     ['cem kiy',            'Cem Kıy',             'cemkiy',                    'cemkiy'],
     ['ferhat karatas',     'Ferhat Karataş',      'ferhat-karataş-88132541',   'ferhatkaratas'],
+    ['yusuf tunç',         'Yusuf Tunç',          'yusuf-tunç-bba97764',       'yusuftnc'],
     ['mehmet fatih kilic', 'M. Fatih Kılıç',      'mehmetfatihkilic',          'mfk-smart'],
-    ['yusuf tu',           'Yusuf Tunç',          'yusuf-tunç-bba97764',       'yusuftnc'],
     ['onur aslan',         'Onur Aslan',          'aslanon',                   'aslanon'],
     ['derya guney',        'Derya Güney',         'derya-guney-53aa572a',      nil],
-    ['soner boztas',       'Soner Boztaş',        'soner-boztas',              'SonerBoztas'],
-    ['atakan yildiz',      'Atakan Yıldız',       'atakanakyildiz',            'atakanakyildiz'],
-    ['semih kuvvet',       'Semih Kuvvet',        nil,                         'semihkuvvet'],
-    ['burak kurtcebe',     'Burak Kurtcebe',      'burak-kurtcebe-44b2347b',   nil],
-    ['nedim kivanc',       'Nedim Kıvanç',        'nedim-kivanc-3791591a2',    nil],
     ['semseddin moldibi',  'Şemseddin Moldibi',   'semseddin',                 'endo64'],
-    ['gokhan keskin',      'Gökhan Keskin',       'gökhan-keskin-0421453a',    nil],
     ['ramazan acar',       'Ramazan Acar',        'ramazan-acar-3922a324',     'acarist'],
     ['halil ibrahim',      'Halil İbrahim Güneri','gnrbrhm',                   'gnrbrhm'],
     ['burak demirpolat',   'Burak Demirpolat',    'burak-demirpolat-812157126','bdemirpolat'],
     ['gürkan gül',         'Gürkan Gül',          'gurkan-gul-a34882158',      'gurkangul'],
     ['deniz sekban',       'Deniz Sekban',        'denizsekban',               nil],
     ['uğur özyılmazel',    'Uğur Özyılmazel',     'ugurozyilmazel',            'vigo'],
-    ['murat kaplan',       'Murat Kaplan',        nil,                         nil],
-    ['kamil ışıklar',      'Kamil Işıklar',       nil,                         nil],
-    ['oğuzhan öztürk',     'Oğuzhan Öztürk',      nil,                         nil],
-    ['selçuk sağlam',      'Selçuk Sağlam',       nil,                         nil],
-    ['ziya çildan',        'Ziya Çildan',         nil,                         nil],
     ['atakan küçük',       'Atakan Küçük',        'atakankucuk',               'atakankck'],
     ['uğur akyay',         'Uğur Akyay',          'ugurakyay',                 'ugurakyay'],
     ['salim ildere',       'Salim İldere',        'salim-ildere-a5a22b117',    'salimildere'],
     ['ersel kır',          'Ersel Kır',           'ersel-kır-153215172',        nil],
     ['kadir can çetin',    'Kadir Can Çetin',     'kadircancetin',             'kadircancetin'],
     ['arca erdoğan',       'Arca Erdoğan',        'arca-erdogan',              nil],
+]
+
+team_hardware = [
+    # 0,        1,        2,        3,
+    # sort-key, fullname, linkedin, github
+    ['soner boztas',       'Soner Boztaş',        'soner-boztas',              'SonerBoztas'],
+    ['atakan yildiz',      'Atakan Yıldız',       'atakanakyildiz',            'atakanakyildiz'],
+    ['semih kuvvet',       'Semih Kuvvet',        nil,                         'semihkuvvet'],
+    ['burak kurtcebe',     'Burak Kurtcebe',      'burak-kurtcebe-44b2347b',   nil],
+    ['nedim kivanc',       'Nedim Kıvanç',        'nedim-kivanc-3791591a2',    nil],
+    ['gokhan keskin',      'Gökhan Keskin',       'gökhan-keskin-0421453a',    nil],
+    ['murat kaplan',       'Murat Kaplan',        nil,                         nil],
+    ['kamil ışıklar',      'Kamil Işıklar',       nil,                         nil],
+    ['oğuzhan öztürk',     'Oğuzhan Öztürk',      nil,                         nil],
+    ['selçuk sağlam',      'Selçuk Sağlam',       nil,                         nil],
+    ['ziya çildan',        'Ziya Çildan',         nil,                         nil],
     ['hüseyin baştan',     'Hüseyin Baştan',      nil,                         nil],
 ]
+
+teams = [
+    ['Yazılım', team_software],
+    ['Donanım', team_hardware],
+]
 %>
-
-
 
 <article class="container team">
     <section class="index">
         <h1>Ar-Ge Ekibimiz</h1>
-        <table>
-            <% team.sort_by{|person| person.first }.each do |row| %>
+        
+        <% teams.each do |team| %>
+
+        <h4><%= team[0] %></h4>
+        <table class="team">
+            <% team[1].sort_by{|person| person.first }.each do |row| %>
             <%
                 full_name = row[1]
                 linkedin_username = row[2]
@@ -59,5 +69,8 @@ team = [
             </tr>
             <% end %>
         </table>
+        <% end %>
+
+
     </section>
 </article>

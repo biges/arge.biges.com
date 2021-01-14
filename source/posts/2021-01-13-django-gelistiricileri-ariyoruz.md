@@ -42,7 +42,7 @@ kullanıyoruz. Ekibimize katılacak yeni arkadaşlar arıyoruz.
 - Ticarileştirilebilir projeler için teşvik.
 - Esnek ve uzaktan çalışma imkanları
 
-Başvurmak için GitHub/Gitlab/Bitbucket profilinizi, varsa Python ile
+Başvurmak için GitHub/Gitlab/Bitbucket profilinizi, varsa Django ile
 geliştirdiğiniz, inceleyebileceğimiz kaynakları ve özgeçmişinizi (*varsa
 LinkedIn linkinizi*) aşağıdaki adrese e-posta ile gönderiniz:
 

@@ -8,6 +8,16 @@ article.tags {
         &:after { content: "\201D"; }
     }
 }
+$h4-team-name: lighten($h1-color, 40);
+
+article.team {
+  h4 {
+    color: $h4-team-name;
+    padding-left: .5em;
+    padding-bottom: .5em;
+    border-bottom: 2px solid $h4-team-name;
+  }
+}
 
 div.tags {
     margin-top: .8em;
@@ -118,4 +128,8 @@ table {
   th, td {
     padding: 6px 13px;
   }
+}
+
+table.team {
+  margin-bottom: 5em;
 }
