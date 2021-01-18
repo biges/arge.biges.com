@@ -3,6 +3,8 @@ linkedin_prefix = 'https://linkedin.com/in/'
 github_prefix = 'https://github.com/'
 
 team_software = [
+    # 0,        1,        2,        3,
+    # sort-key, fullname, linkedin, github
     ['buket',              'Buket Demir',         'buket-akın-demir',          'BuketDemir'],
     ['cem kiy',            'Cem Kıy',             'cemkiy',                    'cemkiy'],
     ['ferhat karatas',     'Ferhat Karataş',      'ferhat-karataş-88132541',   'ferhatkaratas'],
@@ -23,6 +25,7 @@ team_software = [
     ['ersel kır',          'Ersel Kır',           'ersel-kır-153215172',        nil],
     ['kadir can çetin',    'Kadir Can Çetin',     'kadircancetin',             'kadircancetin'],
     ['arca erdoğan',       'Arca Erdoğan',        'arca-erdogan',              nil],
+    ['yılmaz çakmakcı',    'Yılmaz Çakmakcı',     'arca-erdogan',              nil],
 ]
 
 team_hardware = [
@@ -39,7 +42,7 @@ team_hardware = [
     ['oğuzhan öztürk',     'Oğuzhan Öztürk',      nil,                         nil],
     ['selçuk sağlam',      'Selçuk Sağlam',       nil,                         nil],
     ['ziya çildan',        'Ziya Çildan',         nil,                         nil],
-    ['hüseyin baştan',     'Hüseyin Baştan',      nil,                         nil],
+    ['hüseyin baştan',     'Hüseyin Baştan',      'yilmazcakmakci',            'yilmazcakmakci'],
 ]
 
 teams = [
@@ -52,9 +55,13 @@ teams = [
     <section class="index">
         <h1>Ar-Ge Ekibimiz</h1>
         
-        <% teams.each do |team| %>
+        <% 
+        sum = 0
+        teams.each do |team|
+        %>
 
-        <h4><%= team[0] %></h4>
+        <h4><%= team[0] %> [ <%= team[1].length %> ]</h4>
+        <% sum = sum + team[1].length %>
         <table class="team">
             <% team[1].sort_by{|person| person.first }.each do |row| %>
             <%
@@ -70,7 +77,8 @@ teams = [
             <% end %>
         </table>
         <% end %>
-
+        
+        <h4>Toplam [ <%= sum %> ]</h4>
 
     </section>
 </article>
