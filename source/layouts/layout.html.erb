@@ -1,5 +1,5 @@
 <%
-@html_page_title = current_article.nil? ? "#{site[:title]} &mdash; #{site[:subtitle]}" : "#{current_article.title} &mdash; #{site[:title]}"
+@html_page_title = current_page.data.title.nil? ? "#{site[:title]} &mdash; #{site[:subtitle]}" : "#{current_page.data.title} &mdash; #{site[:title]}"
 @canonical_url = "#{site[:production_url]}/#{request.path}"
 @open_graph_image = "#{site[:production_url]}/#{images_dir}/#{site[:cover_image]}"
 unless current_article.nil?

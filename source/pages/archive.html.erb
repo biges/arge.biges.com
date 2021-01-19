@@ -1,3 +1,6 @@
+---
+title: "Blog Arşivi"
+---
 <article class="container archive">
     <section class="index"><h1><%= t 'messages.archive' %></h1></section>
     <% page_articles.group_by {|x| x.date.year}.each do |year, articles_group_by_year| %>
