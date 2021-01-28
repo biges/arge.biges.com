@@ -49,7 +49,7 @@ jobs = [
         <table>
             <thead>
                 <tr>
-                    <th width="20%">Tarih</th>
+                    <th width="20%" class="hidden-small">Tarih</th>
                     <th>Pozisyon</th>
                     <th width="16%"></th>
                 </tr>
@@ -66,7 +66,7 @@ jobs = [
                     end
                 %>
                 <tr>
-                    <td><%= job_date %></td>
+                    <td class="hidden-small"><%= job_date %></td>
                     <td><a href="<%= job_url %>"><%= job_title %></a></td>
                     <td class="job-icon"><% if job_icons %><%= job_icons %><% else %>&nbsp;<% end %></td>
                 </tr>

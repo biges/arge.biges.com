@@ -2,7 +2,7 @@
 title: "Arayüz Geliştiricileri Arıyoruz"
 date: Jan 13, 2021 16:08
 tags: kariyer
-cover: "kariyer.jpg"
+cover: "ad-javascript.png"
 author:
   name: ARGE Ekibi
   email: arge@biges.com

@@ -2,7 +2,7 @@
 title: "Gopher'lar Neredesiniz?"
 date: Jan 13, 2021 20:38
 tags: kariyer
-cover: "kariyer.jpg"
+cover: "ad-golang.png"
 author:
   name: ARGE Ekibi
   email: arge@biges.com

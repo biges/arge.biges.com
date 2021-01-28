@@ -2,7 +2,7 @@
 title: "Django Geliştiricileri Arıyoruz"
 date: Jan 13, 2021 13:32
 tags: kariyer
-cover: "kariyer.jpg"
+cover: "ad-django.png"
 author:
   name: ARGE Ekibi
   email: arge@biges.com

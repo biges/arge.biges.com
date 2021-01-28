@@ -2,7 +2,7 @@
 title: "Pythonistalar Arıyoruz"
 date: Jan 13, 2021 10:00
 tags: kariyer
-cover: "kariyer.jpg"
+cover: "ad-python.png"
 author:
   name: ARGE Ekibi
   email: arge@biges.com

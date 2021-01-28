@@ -2,7 +2,7 @@
 title: "React Native Geliştiricileri Arıyoruz"
 date: Jan 14, 2021 09:59
 tags: kariyer
-cover: "kariyer.jpg"
+cover: "ad-react-native.png"
 author:
   name: ARGE Ekibi
   email: arge@biges.com
