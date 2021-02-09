@@ -128,7 +128,12 @@ article {
     }
     
     h5 {
+      margin-top: 2em;
+      font-size: 1em;
+      font-weight: 600;
       color: $h5-color;
+      padding-bottom: .5em;
+      border-bottom: 2px solid lighten($h5-color, 40);
     }
 
     h6 {
