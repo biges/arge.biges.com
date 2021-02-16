@@ -1,5 +1,5 @@
 ---
-title: "2 - 7 Şubat 2021 Twitter-Paylaşımları"
+title: "2 - 7 Şubat 2021 Twitter Paylaşımları"
 date: Feb 16, 2021 09:34
 tags: linkler
 cover: "cover-tweets.png"
