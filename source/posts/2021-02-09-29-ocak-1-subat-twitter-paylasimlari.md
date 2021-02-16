@@ -18,13 +18,11 @@ READ_MORE
 
 ##### 1 Şubat 2021
 
-- https://arge.biges.com/2021/01/13/devops-ariyoruz/
 - https://levelup.gitconnected.com/testing-software-what-is-tdd-ecfcb7163b48
 - https://twitter.com/KartacaOfficial/status/1356149741348917249
 - https://adamj.eu/tech/2021/01/20/efficient-reloading-in-djangos-runserver-with-watchman/
 - https://benjamincongdon.me/blog/2021/01/21/A-Tour-of-Go-116s-iofs-package/
 - https://www.cyberciti.biz/faq/see-check-if-bash-variable-defined-in-script-on-linux-unix-macos/
-- https://arge.biges.com/2021/01/13/pythonistalar-ariyoruz/
 
 ##### 31 Ocak 2021
 
@@ -42,7 +40,6 @@ READ_MORE
 - https://dev.to/blessingartcreator/17-javascript-optimization-tips-3gil
 - https://gist.github.com/willurd/5720255
 - https://eli.thegreenplace.net/2021/rest-servers-in-go-part-1-standard-library/
-- https://arge.biges.com/2021/01/14/react-native-gelistiricileri-ariyoruz/
 - https://blog.twitter.com/engineering/en_us/topics/open-source/2021/introducing-twitter-text-editor.html
 - https://2ality.com/2021/01/undefined-null-revisited.html
 
