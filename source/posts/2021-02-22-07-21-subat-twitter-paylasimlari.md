@@ -1,6 +1,6 @@
 ---
 title: "15 - 21 Şubat 2021 Twitter Paylaşımları"
-date: Feb 16, 2021 10:54
+date: Feb 22, 2021 07:21
 tags: linkler
 cover: "cover-tweets.png"
 author:
