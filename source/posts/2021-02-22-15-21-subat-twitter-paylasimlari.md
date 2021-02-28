@@ -1,5 +1,5 @@
 ---
-title: "15 - 21 Şubat 2021 Twitter Paylaşımları"
+title: "15 - 21 Şubat 2021, Twitter Paylaşımları"
 date: Feb 22, 2021 07:21
 tags: linkler
 cover: "cover-tweets.png"
@@ -11,7 +11,7 @@ author:
   twitter: BigesEng
 ---
 
-Ar-Ge merkezimize ait Twitter hesabından yaptığımız 15 - 21 Şubat 2021
+Ar-Ge merkezimize ait Twitter hesabından, 15 - 21 Şubat 2021
 haftasında yaptığımız paylaşımların listesi burada! Bizi takip etmeyi
 unutmayın!
 

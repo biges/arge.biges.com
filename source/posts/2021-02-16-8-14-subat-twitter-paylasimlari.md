@@ -1,5 +1,5 @@
 ---
-title: "8 - 14 Şubat 2021 Twitter Paylaşımları"
+title: "8 - 14 Şubat 2021, Twitter Paylaşımları"
 date: Feb 16, 2021 09:44
 tags: linkler
 cover: "cover-tweets.png"
@@ -11,7 +11,7 @@ author:
   twitter: BigesEng
 ---
 
-Ar-Ge merkezimize ait Twitter hesabından yaptığımız 8 - 14 Şubat 2021
+Ar-Ge merkezimize ait Twitter hesabından, 8 - 14 Şubat 2021
 haftasında yaptığımız paylaşımların listesi burada! Bizi takip etmeyi
 unutmayın!
 
