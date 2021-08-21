@@ -4,9 +4,9 @@
     author_email = config[:site][:main_author][:email]
     author_name = config[:site][:main_author][:name]
     
-    if article.metadata[:page]["author"]
-        author_email = article.metadata[:page]["author"]["email"] if article.metadata[:page]["author"]["email"]
-        author_name = article.metadata[:page]["author"]["name"] if article.metadata[:page]["author"]["name"]
+    if article.metadata[:page][:author]
+        author_email = article.metadata[:page][:author][:email] if article.metadata[:page][:author][:email]
+        author_name = article.metadata[:page][:author][:name] if article.metadata[:page][:author][:name]
     end
     %>
     <img class="avatar" src="<%= gravatar_for(author_email) %>" />

@@ -1,0 +1,408 @@
+---
+title: "Basit işlerin otomasyonu: Rakefile"
+date: Aug 21, 2021 14:15
+tags: rake,ruby,django
+subtitle: "Makefile değil Rakefile"
+cover: "rake.png"
+# published: false
+# comments: false 
+author:
+  name: "Uğur Özyılmazel"
+  email: "ugur.ozyilmazel@biges.com"
+  link: "https://github.com/vigo"
+  bio: "Retrolog"
+---
+
+Özellikle `C` ile uğraşanların yakından tanıdığı `Makefile`, zamanının en çok
+işe yarayan araçlarındandı. Halen de çok kullanılır. Peki daha basit ve
+rahat bir alternatifi var mı?
+
+READ_MORE
+
+Evet, bence var! Büyük usta, toprağı bol olsun [Jim Weirich](https://github.com/jimweirich) 
+tarafından bize armağan edilen bir **Ruby** gem’idir `rake`. Eğer **macOS**
+kullanıyorsanız, `ruby` ve `rake` içinde birlikte geldiği için hiçbir ilave
+kuruluma ihtiyaç duymuyorsunuz.
+
+Ben şanslıyım, genelde çalıştığım ekiplerde hep macOS kullandığımız için,
+hiçbir ilave iş yapmadan `Rakefile` ile kolay otomasyon yapabiliyoruz.
+
+Eğer sisteminizde `ruby` yoksa, önce `ruby` kurmalı, sonrasında da `gem install rake`
+ile ek bir kurulum daha yapmanız lazım:
+
+```bash
+# ubuntu kullanıcıları için herşey dahil kurulum
+$ sudo apt-get update -y
+$ sudo apt-get install -y ruby-full
+```
+
+## İlk Task’imiz
+
+`rake` bir **task** çalıştırıcı. `Rakefile` da bu işleri yani task’leri
+tanımladığımız yer. Şimdi aşağıdaki kodu `Rakefile` adıyla kaydedip çalıştıralım:
+
+```ruby
+desc "Merhaba komutu"
+task :merhaba do
+  puts "Merhaba"
+end
+```
+
+Şimdi task’leri listeleyelim:
+
+```
+$ rake -T
+rake merhaba  # Merhaba komutu
+```
+
+Çalıştırmak için:
+
+```bash
+$ rake merhaba 
+Merhaba
+```
+
+Bu kadar basit... Peki daha başka neler var?
+
+Aynı `Makefile` daki gibi, bir task’i çalıştırmadan önce başka task’leri
+çağırabiliriz. Örneğin, environment variable `GO_ENV` set edilmemişse,
+hatta bu değişkenin değeri `development` değilse bu task çalışmasın:
+
+```ruby
+task :check_env do
+  abort "lütfen GO_ENV i tanımlayın" unless ENV['GO_ENV']
+  abort "GO_ENV değeri development olmalı" unless ENV['GO_ENV'] == 'development'
+end
+
+desc "Merhaba komutu"
+task :merhaba => [:check_env] do
+  puts "Merhaba"
+end
+```
+
+Haydi çalıştıralım:
+
+```bash
+$ rake merhaba
+lütfen GO_ENV i tanımlayın
+
+$ GO_ENV=1 rake merhaba 
+GO_ENV değeri development olmalı
+
+$ GO_ENV=development rake merhaba
+Merhaba
+```
+
+Peki acaba parametre geçsek ve bize "Merhaba <İSİM>" şeklinde çıktı verse:
+
+```ruby
+task :check_env do
+  abort "lütfen GO_ENV i tanımlayın" unless ENV['GO_ENV']
+  abort "GO_ENV değeri development olmalı" unless ENV['GO_ENV'] == 'development'
+end
+
+desc "Merhaba komutu"
+task :merhaba, [:isim] => [:check_env] do |t, args|
+  puts "Merhaba #{args.isim}"
+end
+```
+
+çalıştıralım:
+
+```bash
+$ GO_ENV=development rake merhaba["vigo"]
+Merhaba vigo
+```
+
+Burada küçük bir hatırlatma. Eğer shell olarak `zsh` kullanıyorsanız, köşeli
+parantezleri escape etmeniz gerekiyor, yani komutu:
+
+```bash
+$ GO_ENV=development rake merhaba\["vigo"\]
+```
+
+şeklinde çağırmanız lazım. Ben çok uzun yıllardan beri `bash` kullandığım için
+böyle bir sıkıntım yok :)
+
+Peki, eğer isim geçilmemişse hata verelim:
+
+```ruby
+task :check_env do
+  abort "lütfen GO_ENV i tanımlayın" unless ENV['GO_ENV']
+  abort "GO_ENV değeri development olmalı" unless ENV['GO_ENV'] == 'development'
+end
+
+desc "Merhaba komutu"
+task :merhaba, [:isim] => [:check_env] do |t, args|
+  abort "lütfen isim girin" unless args.isim
+  puts "Merhaba #{args.isim}"
+end
+```
+
+çalıştıralım:
+
+```bash
+$ GO_ENV=development rake merhaba
+lütfen isim girin
+```
+
+Peki, `abort` yerine, varsayılan bir isim versek?
+
+```ruby
+task :check_env do
+  abort "lütfen GO_ENV i tanımlayın" unless ENV['GO_ENV']
+  abort "GO_ENV değeri development olmalı" unless ENV['GO_ENV'] == 'development'
+end
+
+desc "Merhaba komutu"
+task :merhaba, [:isim] => [:check_env] do |t, args|
+  # abort "lütfen isim girin" unless args.isim
+  args.with_defaults(isim: "isimsiz")
+  puts "Merhaba #{args.isim}"
+end
+```
+
+çalıştıralım:
+
+```bash
+$ GO_ENV=development rake merhaba
+Merhaba isimsiz
+```
+
+Şimdi işin esas güzel yanı, task’in içinden shell komutları çağırmak. Yeni
+bir task ekleyelim, bize **directory list** yani `ls -al` versin ?
+
+```ruby
+task :check_env do
+  abort "lütfen GO_ENV i tanımlayın" unless ENV['GO_ENV']
+  abort "GO_ENV değeri development olmalı" unless ENV['GO_ENV'] == 'development'
+end
+
+desc "Merhaba komutu"
+task :merhaba, [:isim] => [:check_env] do |t, args|
+  # abort "lütfen isim girin" unless args.isim
+  args.with_defaults(isim: "isimsiz")
+  puts "Merhaba #{args.isim}"
+end
+
+desc "Directory listele"
+task :ls do
+  system "ls -al"
+end
+```
+
+Önce neler var listeleyelim;
+
+```
+$ rake -T
+rake ls             # Directory listele
+rake merhaba[isim]  # Merhaba komutu
+```
+
+şimdi;
+
+```bash
+$ rake ls
+```
+
+## Gerçek Hayat Örneği
+
+Bir Python/Django projesinde sıkça tekrarladığım işler var. Örneğin yeni bir
+model eklediğimde bu modelin migration dosyasının oluşturulması. Bazen migration
+içinde geri dönmem gerekiyor, yani sürekli uzun uzun `python manage.py ...` bir
+süre şey yazmam lazım.
+
+Peki ben ne yapıyorum?
+
+```ruby
+task :check_development_environment do
+  abort "Set DJANGO_SECRET_KEY variable! via export DJANGO_SECRET_KEY=..." unless ENV['DJANGO_SECRET_KEY']
+  abort "Set DJANGO_ENV variable! via export DJANGO_ENV=..." unless ENV['DJANGO_ENV']
+  abort "Set DATABASE_URL variable! via export DJANGO_ENV=..." unless ENV['DATABASE_URL']
+end
+
+namespace :db do
+  desc "Run migration for given database (default: 'default')"
+  task :migrate, [:database] => [:check_development_environment] do |_, args|
+    args.with_defaults(:database => "default")
+    puts "Running migration for: #{args.database} database..."
+    system "python manage.py migrate --database=#{args.database}"
+  end
+
+
+  desc "run database shell ..."
+  task :shell => [:check_development_environment] do
+    system "python manage.py dbshell"
+  end
+  
+
+  desc "show migrations for an application (default: 'all')"
+  task :show, [:name_of_application] => [:check_development_environment] do |_, args|
+    args.with_defaults(:name_of_application => "all")
+    single_application_or_all = " #{args.name_of_application}"
+    single_application_or_all = "" if args.name_of_application == "all"
+    system "python manage.py showmigrations#{single_application_or_all}"
+  end
+
+
+  desc "update migration (name of application, name of migration?, is empty?)"
+  task :update, [:name_of_application, :name_of_migration, :is_empty] => [:check_development_environment] do |_, args|
+    abort "Please provide: 'name_of_application'" unless args.name_of_application
+
+    args.with_defaults(:name_of_migration => "auto_#{Time.now.strftime('%Y%m%d_%H%M')}")
+    args.with_defaults(:is_empty => "no")
+    name_param = "--name #{args.name_of_migration}"
+    empty_param = ""
+    unless args.is_empty == "no"
+      empty_param = "--empty #{args.name_of_application} "
+    end
+    system "python manage.py makemigrations #{empty_param}#{name_param}"
+  end
+
+  
+  desc "roll-back (name of application, name of migration)"
+  task :roll_back, [:name_of_application, :name_of_migration] => [:check_development_environment] do |_, args|
+    abort "Please provide: 'name_of_application'" unless args.name_of_application
+    args.with_defaults(:name_of_migration => nil)
+    which_application = args.name_of_application
+    which_application = "" if args.name_of_application == "all"
+    if args.name_of_migration.nil?
+      puts "Please select your migration:"
+      system "python manage.py showmigrations #{which_application}"
+    else
+      system "python manage.py migrate #{which_application} #{sprintf("%04d", args.name_of_migration)}"
+    end
+  end
+  
+  desc "fill database"
+  task :fill => [:check_development_environment] do
+    system "python manage.py fill"
+  end
+
+  desc "drop database"
+  task :drop, [:db] => [:check_development_environment] do |_, args|
+    args.with_defaults(:db => "hybrone")
+    system "dropdb --if-exists #{args.db} && echo #{args.db} dropped..."
+  end
+
+  desc "create database"
+  task :create, [:db, :username] => [:check_development_environment] do |_, args|
+    args.with_defaults(:db => "XXXX")
+    args.with_defaults(:username => "XXXX")
+    pg_user_exists = `psql postgres -XtAc "SELECT 1 FROM pg_roles WHERE rolname='#{args.username}'"`.chomp.empty? ? false : true
+    
+    system "createuser #{args.username} && echo user #{args.username} has been created successfully" unless pg_user_exists
+    system %{
+      createdb #{args.db} -O #{args.username} && 
+      echo #{args.db} created and owner is set to #{args.username} &&
+      psql #{args.db} -c "ALTER USER hybrone CREATEDB; ALTER ROLE #{args.username} SET timezone TO 'UTC';" &&
+      echo timezone is set to UTC
+    }
+  end
+end
+```
+
+Hemen bakalım hangi task’ler var:
+
+```
+$ rake -T
+
+rake db:create[db,username]                                     # create database
+rake db:drop[db]                                                # drop database
+rake db:fill                                                    # fill database
+rake db:migrate[database]                                       # Run migration for given database (default: 'default')
+rake db:roll_back[name_of_application,name_of_migration]        # roll-back (name of application, name of migration)
+rake db:shell                                                   # run database shell ..
+rake db:show[name_of_application]                               # show migrations for an application (default: 'all')
+rake db:update[name_of_application,name_of_migration,is_empty]  # update migration (name of application, name of migration?, is empty?)
+```
+
+Örnekte **namespace** kullanımı var, yani **db** adında bir namespace’im var,
+komutu çağırırken `rake db:XXXXXX` şeklinde kullanıyorum.
+
+Yeni bir model için migration dosyası oluşturmam şu kadar kolay:
+
+```bash
+$ rake db:update[core,add_new_fields_to_user]
+```
+
+Bu komut ile adı `core` olan app’i gösteriyorum ve migration’a isim veriyorum.
+Dosya adı `00XX_add_new_fields_to_user.py` şeklinde oluyor...
+
+Peki yaklaşık 20 tane migration var ve ben birşey denemek için `0014_` ile
+başlayan duruma dönmek istiyorum:
+
+```bash
+$ rake db:roll_back[core,14]
+```
+
+yapmam yeterli...
+
+Veritabanını uçurup yeniden oluşturacağım:
+
+```bash
+$ rake db:drop && rake db:create && rake db:migrate
+```
+
+Peki işin içine **Docker** operasyonları girerse?
+
+```ruby
+namespace :docker do
+  namespace :compose do
+    
+    task :build do
+      system %{
+        docker-compose build --build-arg django_requirements=development
+      }
+    end
+    
+    desc "run application"
+    task :up => ["docker:compose:build"] do
+      system "docker-compose up"
+    end
+    
+    desc "down"
+    task :down do
+      system "docker-compose down"
+    end
+
+    desc "down and kill all"
+    task :down_and_kill do
+      system "docker-compose down --rmi all --volumes"
+    end
+
+    desc "remove all volumes (any volume exists)"
+    task :rm_volumes do
+      system "docker volume rm $(docker volume ls -q)"
+    end
+    
+    
+  end
+end
+```
+
+Hemen task listesi:
+
+```
+$ rake -T
+rake docker:compose:down           # down
+rake docker:compose:down_and_kill  # down and kill all
+rake docker:compose:rm_volumes     # remove all volumes (any volume exists)
+rake docker:compose:up             # run application
+```
+
+Haydi uygulama ayağa kalksın:
+
+```bash
+$ rake docker:compose:up
+```
+
+Tabi `rake`’in gücü bunlarla sınırlı değil. Geçtiğimiz yıllarda bu konu ile
+ilgili sunum yapmıştım, [bu link](https://l.vigo.io/makefile-degil-rakefile)’ten erişebilirsiniz.
+
+Tabi şunu da unutmamak lazım, `Rakefile` içinde `ruby` kodu yazıyoruz. Başımıza
+bir de Ruby programlama çıktı diye bana kızabilirsiniz. İnanın, gerçekten
+çok basit aslında. Sevgiyle yaklaşırsanız yapabilirsiniz.
+
+Eğer `ruby` öğrenmek isterseniz, biraz eski de olsa şöyle [bir kaynak](https://vigo.github.io/ruby101-kitap/) tavsiye
+edebilirim

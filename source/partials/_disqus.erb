@@ -2,7 +2,7 @@
 show_comments = false
 show_comments = true unless development? && config[:site][:social][:disqus]
 if current_page.metadata[:page].has_key?("comments")
-  show_comments = current_page.metadata[:page]["comments"] 
+  show_comments = current_page.metadata[:page][:comments] 
 end
 %>
 

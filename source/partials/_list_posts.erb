@@ -4,9 +4,9 @@
     author_email = config[:site][:main_author][:email]
     author_name = config[:site][:main_author][:name]
     
-    if article.metadata[:page]["author"]
-        author_email = article.metadata[:page]["author"]["email"] if article.metadata[:page]["author"]["email"]
-        author_name = article.metadata[:page]["author"]["name"] if article.metadata[:page]["author"]["name"]
+    if article.metadata[:page][:author]
+        author_email = article.metadata[:page][:author][:email] if article.metadata[:page][:author][:email]
+        author_name = article.metadata[:page][:author][:name] if article.metadata[:page][:author][:name]
     end
     %>
     <img class="avatar" src="<%= gravatar_for(author_email) %>" />
@@ -20,9 +20,9 @@
             <time pubdate datetime="<%= article.date.xmlschema %>" title="<%= I18n.l article.date, :format => "%d %B %Y, %A %H:%M" %>"><%= I18n.l article.date, :format => "%d %B %Y, %A %H:%M" %></time>
         </div>
         
-        <% if article.metadata[:page]["tags"] %>
+        <% if article.metadata[:page][:tags] %>
             <div class="tags">
-                <% article.metadata[:page]["tags"].split(",").each do |tag| %>
+                <% article.metadata[:page][:tags].split(",").each do |tag| %>
                 <span class="badge"><%= link_to tag, tag_path(tag) %></span>
                 <% end %>
             </div>
