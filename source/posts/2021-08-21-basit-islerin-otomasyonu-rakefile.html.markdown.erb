@@ -281,7 +281,7 @@ namespace :db do
 
   desc "drop database"
   task :drop, [:db] => [:check_development_environment] do |_, args|
-    args.with_defaults(:db => "hybrone")
+    args.with_defaults(:db => "YYYY")
     system "dropdb --if-exists #{args.db} && echo #{args.db} dropped..."
   end
 
@@ -295,7 +295,7 @@ namespace :db do
     system %{
       createdb #{args.db} -O #{args.username} && 
       echo #{args.db} created and owner is set to #{args.username} &&
-      psql #{args.db} -c "ALTER USER hybrone CREATEDB; ALTER ROLE #{args.username} SET timezone TO 'UTC';" &&
+      psql #{args.db} -c "ALTER USER XXXX CREATEDB; ALTER ROLE #{args.username} SET timezone TO 'UTC';" &&
       echo timezone is set to UTC
     }
   end
