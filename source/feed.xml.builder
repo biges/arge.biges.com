@@ -17,8 +17,8 @@ xml.feed "xmlns" => "http://www.w3.org/2005/Atom" do
       xml.published article.date.to_time.iso8601
       xml.updated File.mtime(article.source_file).iso8601
       article_author = config[:site][:main_author][:name]
-      if article.metadata[:page]["author"]
-        article_author = article.metadata[:page]["author"]["name"] if article.metadata[:page]["author"]["name"]
+      if article.metadata[:page][:author]
+        article_author = article.metadata[:page][:author][:name] if article.metadata[:page][:author][:name]
       end
       xml.author { 
         xml.name article_author

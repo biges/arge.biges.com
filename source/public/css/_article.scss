@@ -1,7 +1,7 @@
 article {
     background: #fff;
     padding: 60px 0;
-    font-size: 18px;
+//    font-size: 1.3em;
 
     .container > header, .container > section, .container > footer {
         margin: 0 8em;
@@ -18,12 +18,11 @@ article {
     }
 
     .container > footer {
-        border-top: 1px solid #ddd;
-        border-bottom: 1px solid #ddd;
-        padding-top: 1.5em;
-        padding-bottom: 1.5em;
-        margin-top: 1.5em;
-        margin-bottom: 1.5em;
+        padding: 1em 0;
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        margin-top: 4em;
+        margin-bottom: 4em;
     }
 
     header {
@@ -43,7 +42,7 @@ article {
     address {
         margin: 0;
         font-size: 0.9em;
-        max-height: 48px;
+//        max-height: 48px;
         
         p {
             margin: 0;
@@ -66,8 +65,8 @@ article {
     }
 
     p {
-        font-size: 1em;
-        line-height: 1.5;
+        font-size: 1.3em;
+        line-height: 1.8;
         color: $text;
         font-weight: 400;
         margin: 0 0 1.5em;
