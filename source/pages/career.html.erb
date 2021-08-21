@@ -23,12 +23,12 @@ ikon = {
 }
 
 jobs = [
-    ['14 Ocak, 2021', '/2021/01/14/react-native-gelistiricileri-ariyoruz/', 'React Native Geliştiricileri Arıyoruz', [ikon[:js], ikon[:mobile],ikon[:react],ikon[:git]]],
-    ['13 Ocak, 2021', '/2021/01/13/gopherlar-neredesiniz/', 'Gopher\'lar Neredesiniz?', [ikon[:laptop],ikon[:terminal],ikon[:golang],ikon[:git]]],
-    ['13 Ocak, 2021', '/2021/01/13/arayuz-gelistiricileri-ariyoruz/', 'Arayüz Geliştiricileri Arıyoruz', [ikon[:js], ikon[:yarn], ikon[:react], ikon[:vue], ikon[:git]]],
-    ['13 Ocak, 2021', '/2021/01/13/django-gelistiricileri-ariyoruz/', 'Django Geliştiricileri Arıyoruz', [ikon[:python], ikon[:terminal], ikon[:git], ikon[:apple]]],
-    ['13 Ocak, 2021', '/2021/01/13/pythonistalar-ariyoruz/', 'Pythonistalar Arıyoruz', [ikon[:python], ikon[:terminal], ikon[:git], ikon[:raspberry]]],
-    ['13 Ocak, 2021', '/2021/01/13/devops-ariyoruz/', 'DevOPS Arıyoruz', [ikon[:git], ikon[:keyboard], ikon[:laptop], ikon[:golang]]],
+    ['/2021/08/20/react-native-gelistiricileri-ariyoruz/', 'React Native Geliştiricileri Arıyoruz', [ikon[:js], ikon[:mobile],ikon[:react],ikon[:git]]],
+    ['/2021/08/20/gopherlar-neredesiniz/', 'Gopher\'lar Neredesiniz?', [ikon[:laptop],ikon[:terminal],ikon[:golang],ikon[:git]]],
+    ['/2021/08/20/arayuz-gelistiricileri-ariyoruz/', 'Arayüz Geliştiricileri Arıyoruz', [ikon[:js], ikon[:yarn], ikon[:react], ikon[:vue], ikon[:git]]],
+    ['/2021/08/20/django-gelistiricileri-ariyoruz/', 'Django Geliştiricileri Arıyoruz', [ikon[:python], ikon[:terminal], ikon[:git], ikon[:apple]]],
+    ['/2021/08/20/pythonistalar-ariyoruz/', 'Pythonistalar Arıyoruz', [ikon[:python], ikon[:terminal], ikon[:git], ikon[:raspberry]]],
+    ['/2021/08/20/devops-ariyoruz/', 'DevOPS Arıyoruz', [ikon[:git], ikon[:keyboard], ikon[:laptop], ikon[:golang]]],
 ]
 %>
 <style>
@@ -49,7 +49,6 @@ jobs = [
         <table>
             <thead>
                 <tr>
-                    <th width="20%" class="hidden-small">Tarih</th>
                     <th>Pozisyon</th>
                     <th width="16%"></th>
                 </tr>
@@ -57,16 +56,15 @@ jobs = [
             <tbody>
                 <% jobs.each do |el| %>
                 <%
-                    job_date = el[0]
-                    job_url = el[1]
-                    job_title = el[2]
+                    job_url = el[0]
+                    job_title = el[1]
+                    job_icon_data = el[2]
                     job_icons = ''
-                    el[3].each do |kls|
+                    job_icon_data.each do |kls|
                         job_icons += "<i class=\"#{kls}\"></i>"
                     end
                 %>
                 <tr>
-                    <td class="hidden-small"><%= job_date %></td>
                     <td><a href="<%= job_url %>"><%= job_title %></a></td>
                     <td class="job-icon"><% if job_icons %><%= job_icons %><% else %>&nbsp;<% end %></td>
                 </tr>

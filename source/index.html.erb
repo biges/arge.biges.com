@@ -1,15 +1,16 @@
 ---
 pageable: true
-per_page: 25
+per_page: 15
 ---
-<div class="blog-cover" style="background-image:url(/<%= images_dir %>/<%= site[:cover_image] %>);">
+
+<div class="blog-cover" style="background-image:url(/<%= config[:images_dir] %>/<%= config[:site][:cover_image] %>);">
     <section>
         <div class="container">
-            <h1><%= site[:title] %></h1>
-            <% if site[:subtitle] %><h3><%= site[:subtitle] %></h3><% end %>
-            <% if site[:social][:twitter] %><a href="https://twitter.com/<%= site[:social][:twitter] %>" title="Twitter" target="_blank"><i class="icon icon-twitter"></i></a><% end %>
-            <% if site[:social][:facebook] %><a href="https://facebook.com/<%= site[:social][:facebook] %>" title="Facebook" target="_blank"><i class="icon icon-facebook"></i></a><% end %>
-            <% if site[:social][:github] %><a class="github-iconx" href="https://github.com/<%= site[:social][:github] %>" title="GitHub" target="_blank"><i class="icon icon-github white"></i></a><% end %>
+            <h1><%= config[:site][:title] %></h1>
+            <% if config[:site][:subtitle] %><h3><%= config[:site][:subtitle] %></h3><% end %>
+            <% if config[:site][:social][:twitter] %><a href="https://twitter.com/<%= config[:site][:social][:twitter] %>" title="Twitter" target="_blank"><i class="icon icon-twitter"></i></a><% end %>
+            <% if config[:site][:social][:facebook] %><a href="https://facebook.com/<%= config[:site][:social][:facebook] %>" title="Facebook" target="_blank"><i class="icon icon-facebook"></i></a><% end %>
+            <% if config[:site][:social][:github] %><a class="github-iconx" href="https://github.com/<%= config[:site][:social][:github] %>" title="GitHub" target="_blank"><i class="icon icon-github white"></i></a><% end %>
             <a href="/feed.xml" title="RSS Feed"><i class="icon icon-rss"></i></a>
         </div>
     </section>

@@ -1,6 +1,6 @@
 <%
 show_comments = false
-show_comments = true unless development? && site[:social][:disqus]
+show_comments = true unless development? && config[:site][:social][:disqus]
 if current_page.metadata[:page].has_key?("comments")
   show_comments = current_page.metadata[:page]["comments"] 
 end
@@ -22,7 +22,7 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
 (function() { // DON'T EDIT BELOW THIS LINE
 var d = document, s = d.createElement('script');
 
-s.src = '//<%= site[:social][:disqus] %>.disqus.com/embed.js';
+s.src = '//<%= config[:site][:social][:disqus] %>.disqus.com/embed.js';
 
 s.setAttribute('data-timestamp', +new Date());
 (d.head || d.body).appendChild(s);

@@ -15,11 +15,11 @@
     <% end %>
     
     <%
-    author_name = site[:main_author][:name]
-    author_email = site[:main_author][:email]
-    author_link = site[:main_author][:link]
-    author_bio = site[:main_author][:bio]
-    author_twitter = site[:main_author][:twitter] || nil 
+    author_name = config[:site][:main_author][:name]
+    author_email = config[:site][:main_author][:email]
+    author_link = config[:site][:main_author][:link]
+    author_bio = config[:site][:main_author][:bio]
+    author_twitter = config[:site][:main_author][:twitter] || nil 
     
     if current_page.metadata[:page]["author"]
         author_name = current_page.metadata[:page]["author"]["name"] if current_page.metadata[:page]["author"]["name"]
