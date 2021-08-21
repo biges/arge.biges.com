@@ -45,7 +45,7 @@ task :post, [:post_title, :post_date] do |t, args|
 
   post_title = args[:post_title] ? args[:post_title] : "yeni-post"
   post_time = args[:post_date] ? Time.parse(args[:post_date]) : Time.now
-  post_file = "source/posts/#{post_time.strftime(FILE_DATE_FORMAT)}-#{post_title.to_url}.md"
+  post_file = "source/posts/#{post_time.strftime(FILE_DATE_FORMAT)}-#{post_title.to_url}.html.markdown.erb"
 
   output = []
   output << "---"

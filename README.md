@@ -4,7 +4,7 @@ Biges Güvenli Hayat Teknolojileri A.Ş. Ar-Ge Merkezi Yazılım Blogu
 
 ## Kurulum
 
-Bu uygulama **Ruby 2.2.2** sürümüne ihtiyaç duymaktakdır. Repo’yu clone
+Bu uygulama **Ruby 2.7.0** sürümüne ihtiyaç duymaktakdır. Repo’yu clone
 ettikten sonra;
 
 ```bash
@@ -289,7 +289,7 @@ görüldüğü gibi:
 ```ruby
 activate :deploy do |deploy|
   deploy.build_before = true
-  deploy.method   = :git
+  deploy.deploy_method   = :git
   deploy.remote = "origin"
   deploy.branch = "gh-pages"
 end
