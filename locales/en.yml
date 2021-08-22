@@ -241,3 +241,4 @@ en:
       other: Related Posts
     authors_homepage: "Click to visit %{author} homepage."
     authors_twitter_page: "Click to visit @%{twitter} Twitter page."
+    authors_github_page: "Click to visit @%{github} GitHub page."

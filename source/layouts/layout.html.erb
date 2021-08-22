@@ -76,15 +76,18 @@ end
         
             <nav class="social">
                 <% if config[:site][:social][:twitter] %>
-                <a href="https://twitter.com/<%= config[:site][:social][:twitter] %>" title="Twitter" target="_blank"><i class="icon icon-twitter black"></i></a>
+                <a href="https://twitter.com/<%= config[:site][:social][:twitter] %>" title="Twitter" target="_blank"><i class="fab fa-twitter-square"></i></a>
                 <% end %>
                 <% if config[:site][:social][:facebook] %>
-                <a href="https://facebook.com/<%= config[:site][:social][:facebook] %>" title="Facebook" target="_blank"><i class="icon icon-facebook black"></i></a>
+                <a href="https://facebook.com/<%= config[:site][:social][:facebook] %>" title="Facebook" target="_blank"><i class="fab fa-facebook-square"></i></a>
                 <% end %>
                 <% if config[:site][:social][:github] %>
-                <a href="https://github.com/<%= config[:site][:social][:github] %>" title="GitHub" target="_blank"><i class="icon icon-github"></i></a>
+                <a href="https://github.com/<%= config[:site][:social][:github] %>" title="GitHub" target="_blank"><i class="fab fa-github-square"></i></i></a>
                 <% end %>
-                <a href="/feed.xml" title="RSS Feed"><i class="icon icon-rss black"></i></a>
+                <% if config[:site][:social][:vimeo] %>
+                <a href="https://vimeo.com/<%= config[:site][:social][:vimeo] %>" title="Vimeo" target="_blank"><i class="fab fa-vimeo-square"></i></a>
+                <% end %>
+                <a href="/feed.xml" title="RSS Feed"><i class="fas fa-rss-square"></i></a>
             </nav>
         </div>
     </footer>

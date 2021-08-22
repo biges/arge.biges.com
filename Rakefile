@@ -60,6 +60,7 @@ task :post, [:post_title, :post_date] do |t, args|
   output << "  name: #{main_author['name']}"
   output << "  email: #{main_author['email']}"
   output << "  link: #{main_author['link']}"
+  output << "  github: #{main_author['github']}"
   output << "  bio: #{main_author['bio']}"
   output << "  twitter: #{main_author['twitter']}"
   output << "---"

@@ -7,6 +7,7 @@ site:
   social:
     twitter: "BigesEng"
     github: "biges"
+    vimeo: "biges"
     google_analytics: "UA-125596610-1"
     disqus: "bigesarge"
   main_author:
@@ -15,3 +16,4 @@ site:
     link: "https://biges.com"
     bio: "Biges ARGE Ekibi"
     twitter: "BigesEng"
+    github: "biges"
