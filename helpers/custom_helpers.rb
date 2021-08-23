@@ -20,4 +20,20 @@ module CustomHelpers
     keep_tags = ['code', 'strong'] if keep_tags.empty?
     Sanitize.fragment(text, elements: keep_tags).chomp
   end
+  
+  def vimeo(title, video_id, h_value, app_id=nil)
+    app_id = '58479' if app_id.nil?
+
+    out = ['<div class="flash-video"><div>']
+    out << '<iframe '
+    out << "src=\"https://player.vimeo.com/video/#{video_id}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=#{app_id}&amp;h=#{h_value}\" "
+    out << 'width="100%" height="100%" frameborder="0" '
+    out << 'allow="autoplay; fullscreen; picture-in-picture" allowfullscreen '
+    out << "title=\"#{title}\">"
+    out << '</iframe>'
+    out << '</div>'
+    out << '</div>'
+    out.join
+  end
+
 end

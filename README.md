@@ -94,6 +94,7 @@ author:
   link: "http://LINK"
   bio: "1 SATIR BİO"
   twitter: "twitter_username"
+  github: "github_username"
 ---
 ```
 
@@ -106,6 +107,7 @@ main_author:
   link: "http://LINK"
   bio: "1 SATIR BİO"
   twitter: "twitter_username"
+  github: "github_username"
 ```
 
 kendi bilgilerinizle doldurursanız, her `rake post` işeminde bu dosyadan
@@ -162,9 +164,9 @@ Eğer yazı içinde tıklayınca büyüyecek bir resim koymak isterseniz;
 şeklinde in-line html yazabilirsiniz. Aynı şekilde video için;
 
 ```html
-<div class="flash-video">
-    <div><iframe src="video.mp4" width="100%" height="100%" frameborder="0"></iframe></div>
-</div>
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+<%= vimeo('Golang, channels&amp;#039;ı anlamak - 1', '590515414', '12c4631d14') %>
 ```
 
 kullanabilirsiniz.
