@@ -256,3 +256,11 @@ article {
     }
 
 }
+
+section#article-detail {
+  h2 {
+    padding-top: 1em;
+    padding-bottom: .5em;
+    border-bottom: 2px solid lighten($h2-color, 50);
+  }
+}
