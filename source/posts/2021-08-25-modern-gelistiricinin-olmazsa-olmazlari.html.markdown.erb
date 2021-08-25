@@ -1,0 +1,530 @@
+---
+title: "Modern Geliştiricinin Olmazsa Olmazları"
+date: Aug 25, 2021 08:00
+tags: görüş,fikir
+subtitle: "Çağa Ayak Uydurmak"
+cover: "kari-shea-1SAnrIxw5OY-unsplash.jpg"
+# published: false
+# comments: false 
+author:
+  name: Uğur Özyılmazel
+  email: ugur.ozyilmazel@biges.com
+  link: https://ugur.ozyilmazel.com
+  github: vigo
+  bio: Retrolog
+  twitter: 
+---
+
+Yıl **2021**, bir sürü yeni teknoloji, yeni programlama dili, platformlar, araçlar,
+işletim sistemleri, bilgisayarlar... Peki çağa ayak uydurmuş **modern** bir
+geliştirici misiniz?
+
+READ_MORE
+
+"**Ben geliştiriciyim**", ya da "**Ben bilgisayar programcısıyım**" diyen bir
+kişinin acaba olmazsa olmazları neler olmalı? Kendimde gördüğüm, benden daha
+tecrübeli ya da daha iyi programcılarda gördüğüm, yeni başlayan ama zehir gibi
+işini bilen gençlerde gördüğüm şeyleri derleyip topladım.
+
+Bakalım siz kendinizde hangilerini bulacaksınız, ya da acaba ben hangi konuları
+atlamışım hep birlikte bakalım.
+
+---
+
+## İngilizce Bilmek
+
+<div class="full zoomable">
+    <img src="/public/images/posts/clips/cookie-the-pom-gySMaocSdqs-unsplash.jpg" alt="İngilizce bilmek...">
+    <p>Öğrenilmesi gereken ilk şey: <strong>İngilizce</strong>.</p>
+</div>
+
+Bence bu işin ilk ama ilk kuralı bu. Ne kadar bilmek lazım?
+En azından **okuduğunu** anlayacak kadar bilmek lazım. Peki bir sonraki
+aşaması? **Yazabilecek** kadar bilmek lazım. Peki bir sonrası?
+**Dinleyebilecek** kadar bilmek lazım. Son kademe ise **konuşacak** kadar
+bilmek lazım.
+
+Sadece *okuduğunuzu* anlarsanız, en azından, arama yaptığınızda,
+[stackoverflow.com](https://stackoverflow.com)’da cevabı bulduğunuzda ya da
+[GitHub](https://github.com)’da kaynak koda baktığınızda, açık **issue**’ları
+okuduğunuzda konuyu anlar ve çözüm yolunu bulursunuz...
+
+*Yazabildiğinizde* siz de soru sorabilirsiniz.
+[Issue](https://guides.github.com/features/issues/) açarsınız,
+[PR](https://guides.github.com/activities/forking/) açarsınız, yorum yazar
+soru sorarsınız...
+
+*Dinleyebildiğinizde* [YouTube](https://youtube.com)’da bulunan **tonlarca**
+geliştirme videosunu izlersiniz, anlarsınız. Screencast izlemek ya da
+[Podcast](https://blog.feedspot.com/programming_podcasts/) dinlemek sizin için
+yemek yemek, su içmek gibi olur...
+
+*Konuşabildiğinizde* ise artık başka bir boyuta geçersiniz. Konferanslara gidersiniz,
+orada yabancılarla sohbet edersiniz. Belkide siz artık uluslararası konferanslarda
+konuşmacı olursunuz...
+
+Eğer İngilizce’yi halen çözemediyseniz bence bunu **ilk iş** olarak halledin.
+
+---
+
+## Kullandığınız İşletim Sistemine Hakim Olmak
+
+Her ne işletim sistemi kullanıyorsanız, onunla ilgili genel bir bilgi ve
+hakimiyete sahip olmanız lazım. 
+
+Eğer **Windows** kullanıyorsanız, sıfırdan kurabilecek kadar bilginiz olmalı.
+Belli konfigürasyonların nereden yapıldığını bilmeniz lazım. Windows’a
+sonradan gelen **Windows Subsystem Linux** hakkında da bilgi sahibi olmak
+işleri kolaylaştırabilir.
+
+Eğer Unix/Linux tabanlı bir işletim sistemi kullanıyorsanız (*ki bence
+kullanmalısınız*) genel yapıya hakim olmalısınız. Paket yöneticileri,
+komut satırı bilgisi, yardımcı araçların kurulumu ve konfigüre
+edilmesi gibi konuların biliniyor olması gerek.
+
+Eğer macOS kullanıyorsanız ve nix tabanlı araçlar kullanıyorsanız, bu
+araçların diğer işletim sistemlerindeki ya da macOS’daki kurulum ve farklılıklarından
+haberdar olmanız lazım. macOS **BSD General Commands** ile birlikte gelir. Yani macOS’un içinden
+çıkan `ls` shell komutu ile Ubuntu’nun içinden çıkan `ls` farklıdır. Bu farkı
+biliyor olmanız gerekir.
+
+Linux/macOS kullanıcısıysanız [Homebrew](https://brew.sh)’dan haberdar olmalı,
+macOS kullanıcısıysanız yine aynı şekilde [Cask](https://github.com/Homebrew/homebrew-cask)’i
+biliyor olmanız hayatınızı kolaylaştırır.
+
+---
+
+## Terminal ve SHELL Tercihleri
+
+<div class="full zoomable">
+    <img src="/public/images/posts/clips/clip-terminal.png" alt="Terminal">
+</div>
+
+Hangi işletim sisteminde olursanız olun, mutlaka o sistemin kernel’a açılan bir
+kapısı olacaktır. Bu kapı da **Terminal** türevi uygulamalar üzerinden olur.
+Yani işletim sistemine komut göndermek ya da bilgisayarı programlamak için
+grafik arayüzü dışında da bir dünya olduğunu mutlaka bilmeniz ve kullanmanızı
+öneriyorum.
+
+Eğer Windows kullanıyorsanız, **Console** ya da **PowerShell** ya da başka ne
+varsa onu kullanmayı öğrenmelisiniz. Komutlar hakkında nasıl yardım alacağınızı,
+dokümantasyon olarak nereye bakacağınızı, hangi sitelerden bilgi alacağınız
+mutlaka bilmeniz gerekiyor.
+
+Eğer Linux ya da macOS kullanıyorsanız, neden Terminal’i ya da iTerm’ü ya da
+başka bir terminal client’ını kullandığınızı iyi bilmeniz gerekiyor. Nasıl
+konfigüre edildiğini, nasıl özelleştireceğinizi de bilmelisiniz.
+
+Hangi shell’i kullanıyor sunuz? **Bash**’mi? **ZSH**’mi? ya da **Fish**’mi?
+Sadece moda ya da popüler ya da işletim sisteminden default olarak çıktı için
+değil, işinize yaradığı için tercih yapmalısınız. Diğer shell’leri de tecrübe
+etmeli, hangisiyle daha rahat ve verimli çalıştığınızı bulmalısınız.
+
+---
+
+## Shell Komutları
+
+<div class="full zoomable">
+    <img src="/public/images/posts/clips/clip-man-bash.png" alt="man bash">
+</div>
+
+Bu komutlar neler? Komut hakkında nasıl yardım alabilirim? `man-pages` nedir?
+`built-in` komutlarla ilgili yardım nasıl alınır? Hangi siteler, geliştiriciler
+takip edilir, `dotfiles` nedir? Sizin `dotfiles`’ınız var mı? `bashrc` ya da
+`zshrc` ne işe yarar? **Environment Variables** diye bir şey duydunuz mu? Nedir?
+Ne işe yarar? `ls` ile `\ls` arasında ne fark var? gibi aslında çok temel
+konular hakkında bilgi sahibi olmak gerekir.
+
+`$PATH` değişkeninin ne işe yaradığını, path’e nasıl ek yapıldığını, `foo/:${PATH}`
+ile `${PATH}:foo/` arasındaki farklı biliyor olmalısınız.
+
+En azından şu komutları hayatınızda bir kez olsun kullanmış olun:
+
+- `alias`
+- `ls`
+- `cd`
+- `chmod`
+- `chown`
+- `mv`
+- `rm`
+- `cp`
+- `scp`
+- `mkdir`
+- `cat`
+- `cut`
+- `tar`
+- `history`
+- `source`
+- `touch`
+
+Build tool’larına `make`, `rake`, `ant`, `gulp` ve benzerlerine aşina olun.
+
+- https://www.gnu.org/software/make/manual/make.html
+- https://ruby.github.io/rake/doc/rakefile_rdoc.html
+- https://ant.apache.org/manual/index.html
+- https://gulpjs.com
+
+---
+
+## `git` Revizyon Kontrol Aracı
+
+<div class="full zoomable">
+    <img src="/public/images/posts/clips/clip-git-log.png" alt="git log">
+</div>
+
+**2021** yılında bir **frontend** ya da **backend** ya da **sistem
+programcısı**nın mutlaka ama mutlaka `git` revizyon kontrol aracından haberdar
+olması ve kullanmayı biliyor olması gerekir.
+
+Bu aracı **komut satırı**ndan kullanmayı bilmek bence çok büyük artı. Herhangi
+bir arayüze ihtiyaç duymadan (*IDE, Editör ya da özel uygulaması olmadan*)
+kullanabilmek... 
+
+Git nasıl konfigüre edilir, nasıl özelleştirilir? Kendi konfigürasyon dosyanız,
+ayarlarınız, kısa yollarınız (*alias*) bunlar da artık olmazsa olmazlardan.
+
+Branch’lerle çalışmak, **conflict** çözmek, **rebase** ya da **interactive rebase**
+, short commit log, **tag** gibi konuların çoktan öğrenilmiş ve kullanılıyor olması gerekir.
+
+Gündelik git komutları `git help everyday` ile öğrenebilirsiniz. En azından şu
+komutlara aşina olmak gerek;
+
+- `git help KOMUT`
+- `git init`
+- `git clone`
+- `git log`
+- `git status`
+- `git commit`
+- `git branch`
+- `git checkout`
+- `git stash`
+- `git merge`
+- `git rebase`
+- `git pull`
+- `git push`
+
+---
+
+## GitHub / GitLab / BitBucket Hesabı
+
+<div class="full zoomable">
+    <img src="/public/images/posts/clips/roman-synkevych-wX2L8L-fGeA-unsplash.jpg" alt="Octocat">
+</div>
+
+Geliştiricinin mutlaka bu platformların en az **birinde** hesabı olması, orada
+ilgilendiği, sevdiği ya da merak ettiği açık-kaynak projeleri, geliştiricileri
+takip etmesi gerekir.
+
+Mümkünse kendi çalışmalarını **paylaşmalı**, olabiliyorsa projelere katkı
+sağlamalıdır.
+
+Ben kendi adıma, özgeçmiş ya da cv/resume incelemek yerine, adayın **GitHub**
+ya da muadili hesabını görmek istiyorum. Neden?
+
+1. Acaba hangi projeleri **star**’lamış? Yani aday ne tür projeleri takip ediyor?
+1. Kimleri takip ediyor?
+1. Fork yaptığı repo var mı?
+1. Katkı yaptığı repo var mı?
+1. Kendi yazdığı projeleri var mı?
+
+**İlk iki** madde en önem verdiğim maddeler.
+
+---
+
+## SSH, PUBLIC/PRIVATE KEY
+
+Geliştiricinin `ssh` aracını komut satırından kullanabiliyor olması, revizyon
+kontrol platformlarına `git+ssh://` protokolünden bağlanabiliyor olması, mutlaka
+public/private ssh key’i olup bu platformlara ssh-key üzerinden bağlanabiliyor
+olması gerekir.
+
+SSH Key’in `ssh-keygen` ile nasıl oluşturulduğunu bilmelidir. `ssh-agent`’ı
+duymuş ve biliyor olması gerekir.
+
+---
+
+## Commit’lerin GPG ile İmzalanması
+
+Modern bir geliştiricinin yaptığı commit’lerin imzalı olması gerekir. Bunu
+bir külfet ya da bir angarya olarak görmeyin lütfen.
+
+- `gpg --gen-key`
+- `gpg --full-generate-key`
+- `gpg --list-secret-keys`
+- `git commit -S`
+- `git tag -s`
+- `git tag -v`
+
+---
+
+## Text Editör ya da IDE Tercihi
+
+Her ne kullanıyorsanız kullanın, mutlaka kullandığınız aracın nasıl konfigüre
+edildiği hakkında bilginiz olsun. Nasıl özelleştirebilirsiniz? Eğer
+**extension** ya da plugin desteği varsa kendi ihtiyacınıza uygun nasıl
+extension ya da **bundle** ya da **snippet** geliştirebileceğinizi bilmeniz
+sizin için iyi olur.
+
+Eğer `vim` kullanıyorsanız nasıl konfigüre edildiğini, nasıl ihtiyacınıza
+uygun ek bir özellik yapabileceğinizi bilmeniz gerekir. Örneğin **VueJS**
+geliştiriyor ve **Visual Studio Code** kullanıyorsanız, gereken extension’ları
+paketleri biliyor ve kullanıyor olmanız gerekir.
+
+---
+
+## Eğer Geliştiriciyseniz
+
+<div class="full zoomable">
+    <img src="/public/images/posts/clips/diego-gennaro-RSvJQ-IP_pk-unsplash.jpg" alt="Developer">
+</div>
+
+[Markdown](https://daringfireball.net/projects/markdown/)’ı mutlaka biliyor
+olmalısınız. [README](https://guides.github.com/features/mastering-markdown/)
+dosyası yazabilmelisiniz. Doğru commit mesajı yazabilmelisiniz.
+[GitHub](https://github.com) ya da
+[Jira](https://www.atlassian.com/software/jira) gibi araçlar kullanıyorsanız
+commit mesajları ile platformlar arasındaki entegrasyonu bilmelisiniz.
+
+`README` dosyasını ilk önce kendiniz için yazın. [Nelere ihtiyaç
+var](https://guides.github.com/features/wikis/)? Yerel geliştirme için hangi
+platforma, neleri kurmak lazım? İlave hangi araçları kurmak ve ayarlamak lazım?
+Geliştirme süreci nasıl? Testler nasıl çalışıyor? Production ortamına kurmak
+için nelere dikkat etmek, neleri kurmak lazım? Secret’lar, environment
+variables kimde? nerede? Bu dokümanı okuyan kişinin soracağı **hiçbir soru**
+kalmamalı.
+
+Genel kültür olarak ilgilendiğiniz kütüphane, dil, araç ya da framework’ü
+**kimler** yazmış? Ne zaman çıkmış? **Kaç yıldır** geliştiriliyor? O kulvarda
+yerli yabancı **kimler** var? O kişileri [GitHub](https://github.com)’dan,
+[Dev.to](https://dev.to)’dan takip edin, Twitter, Medium ya da kişisel
+bloglarına ara ara bakın, YouTube kanalları varsa üye olun.
+
+Mail gruplarına, **weekly** bültenlere üye olun, Reddit’de illaki bir kanalı
+vardır, oraya üye olun. [Hacker News](https://news.ycombinator.com/)’u takip
+edin, en azından [SHOW HN](https://news.ycombinator.com/show)’ye her gün bir
+girin.
+
+Sormaktan ve paylaşmaktan çekinmeyin. "**Acaba benim kodu beğenirler mi?**"
+demeyin, asla **kibir** ve **kompleks** yapmayın. Unutmayın ki hep sizden
+**daha iyiler** olduğu gibi **daha düşük** seviyede de geliştiriciler olacak.
+
+Bildiğiniz bir konu ile ilgili bir makale önünüze düşerse "**Amaaan, ben zaten bu
+konuyu çok iyi biliyorum**" diyip pas geçmeyin. Mutlaka hızlıca göz atın ya da
+ilk fırsatta videosu varsa izleyin. Bunu bir zaman kaybı olarak görmeyin.
+
+Geliştirdiğiniz uygulamayı **deploy** etmeyi öğrenin. En azından minimum
+seviyede bir sunucuya ya da **cloud platformu**na nasıl uygulamayı yollar ve
+çalıştırırsınız bunu bilin!
+
+Hangi dil ya da platformda geliştirme yapıyorsanız mutla yazdığınız kodu
+**test** etmeyi, **test** yazmayı öğrenin ve kendinizi test yazmaya zorlayın.
+Test yazmayı bir zaman kaybı gibi görmeyin. Kod yazmaya önce test yazarak
+başlayın ve uygulamayı testlere göre şekillendirin.
+
+**Güvenlik** konusunu yabana atmayın. Güvenli uygulama geliştirmek için
+gereken bilgileri edinin.
+
+- https://12factor.net/
+- https://github.com/OWASP
+
+---
+
+## Eğer Frontend Geliştiricisiyseniz
+
+<div class="full zoomable">
+    <img src="/public/images/posts/clips/ferenc-almasi-L8KQIPCODV8-unsplash.jpg" alt="Frontend Developer">
+</div>
+
+`npm`, `yarn` gibi paket yöneticilerinden haberdar olmalı, `node` paketi nasıl
+geliştirilir? nasıl dağıtılır fikir sahibi olunmalıdır. Ne yazıyorsanız, mutlaka
+o şeyin kod geliştirme kılavuzunu yani **style guide** ya da **convention guide**’ını
+okumuş ve takip ediyor olmalısınız.
+
+- https://google.github.io/styleguide/jsguide.html
+- https://github.com/airbnb/javascript
+- https://vuejs.org/v2/style-guide/
+- https://v3.vuejs.org/style-guide/
+- https://github.com/airbnb/javascript/tree/master/react
+- https://google.github.io/styleguide/htmlcssguide.html
+- https://css-tricks.com/css-style-guides/
+- https://angular.io/guide/styleguide
+- https://svelte.dev/docs
+- https://github.com/felixge/node-style-guide
+
+Eğer bir API backend’i ile iletişim kuracaksanız [Postman](https://www.postman.com), 
+`curl`, `httpie` gibi http araçlarını biliyor ve kullanıyor olmanız, REST, REST-ful
+gibi kelimeleri hatta kavramları bilmeniz, **http-verb**’ler, hangi metod’da
+hangi **response status code**, response’da gelen `json`’ın yapısı gibi
+[konuların](https://jsonapi.org) da çoktan çözülmüş olması gerekir.
+
+Browser’ların içinden çıkan **dom inspector**, **console**, **dev tools** ve
+benzeri araçları kullanmayı ve özelleştirmeyi bilmek de önemlidir.
+
+---
+
+## Eğer Backend Geliştiricisiyseniz
+
+<div class="full zoomable">
+    <img src="/public/images/posts/clips/martijn-baudoin-4h0HqC3K4-c-unsplash.jpg" alt="Backend Developer">
+</div>
+
+Python, Ruby, Golang, PHP, ASP.NET, Rust, Java, C, C++ başka ne var? Hangi
+dilde geliştirme yapıyorsanız mutlaka o dilin geleneklerine uyun. 
+
+- https://google.github.io/styleguide/
+- https://www.python.org/dev/peps/pep-0008/
+- https://google.github.io/styleguide/pyguide.html
+- https://docs.python-guide.org/writing/style/
+- https://docs.djangoproject.com/en/3.2/internals/contributing/writing-code/coding-style/
+- https://github.com/rubocop/ruby-style-guide
+- https://github.com/airbnb/ruby
+- https://ruby.style/
+- https://golang.org/doc/effective_go
+- https://gruntwork.io/guides/style%20guides/golang-style-guide/
+- https://docs.gitlab.com/ee/development/go_guide/
+- https://google.github.io/styleguide/objcguide.html
+- https://google.github.io/swift/
+- https://google.github.io/styleguide/cppguide.html
+- https://google.github.io/styleguide/csharp-style.html
+- https://google.github.io/styleguide/javaguide.html
+- https://google.github.io/styleguide/shellguide.html
+- https://google.github.io/styleguide/tsguide.html
+- https://google.github.io/styleguide/lispguide.xml
+- https://google.github.io/styleguide/vimscriptguide.xml
+- https://github.com/rubocop/rails-style-guide
+- https://github.com/rubocop/ruby-style-guide
+- https://www.php-fig.org/psr/psr-2/
+- https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/
+- https://gist.github.com/ryansechrest/8138375
+- https://doc.rust-lang.org/1.0.0/style/
+- https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Conventions/Conventions.html
+
+İlgili dilin; **linter**, **checker**, **formatter** araçlarını kullanın,
+mümkünse kullandığınız editörle entegre edin.
+
+Mesela, `node` ve [Express](https://expressjs.com/) ile bir uygulama
+geliştiriyorsanız, mutlaka Express’in kaynak koduna üstün körü bile olsa
+bir göz atın. Bu `django` olur, `rails` olur, `flask` olur, `laravel` olur.
+Ne olduğu hiç farketmez, yeterki göz atın kaynak koda.
+
+Artık hayatımızda **container**’lar, cloud build işlemleri var. Bir devOps kadar
+olmasa da mutlaka nasıl çalıştıkları hakkında bir fikrimiz olmalı.
+Geliştirdiğimiz bir uygulamayı container içinden nasıl çalıştırabileceğimizi
+bilmemiz gerekiyor. `Dockerfile` ya da `docker-compose.yml` hayatımızın
+bir parçası olmalı.
+
+---
+
+## Eğer Mobil Geliştiricisiyseniz
+
+<div class="full zoomable">
+    <img src="/public/images/posts/clips/hillary-black-PNaMTR5kGOQ-unsplash.jpg" alt="iOS Developer">
+</div>
+
+
+Mutlaka kod geliştirme kılavuzlarını okuyun!
+
+**iOS** ya da **Android** ya da başka bir platform, mutlaka uygulamayı nasıl
+paketleyeceğinizi, nasıl test edeceğinizi, store’lara nasıl yükleyeceğinizi
+öğrenin.
+
+- https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Conventions/Conventions.html
+- https://github.com/raywenderlich/objective-c-style-guide
+- https://kotlinlang.org/docs/coding-conventions.html
+- https://google.github.io/styleguide/objcguide.html
+- https://google.github.io/swift/
+- https://reactnative.dev/docs/style
+
+---
+
+## Not Tutun!
+
+Mutlaka not tutun. Kendinize **private** bir repo açın. Konulara göre
+**Markdown** formatında notlar alın. Çözdüğünüz sorunları, bulduğunuz
+cevapları, ufak tefek kod parçacıklarını buraya atın.
+
+    notes/
+        python.md
+        golang.md
+        bash.md
+        ruby.md
+        :
+        :
+
+Markdown içinde farklı farklı code snippet’ları kullanabildiğiniz için, örneğin:
+
+    # AppleScript Tips
+    
+    iTunes’dan müzik çaldırmak
+    
+    ```applescript
+    tell application "iTunes"
+        --get the name of every playlist
+        --get the duration of playlist "Music"
+        --get the count of tracks
+        --get the name of every track
+        --play track "Shadows"
+        --stop (play)
+    end tell
+    ```
+
+ya da;
+
+    # Django Notlarım
+    
+    ```bash
+    $ virtualenv -p $(which python3.5) ~/.virtualenvs/myenv
+    $ source ~/.virtualenvs/myenv/bin/activate
+    ```
+    
+    ## Django’nun çalışma mimarisi
+    
+                        Browser
+                        ↓             ↑
+        (Http Request)  URL routing   |
+                        ↓             |
+                        View/MiddleWare        ⇄   Template/Form
+                        ↓      ↑
+                        Model/O.R.M
+                        ↓      ↑
+                        Database
+                        
+    ## Data Persistence (Verinin devamlılığı)
+    
+        Python/User code
+        |
+        Django O.R.M
+        |
+        Database
+    
+
+gibi hem kod parçası hem de text saklama şansınız olur.
+
+Özetle, tüm bu sayfa yazanlar bir tavsiye/öneri niteliğinde. Örneğin git
+yayınlanalı **16 yıl** oldu. Versiyon `2.32.0`. Geriye dönüp baktığımda, bu 16
+yıllık süreçte, git’de akıllara durgunluk verecek değişiklikler olmadı. Evet
+bir sürü yeni özellikler geldi ama **2005 Aralık** ayında kullandığım
+komutlarla bugün kullandıklarım arasında uçurum yok.
+
+Yani `git` bence artık demirbaş listesinde. Belli bir seviyede bilip
+öğrendikten sonra, emekli olana kadar hep kullanacağınız bir araç.
+
+Programcılık insanın içinde yanan bir **ateş**. Ateşi hiç söndürmeden canlı
+tutmak bizim elimizde. Öğrenme hiçbir zaman bitmiyor, bu da bizim mesleğin
+bence en zevkli kısmı...
+
+İçimizdeki ateşin **hiç sönmemesin**!
+
+---
+
+#### Fotoğraf Kredileri
+
+Fotoğraflar [unsplash.com](https://unsplash.com) sitesinden alınmıştır.
+
+- [Kapak resmi: Kari Shea](https://unsplash.com/photos/1SAnrIxw5OY?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink)
+- [The Cookie Pom](https://unsplash.com/photos/gySMaocSdqs?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink)
+- [Roman Synkevych](https://unsplash.com/photos/wX2L8L-fGeA?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink)
+- [Diego Gennaro](https://unsplash.com/photos/RSvJQ-IP_pk?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink)
+- [Ferenc Almasi](https://unsplash.com/photos/L8KQIPCODV8?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink)
+- [Martijn Baudoin](https://unsplash.com/photos/4h0HqC3K4-c?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink)
+- [Hillary Black](https://unsplash.com/photos/4h0HqC3K4-c?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink)
