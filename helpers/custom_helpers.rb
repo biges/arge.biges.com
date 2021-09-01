@@ -35,5 +35,4 @@ module CustomHelpers
     out << '</div>'
     out.join
   end
-
 end

@@ -7,6 +7,17 @@ current_page.tags.each do |tag|
     end
   end
 end
+
+authors_posts = []
+if current_page.data.author.name
+  sitemap.resources.select do |resource|
+    resource.data.author && resource.data.author.name
+  end.select do |resource|
+    resource.data.author.name == current_page.data.author.name && resource.data.title != current_page.data.title
+  end.sort_by { |resource| Date.parse(resource.data.date) }.reverse.each do |resource|
+    authors_posts << resource
+  end
+end
 %>
 <% if related_articles.count > 0 %>
     <section class="index related-articles">
@@ -17,6 +28,21 @@ end
     <section class="index related-articles">
         <div class="links">
             <%= link_to article.title + " &raquo;", article, :rel => "prefetch", :title => t('messages.click_for_details') %>
+        </div>
+    </section>
+    <% end %>
+    <section class="index related-articles"><hr/></section>
+<% end %>
+
+<% if authors_posts.count > 0 %>
+    <section class="index related-articles">
+        <h2 class="title"><%= t('messages.authors_posts', count: authors_posts.count) %> (<%= authors_posts.count %>)</h2>
+    </section>
+
+    <% authors_posts.each_with_index do |article, i| %>
+    <section class="index related-articles">
+        <div class="links">
+            <%= link_to article.title + " &raquo;", article, :rel => "prefetch", :title => t('messages.click_for_details') %> <small><%= I18n.l article.date, :format => "%d %B %Y" %></small>
         </div>
     </section>
     <% end %>

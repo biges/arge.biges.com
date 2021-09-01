@@ -242,3 +242,6 @@ en:
     authors_homepage: "Click to visit %{author} homepage."
     authors_twitter_page: "Click to visit @%{twitter} Twitter page."
     authors_github_page: "Click to visit @%{github} GitHub page."
+    authors_posts:
+      one: Author's Other Post
+      other: Author's Other Posts

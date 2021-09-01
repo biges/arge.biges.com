@@ -237,3 +237,6 @@ tr:
     authors_homepage: "%{author} - sitesine gitmek için tıklayın."
     authors_twitter_page: "@%{twitter} - Twitter sayfasına gitmek için tıklayın."
     authors_github_page: " @%{github} - GitHub sayfasına gitmek için tıklayın."
+    authors_posts:
+      one: Yazarın Diğer Makalesi
+      other: Yazarın Diğer Makaleleri
