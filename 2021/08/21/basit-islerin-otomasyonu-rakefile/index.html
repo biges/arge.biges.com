@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basit işlerin otomasyonu: Rakefile &mdash; Biges Ar-Ge Merkezi</title>
+    <meta name="title" content="Basit işlerin otomasyonu: Rakefile &mdash; Biges Ar-Ge Merkezi">
+    <link rel="canonical" href="https://arge.biges.com/posts/2021-08-21-basit-islerin-otomasyonu-rakefile.html">
+    <meta property="og:title" content="Basit işlerin otomasyonu: Rakefile &mdash; Biges Ar-Ge Merkezi"/>
+    <meta property="og:url" content="https://arge.biges.com/posts/2021-08-21-basit-islerin-otomasyonu-rakefile.html"/>
+    <meta property="og:image" content="https://arge.biges.com/public/images/cover.jpg"/>
+    <meta property="og:description" content="Özellikle C ile uğraşanların yakından tanıdığı Makefile, zamanının en çokişe yarayan araçlarındandı. Halen de çok kullanılır. Peki daha basit verahat bir alternatifi var mı?"/>
+    <meta name="description" content="Özellikle C ile uğraşanların yakından tanıdığı Makefile, zamanının en çokişe yarayan araçlarındandı. Halen de çok kullanılır. Peki daha basit verahat bir alternatifi var mı?"/>
+    <meta property="og:site_name" content="Biges Ar-Ge Merkezi">
+    <link rel="shortcut icon" href="/public/images/favicon.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/public/images/logo.png"/>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://arge.biges.com/feed.xml" />
+    <link href="//fonts.googleapis.com/css?family=Roboto:400,700,300,900&subset=latin,latin-ext" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="/public/css/application.css" rel="stylesheet" />
+    <script src="//kit.fontawesome.com/be9a716db5.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <section class="site-nav">
+        <header>
+            <nav id="navigation">
+                <a class="brand" href="/"><img src="/public/images/logo.png" alt="Logo" /></a>
+                <a href="/" class="home">Anasayfa</a>
+                
+                <a href="/hakkinda/">Hakkında</a>
+                <a href="/kariyer/">Kariyer</a>
+                <a href="/arsiv/">Arşiv</a>
+                <a target="_blank" title="Biges Güvenli Hayat Teknolojileri A.Ş." href="https://biges.com">Biges</a>
+            </nav>
+
+        </header>
+    </section>
+
+        <div class="article-cover">
+        <div>
+            <img src="/public/images/posts/rake.png" class="image" alt="" />
+        </div>
+    </div>
+    
+
+    <article>
+        <div class="container">
+            <header>
+                <div class="meta">
+                    <address><a rel="author" href="https://ugur.ozyilmazel.com" title="Uğur Özyılmazel" target="_blank">Uğur Özyılmazel</a></address> &mdash;
+                    <time pubdate datetime="2021-08-21T14:15:00+03:00" title="21 Ağustos 2021, Cumartesi 14:15">21 Ağustos 2021, Cumartesi 14:15</time>
+                </div>
+                <h1 class="title">Basit işlerin otomasyonu: Rakefile</h1>
+                <h2 class="subtitle">Makefile değil Rakefile</h2>
+                    <div class="tags">
+                        <span class="badge"><a href="/etiket/rake/">rake</a></span>
+                        <span class="badge"><a href="/etiket/ruby/">ruby</a></span>
+                        <span class="badge"><a href="/etiket/django/">django</a></span>
+                    </div>
+                
+            </header>
+            
+            <section id="article-detail">
+                <p>Özellikle <code>C</code> ile uğraşanların yakından tanıdığı <code>Makefile</code>, zamanının en çok
+işe yarayan araçlarındandı. Halen de çok kullanılır. Peki daha basit ve
+rahat bir alternatifi var mı?</p>
+
+<p></p>
+
+<p>Evet, bence var! Büyük usta, toprağı bol olsun <a href="https://github.com/jimweirich">Jim Weirich</a> 
+tarafından bize armağan edilen bir <strong>Ruby</strong> gem’idir <code>rake</code>. Eğer <strong>macOS</strong>
+kullanıyorsanız, <code>ruby</code> ve <code>rake</code> içinde birlikte geldiği için hiçbir ilave
+kuruluma ihtiyaç duymuyorsunuz.</p>
+
+<p>Ben şanslıyım, genelde çalıştığım ekiplerde hep macOS kullandığımız için,
+hiçbir ilave iş yapmadan <code>Rakefile</code> ile kolay otomasyon yapabiliyoruz.</p>
+
+<p>Eğer sisteminizde <code>ruby</code> yoksa, önce <code>ruby</code> kurmalı, sonrasında da <code>gem install rake</code>
+ile ek bir kurulum daha yapmanız lazım:</p>
+<div class="highlight"><pre class="highlight shell"><code><span class="c"># ubuntu kullanıcıları için herşey dahil kurulum</span>
+<span class="nv">$ </span><span class="nb">sudo </span>apt-get update <span class="nt">-y</span>
+<span class="nv">$ </span><span class="nb">sudo </span>apt-get <span class="nb">install</span> <span class="nt">-y</span> ruby-full
+</code></pre></div>
+<h2>İlk Task’imiz</h2>
+
+<p><code>rake</code> bir <strong>task</strong> çalıştırıcı. <code>Rakefile</code> da bu işleri yani task’leri
+tanımladığımız yer. Şimdi aşağıdaki kodu <code>Rakefile</code> adıyla kaydedip çalıştıralım:</p>
+<div class="highlight"><pre class="highlight ruby"><code><span class="n">desc</span> <span class="s2">"Merhaba komutu"</span>
+<span class="n">task</span> <span class="ss">:merhaba</span> <span class="k">do</span>
+  <span class="nb">puts</span> <span class="s2">"Merhaba"</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>Şimdi task’leri listeleyelim:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>$ rake -T
+rake merhaba  # Merhaba komutu
+</code></pre></div>
+<p>Çalıştırmak için:</p>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>rake merhaba 
+Merhaba
+</code></pre></div>
+<p>Bu kadar basit&hellip; Peki daha başka neler var?</p>
+
+<p>Aynı <code>Makefile</code> daki gibi, bir task’i çalıştırmadan önce başka task’leri
+çağırabiliriz. Örneğin, environment variable <code>GO_ENV</code> set edilmemişse,
+hatta bu değişkenin değeri <code>development</code> değilse bu task çalışmasın:</p>
+<div class="highlight"><pre class="highlight ruby"><code><span class="n">task</span> <span class="ss">:check_env</span> <span class="k">do</span>
+  <span class="nb">abort</span> <span class="s2">"lütfen GO_ENV i tanımlayın"</span> <span class="k">unless</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'GO_ENV'</span><span class="p">]</span>
+  <span class="nb">abort</span> <span class="s2">"GO_ENV değeri development olmalı"</span> <span class="k">unless</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'GO_ENV'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'development'</span>
+<span class="k">end</span>
+
+<span class="n">desc</span> <span class="s2">"Merhaba komutu"</span>
+<span class="n">task</span> <span class="ss">:merhaba</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="ss">:check_env</span><span class="p">]</span> <span class="k">do</span>
+  <span class="nb">puts</span> <span class="s2">"Merhaba"</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>Haydi çalıştıralım:</p>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>rake merhaba
+lütfen GO_ENV i tanımlayın
+
+<span class="nv">$ GO_ENV</span><span class="o">=</span>1 rake merhaba 
+GO_ENV değeri development olmalı
+
+<span class="nv">$ GO_ENV</span><span class="o">=</span>development rake merhaba
+Merhaba
+</code></pre></div>
+<p>Peki acaba parametre geçsek ve bize &ldquo;Merhaba &lt;İSİM&gt;&rdquo; şeklinde çıktı verse:</p>
+<div class="highlight"><pre class="highlight ruby"><code><span class="n">task</span> <span class="ss">:check_env</span> <span class="k">do</span>
+  <span class="nb">abort</span> <span class="s2">"lütfen GO_ENV i tanımlayın"</span> <span class="k">unless</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'GO_ENV'</span><span class="p">]</span>
+  <span class="nb">abort</span> <span class="s2">"GO_ENV değeri development olmalı"</span> <span class="k">unless</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'GO_ENV'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'development'</span>
+<span class="k">end</span>
+
+<span class="n">desc</span> <span class="s2">"Merhaba komutu"</span>
+<span class="n">task</span> <span class="ss">:merhaba</span><span class="p">,</span> <span class="p">[</span><span class="ss">:isim</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="ss">:check_env</span><span class="p">]</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="s2">"Merhaba </span><span class="si">#{</span><span class="n">args</span><span class="p">.</span><span class="nf">isim</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>çalıştıralım:</p>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ GO_ENV</span><span class="o">=</span>development rake merhaba[<span class="s2">"vigo"</span><span class="o">]</span>
+Merhaba vigo
+</code></pre></div>
+<p>Burada küçük bir hatırlatma. Eğer shell olarak <code>zsh</code> kullanıyorsanız, köşeli
+parantezleri escape etmeniz gerekiyor, yani komutu:</p>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ GO_ENV</span><span class="o">=</span>development rake merhaba<span class="se">\[</span><span class="s2">"vigo"</span><span class="se">\]</span>
+</code></pre></div>
+<p>şeklinde çağırmanız lazım. Ben çok uzun yıllardan beri <code>bash</code> kullandığım için
+böyle bir sıkıntım yok :)</p>
+
+<p>Peki, eğer isim geçilmemişse hata verelim:</p>
+<div class="highlight"><pre class="highlight ruby"><code><span class="n">task</span> <span class="ss">:check_env</span> <span class="k">do</span>
+  <span class="nb">abort</span> <span class="s2">"lütfen GO_ENV i tanımlayın"</span> <span class="k">unless</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'GO_ENV'</span><span class="p">]</span>
+  <span class="nb">abort</span> <span class="s2">"GO_ENV değeri development olmalı"</span> <span class="k">unless</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'GO_ENV'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'development'</span>
+<span class="k">end</span>
+
+<span class="n">desc</span> <span class="s2">"Merhaba komutu"</span>
+<span class="n">task</span> <span class="ss">:merhaba</span><span class="p">,</span> <span class="p">[</span><span class="ss">:isim</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="ss">:check_env</span><span class="p">]</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">|</span>
+  <span class="nb">abort</span> <span class="s2">"lütfen isim girin"</span> <span class="k">unless</span> <span class="n">args</span><span class="p">.</span><span class="nf">isim</span>
+  <span class="nb">puts</span> <span class="s2">"Merhaba </span><span class="si">#{</span><span class="n">args</span><span class="p">.</span><span class="nf">isim</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>çalıştıralım:</p>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ GO_ENV</span><span class="o">=</span>development rake merhaba
+lütfen isim girin
+</code></pre></div>
+<p>Peki, <code>abort</code> yerine, varsayılan bir isim versek?</p>
+<div class="highlight"><pre class="highlight ruby"><code><span class="n">task</span> <span class="ss">:check_env</span> <span class="k">do</span>
+  <span class="nb">abort</span> <span class="s2">"lütfen GO_ENV i tanımlayın"</span> <span class="k">unless</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'GO_ENV'</span><span class="p">]</span>
+  <span class="nb">abort</span> <span class="s2">"GO_ENV değeri development olmalı"</span> <span class="k">unless</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'GO_ENV'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'development'</span>
+<span class="k">end</span>
+
+<span class="n">desc</span> <span class="s2">"Merhaba komutu"</span>
+<span class="n">task</span> <span class="ss">:merhaba</span><span class="p">,</span> <span class="p">[</span><span class="ss">:isim</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="ss">:check_env</span><span class="p">]</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">|</span>
+  <span class="c1"># abort "lütfen isim girin" unless args.isim</span>
+  <span class="n">args</span><span class="p">.</span><span class="nf">with_defaults</span><span class="p">(</span><span class="ss">isim: </span><span class="s2">"isimsiz"</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Merhaba </span><span class="si">#{</span><span class="n">args</span><span class="p">.</span><span class="nf">isim</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>çalıştıralım:</p>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ GO_ENV</span><span class="o">=</span>development rake merhaba
+Merhaba isimsiz
+</code></pre></div>
+<p>Şimdi işin esas güzel yanı, task’in içinden shell komutları çağırmak. Yeni
+bir task ekleyelim, bize <strong>directory list</strong> yani <code>ls -al</code> versin ?</p>
+<div class="highlight"><pre class="highlight ruby"><code><span class="n">task</span> <span class="ss">:check_env</span> <span class="k">do</span>
+  <span class="nb">abort</span> <span class="s2">"lütfen GO_ENV i tanımlayın"</span> <span class="k">unless</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'GO_ENV'</span><span class="p">]</span>
+  <span class="nb">abort</span> <span class="s2">"GO_ENV değeri development olmalı"</span> <span class="k">unless</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'GO_ENV'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'development'</span>
+<span class="k">end</span>
+
+<span class="n">desc</span> <span class="s2">"Merhaba komutu"</span>
+<span class="n">task</span> <span class="ss">:merhaba</span><span class="p">,</span> <span class="p">[</span><span class="ss">:isim</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="ss">:check_env</span><span class="p">]</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">|</span>
+  <span class="c1"># abort "lütfen isim girin" unless args.isim</span>
+  <span class="n">args</span><span class="p">.</span><span class="nf">with_defaults</span><span class="p">(</span><span class="ss">isim: </span><span class="s2">"isimsiz"</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Merhaba </span><span class="si">#{</span><span class="n">args</span><span class="p">.</span><span class="nf">isim</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+
+<span class="n">desc</span> <span class="s2">"Directory listele"</span>
+<span class="n">task</span> <span class="ss">:ls</span> <span class="k">do</span>
+  <span class="nb">system</span> <span class="s2">"ls -al"</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>Önce neler var listeleyelim;</p>
+<div class="highlight"><pre class="highlight plaintext"><code>$ rake -T
+rake ls             # Directory listele
+rake merhaba[isim]  # Merhaba komutu
+</code></pre></div>
+<p>şimdi;</p>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>rake <span class="nb">ls</span>
+</code></pre></div>
+<h2>Gerçek Hayat Örneği</h2>
+
+<p>Bir Python/Django projesinde sıkça tekrarladığım işler var. Örneğin yeni bir
+model eklediğimde bu modelin migration dosyasının oluşturulması. Bazen migration
+içinde geri dönmem gerekiyor, yani sürekli uzun uzun <code>python manage.py ...</code> bir
+süre şey yazmam lazım.</p>
+
+<p>Peki ben ne yapıyorum?</p>
+<div class="highlight"><pre class="highlight ruby"><code><span class="n">task</span> <span class="ss">:check_development_environment</span> <span class="k">do</span>
+  <span class="nb">abort</span> <span class="s2">"Set DJANGO_SECRET_KEY variable! via export DJANGO_SECRET_KEY=..."</span> <span class="k">unless</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'DJANGO_SECRET_KEY'</span><span class="p">]</span>
+  <span class="nb">abort</span> <span class="s2">"Set DJANGO_ENV variable! via export DJANGO_ENV=..."</span> <span class="k">unless</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'DJANGO_ENV'</span><span class="p">]</span>
+  <span class="nb">abort</span> <span class="s2">"Set DATABASE_URL variable! via export DJANGO_ENV=..."</span> <span class="k">unless</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'DATABASE_URL'</span><span class="p">]</span>
+<span class="k">end</span>
+
+<span class="n">namespace</span> <span class="ss">:db</span> <span class="k">do</span>
+  <span class="n">desc</span> <span class="s2">"Run migration for given database (default: 'default')"</span>
+  <span class="n">task</span> <span class="ss">:migrate</span><span class="p">,</span> <span class="p">[</span><span class="ss">:database</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="ss">:check_development_environment</span><span class="p">]</span> <span class="k">do</span> <span class="o">|</span><span class="n">_</span><span class="p">,</span> <span class="n">args</span><span class="o">|</span>
+    <span class="n">args</span><span class="p">.</span><span class="nf">with_defaults</span><span class="p">(</span><span class="ss">:database</span> <span class="o">=&gt;</span> <span class="s2">"default"</span><span class="p">)</span>
+    <span class="nb">puts</span> <span class="s2">"Running migration for: </span><span class="si">#{</span><span class="n">args</span><span class="p">.</span><span class="nf">database</span><span class="si">}</span><span class="s2"> database..."</span>
+    <span class="nb">system</span> <span class="s2">"python manage.py migrate --database=</span><span class="si">#{</span><span class="n">args</span><span class="p">.</span><span class="nf">database</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+
+
+  <span class="n">desc</span> <span class="s2">"run database shell ..."</span>
+  <span class="n">task</span> <span class="ss">:shell</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="ss">:check_development_environment</span><span class="p">]</span> <span class="k">do</span>
+    <span class="nb">system</span> <span class="s2">"python manage.py dbshell"</span>
+  <span class="k">end</span>
+
+
+  <span class="n">desc</span> <span class="s2">"show migrations for an application (default: 'all')"</span>
+  <span class="n">task</span> <span class="ss">:show</span><span class="p">,</span> <span class="p">[</span><span class="ss">:name_of_application</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="ss">:check_development_environment</span><span class="p">]</span> <span class="k">do</span> <span class="o">|</span><span class="n">_</span><span class="p">,</span> <span class="n">args</span><span class="o">|</span>
+    <span class="n">args</span><span class="p">.</span><span class="nf">with_defaults</span><span class="p">(</span><span class="ss">:name_of_application</span> <span class="o">=&gt;</span> <span class="s2">"all"</span><span class="p">)</span>
+    <span class="n">single_application_or_all</span> <span class="o">=</span> <span class="s2">" </span><span class="si">#{</span><span class="n">args</span><span class="p">.</span><span class="nf">name_of_application</span><span class="si">}</span><span class="s2">"</span>
+    <span class="n">single_application_or_all</span> <span class="o">=</span> <span class="s2">""</span> <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="nf">name_of_application</span> <span class="o">==</span> <span class="s2">"all"</span>
+    <span class="nb">system</span> <span class="s2">"python manage.py showmigrations</span><span class="si">#{</span><span class="n">single_application_or_all</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+
+
+  <span class="n">desc</span> <span class="s2">"update migration (name of application, name of migration?, is empty?)"</span>
+  <span class="n">task</span> <span class="ss">:update</span><span class="p">,</span> <span class="p">[</span><span class="ss">:name_of_application</span><span class="p">,</span> <span class="ss">:name_of_migration</span><span class="p">,</span> <span class="ss">:is_empty</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="ss">:check_development_environment</span><span class="p">]</span> <span class="k">do</span> <span class="o">|</span><span class="n">_</span><span class="p">,</span> <span class="n">args</span><span class="o">|</span>
+    <span class="nb">abort</span> <span class="s2">"Please provide: 'name_of_application'"</span> <span class="k">unless</span> <span class="n">args</span><span class="p">.</span><span class="nf">name_of_application</span>
+
+    <span class="n">args</span><span class="p">.</span><span class="nf">with_defaults</span><span class="p">(</span><span class="ss">:name_of_migration</span> <span class="o">=&gt;</span> <span class="s2">"auto_</span><span class="si">#{</span><span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="p">.</span><span class="nf">strftime</span><span class="p">(</span><span class="s1">'%Y%m%d_%H%M'</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">args</span><span class="p">.</span><span class="nf">with_defaults</span><span class="p">(</span><span class="ss">:is_empty</span> <span class="o">=&gt;</span> <span class="s2">"no"</span><span class="p">)</span>
+    <span class="n">name_param</span> <span class="o">=</span> <span class="s2">"--name </span><span class="si">#{</span><span class="n">args</span><span class="p">.</span><span class="nf">name_of_migration</span><span class="si">}</span><span class="s2">"</span>
+    <span class="n">empty_param</span> <span class="o">=</span> <span class="s2">""</span>
+    <span class="k">unless</span> <span class="n">args</span><span class="p">.</span><span class="nf">is_empty</span> <span class="o">==</span> <span class="s2">"no"</span>
+      <span class="n">empty_param</span> <span class="o">=</span> <span class="s2">"--empty </span><span class="si">#{</span><span class="n">args</span><span class="p">.</span><span class="nf">name_of_application</span><span class="si">}</span><span class="s2"> "</span>
+    <span class="k">end</span>
+    <span class="nb">system</span> <span class="s2">"python manage.py makemigrations </span><span class="si">#{</span><span class="n">empty_param</span><span class="si">}#{</span><span class="n">name_param</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+
+
+  <span class="n">desc</span> <span class="s2">"roll-back (name of application, name of migration)"</span>
+  <span class="n">task</span> <span class="ss">:roll_back</span><span class="p">,</span> <span class="p">[</span><span class="ss">:name_of_application</span><span class="p">,</span> <span class="ss">:name_of_migration</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="ss">:check_development_environment</span><span class="p">]</span> <span class="k">do</span> <span class="o">|</span><span class="n">_</span><span class="p">,</span> <span class="n">args</span><span class="o">|</span>
+    <span class="nb">abort</span> <span class="s2">"Please provide: 'name_of_application'"</span> <span class="k">unless</span> <span class="n">args</span><span class="p">.</span><span class="nf">name_of_application</span>
+    <span class="n">args</span><span class="p">.</span><span class="nf">with_defaults</span><span class="p">(</span><span class="ss">:name_of_migration</span> <span class="o">=&gt;</span> <span class="kp">nil</span><span class="p">)</span>
+    <span class="n">which_application</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="nf">name_of_application</span>
+    <span class="n">which_application</span> <span class="o">=</span> <span class="s2">""</span> <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="nf">name_of_application</span> <span class="o">==</span> <span class="s2">"all"</span>
+    <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="nf">name_of_migration</span><span class="p">.</span><span class="nf">nil?</span>
+      <span class="nb">puts</span> <span class="s2">"Please select your migration:"</span>
+      <span class="nb">system</span> <span class="s2">"python manage.py showmigrations </span><span class="si">#{</span><span class="n">which_application</span><span class="si">}</span><span class="s2">"</span>
+    <span class="k">else</span>
+      <span class="nb">system</span> <span class="s2">"python manage.py migrate </span><span class="si">#{</span><span class="n">which_application</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="nb">sprintf</span><span class="p">(</span><span class="s2">"%04d"</span><span class="p">,</span> <span class="n">args</span><span class="p">.</span><span class="nf">name_of_migration</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="n">desc</span> <span class="s2">"fill database"</span>
+  <span class="n">task</span> <span class="ss">:fill</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="ss">:check_development_environment</span><span class="p">]</span> <span class="k">do</span>
+    <span class="nb">system</span> <span class="s2">"python manage.py fill"</span>
+  <span class="k">end</span>
+
+  <span class="n">desc</span> <span class="s2">"drop database"</span>
+  <span class="n">task</span> <span class="ss">:drop</span><span class="p">,</span> <span class="p">[</span><span class="ss">:db</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="ss">:check_development_environment</span><span class="p">]</span> <span class="k">do</span> <span class="o">|</span><span class="n">_</span><span class="p">,</span> <span class="n">args</span><span class="o">|</span>
+    <span class="n">args</span><span class="p">.</span><span class="nf">with_defaults</span><span class="p">(</span><span class="ss">:db</span> <span class="o">=&gt;</span> <span class="s2">"YYYY"</span><span class="p">)</span>
+    <span class="nb">system</span> <span class="s2">"dropdb --if-exists </span><span class="si">#{</span><span class="n">args</span><span class="p">.</span><span class="nf">db</span><span class="si">}</span><span class="s2"> &amp;&amp; echo </span><span class="si">#{</span><span class="n">args</span><span class="p">.</span><span class="nf">db</span><span class="si">}</span><span class="s2"> dropped..."</span>
+  <span class="k">end</span>
+
+  <span class="n">desc</span> <span class="s2">"create database"</span>
+  <span class="n">task</span> <span class="ss">:create</span><span class="p">,</span> <span class="p">[</span><span class="ss">:db</span><span class="p">,</span> <span class="ss">:username</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="ss">:check_development_environment</span><span class="p">]</span> <span class="k">do</span> <span class="o">|</span><span class="n">_</span><span class="p">,</span> <span class="n">args</span><span class="o">|</span>
+    <span class="n">args</span><span class="p">.</span><span class="nf">with_defaults</span><span class="p">(</span><span class="ss">:db</span> <span class="o">=&gt;</span> <span class="s2">"XXXX"</span><span class="p">)</span>
+    <span class="n">args</span><span class="p">.</span><span class="nf">with_defaults</span><span class="p">(</span><span class="ss">:username</span> <span class="o">=&gt;</span> <span class="s2">"XXXX"</span><span class="p">)</span>
+    <span class="n">pg_user_exists</span> <span class="o">=</span> <span class="sb">`psql postgres -XtAc "SELECT 1 FROM pg_roles WHERE rolname='</span><span class="si">#{</span><span class="n">args</span><span class="p">.</span><span class="nf">username</span><span class="si">}</span><span class="sb">'"`</span><span class="p">.</span><span class="nf">chomp</span><span class="p">.</span><span class="nf">empty?</span> <span class="p">?</span> <span class="kp">false</span> <span class="p">:</span> <span class="kp">true</span>
+
+    <span class="nb">system</span> <span class="s2">"createuser </span><span class="si">#{</span><span class="n">args</span><span class="p">.</span><span class="nf">username</span><span class="si">}</span><span class="s2"> &amp;&amp; echo user </span><span class="si">#{</span><span class="n">args</span><span class="p">.</span><span class="nf">username</span><span class="si">}</span><span class="s2"> has been created successfully"</span> <span class="k">unless</span> <span class="n">pg_user_exists</span>
+    <span class="nb">system</span> <span class="sx">%{
+      createdb #{args.db} -O #{args.username} &amp;&amp; 
+      echo #{args.db} created and owner is set to #{args.username} &amp;&amp;
+      psql #{args.db} -c "ALTER USER XXXX CREATEDB; ALTER ROLE #{args.username} SET timezone TO 'UTC';" &amp;&amp;
+      echo timezone is set to UTC
+    }</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>Hemen bakalım hangi task’ler var:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>$ rake -T
+
+rake db:create[db,username]                                     # create database
+rake db:drop[db]                                                # drop database
+rake db:fill                                                    # fill database
+rake db:migrate[database]                                       # Run migration for given database (default: 'default')
+rake db:roll_back[name_of_application,name_of_migration]        # roll-back (name of application, name of migration)
+rake db:shell                                                   # run database shell ..
+rake db:show[name_of_application]                               # show migrations for an application (default: 'all')
+rake db:update[name_of_application,name_of_migration,is_empty]  # update migration (name of application, name of migration?, is empty?)
+</code></pre></div>
+<p>Örnekte <strong>namespace</strong> kullanımı var, yani <strong>db</strong> adında bir namespace’im var,
+komutu çağırırken <code>rake db:XXXXXX</code> şeklinde kullanıyorum.</p>
+
+<p>Yeni bir model için migration dosyası oluşturmam şu kadar kolay:</p>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>rake db:update[core,add_new_fields_to_user]
+</code></pre></div>
+<p>Bu komut ile adı <code>core</code> olan app’i gösteriyorum ve migration’a isim veriyorum.
+Dosya adı <code>00XX_add_new_fields_to_user.py</code> şeklinde oluyor&hellip;</p>
+
+<p>Peki yaklaşık 20 tane migration var ve ben birşey denemek için <code>0014_</code> ile
+başlayan duruma dönmek istiyorum:</p>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>rake db:roll_back[core,14]
+</code></pre></div>
+<p>yapmam yeterli&hellip;</p>
+
+<p>Veritabanını uçurup yeniden oluşturacağım:</p>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>rake db:drop <span class="o">&amp;&amp;</span> rake db:create <span class="o">&amp;&amp;</span> rake db:migrate
+</code></pre></div>
+<p>Peki işin içine <strong>Docker</strong> operasyonları girerse?</p>
+<div class="highlight"><pre class="highlight ruby"><code><span class="n">namespace</span> <span class="ss">:docker</span> <span class="k">do</span>
+  <span class="n">namespace</span> <span class="ss">:compose</span> <span class="k">do</span>
+
+    <span class="n">task</span> <span class="ss">:build</span> <span class="k">do</span>
+      <span class="nb">system</span> <span class="sx">%{
+        docker-compose build --build-arg django_requirements=development
+      }</span>
+    <span class="k">end</span>
+
+    <span class="n">desc</span> <span class="s2">"run application"</span>
+    <span class="n">task</span> <span class="ss">:up</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s2">"docker:compose:build"</span><span class="p">]</span> <span class="k">do</span>
+      <span class="nb">system</span> <span class="s2">"docker-compose up"</span>
+    <span class="k">end</span>
+
+    <span class="n">desc</span> <span class="s2">"down"</span>
+    <span class="n">task</span> <span class="ss">:down</span> <span class="k">do</span>
+      <span class="nb">system</span> <span class="s2">"docker-compose down"</span>
+    <span class="k">end</span>
+
+    <span class="n">desc</span> <span class="s2">"down and kill all"</span>
+    <span class="n">task</span> <span class="ss">:down_and_kill</span> <span class="k">do</span>
+      <span class="nb">system</span> <span class="s2">"docker-compose down --rmi all --volumes"</span>
+    <span class="k">end</span>
+
+    <span class="n">desc</span> <span class="s2">"remove all volumes (any volume exists)"</span>
+    <span class="n">task</span> <span class="ss">:rm_volumes</span> <span class="k">do</span>
+      <span class="nb">system</span> <span class="s2">"docker volume rm $(docker volume ls -q)"</span>
+    <span class="k">end</span>
+
+
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>Hemen task listesi:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>$ rake -T
+rake docker:compose:down           # down
+rake docker:compose:down_and_kill  # down and kill all
+rake docker:compose:rm_volumes     # remove all volumes (any volume exists)
+rake docker:compose:up             # run application
+</code></pre></div>
+<p>Haydi uygulama ayağa kalksın:</p>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>rake docker:compose:up
+</code></pre></div>
+<p>Tabi <code>rake</code>’in gücü bunlarla sınırlı değil. Geçtiğimiz yıllarda bu konu ile
+ilgili sunum yapmıştım, <a href="https://l.vigo.io/makefile-degil-rakefile">bu link</a>’ten erişebilirsiniz.</p>
+
+<p>Tabi şunu da unutmamak lazım, <code>Rakefile</code> içinde <code>ruby</code> kodu yazıyoruz. Başımıza
+bir de Ruby programlama çıktı diye bana kızabilirsiniz. İnanın, gerçekten
+çok basit aslında. Sevgiyle yaklaşırsanız yapabilirsiniz.</p>
+
+<p>Eğer <code>ruby</code> öğrenmek isterseniz, biraz eski de olsa şöyle <a href="https://vigo.github.io/ruby101-kitap/">bir kaynak</a> tavsiye
+edebilirim</p>
+
+            </section>
+
+            <footer>
+                <address>
+                    <img class="avatar" src="http://www.gravatar.com/avatar/04cabd98cc4bd5e3eeddc2738a8b55e5" />
+                    <p>
+                        <strong>
+                            <a rel="author" href="https://ugur.ozyilmazel.com" title="Uğur Özyılmazel - sitesine gitmek için tıklayın." target="_blank">Uğur Özyılmazel</a>
+                            <a ref="author-twitter-account" title="@BigesEng - Twitter sayfasına gitmek için tıklayın." target="_blank" href="https://twitter.com/BigesEng"><i class="fab fa-twitter"></i></a>
+                            <a ref="author-github-account" title=" @vigo - GitHub sayfasına gitmek için tıklayın." target="_blank" href="https://github.com/vigo"><i class="fab fa-github"></i></a>
+                        </strong><br>
+                        <span class="muted">Retrolog</span><br />
+                    </p>
+                </address>
+            </footer>
+            
+                <section class="index related-articles">
+        <h2 class="title">İlişkili Makale (1)</h2>
+    </section>
+    
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2018/10/15/django-ve-query-ipuclari/" rel="prefetch" title="Detaylar için tıklayın">Django ve Query İpuçları &raquo;</a>
+        </div>
+    </section>
+    <section class="index related-articles"><hr/></section>
+
+    <section class="index related-articles">
+        <h2 class="title">Yazarın Diğer Makaleleri (7)</h2>
+    </section>
+
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2021/09/24/ayni-proje-altindaki-yerel-paketler/" rel="prefetch" title="Detaylar için tıklayın">Aynı Proje Altındaki Yerel Paketler &raquo;</a> <small>24 Eylül 2021</small>
+        </div>
+    </section>
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2021/09/09/temel-bash-komutlari/" rel="prefetch" title="Detaylar için tıklayın">Temel Bash Komutları &raquo;</a> <small>09 Eylül 2021</small>
+        </div>
+    </section>
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2021/09/01/macosda-slash-tmp-slash-dizini/" rel="prefetch" title="Detaylar için tıklayın">macOS'da /tmp/ Dizini &raquo;</a> <small>01 Eylül 2021</small>
+        </div>
+    </section>
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2021/08/27/senior-junior-ve-daha-fazlasi/" rel="prefetch" title="Detaylar için tıklayın">Senior, Junior ve Daha Fazlası &raquo;</a> <small>27 Ağustos 2021</small>
+        </div>
+    </section>
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2021/08/25/modern-gelistiricinin-olmazsa-olmazlari/" rel="prefetch" title="Detaylar için tıklayın">Modern Geliştiricinin Olmazsa Olmazları &raquo;</a> <small>25 Ağustos 2021</small>
+        </div>
+    </section>
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2021/08/22/goroutine-ve-channelsi-anlamak/" rel="prefetch" title="Detaylar için tıklayın">Goroutine ve Channels'ı Anlamak &raquo;</a> <small>22 Ağustos 2021</small>
+        </div>
+    </section>
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2018/10/18/nesnenin-string-goruntusu/" rel="prefetch" title="Detaylar için tıklayın">Pythonistalar için Nesnenin String() Görüntüsü &raquo;</a> <small>18 Ekim 2018</small>
+        </div>
+    </section>
+    <section class="index related-articles"><hr/></section>
+
+            
+        </div>
+    </article>
+
+
+    <footer class="site-footer">
+        <div class="container">
+            <nav>
+                
+                <a href="/">Anasayfa</a> &middot;
+                
+                <a href="/hakkinda/">Hakkında</a> &middot;
+                <a href="/arsiv/">Arşiv</a>
+            </nav>
+        
+            <nav class="social">
+                <a href="https://twitter.com/BigesEng" title="Twitter" target="_blank"><i class="fab fa-twitter-square"></i></a>
+                <a href="https://github.com/biges" title="GitHub" target="_blank"><i class="fab fa-github-square"></i></i></a>
+                <a href="https://vimeo.com/biges" title="Vimeo" target="_blank"><i class="fab fa-vimeo-square"></i></a>
+                <a href="/feed.xml" title="RSS Feed"><i class="fas fa-rss-square"></i></a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    
+    <script src="/public/js/retina-0.0.2.js"></script>
+    <script src="/public/js/app.js"></script>
+    
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-125596610-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <script id="dsq-count-scr" src="//bigesarge.disqus.com/count.js" async></script>
+</body>
+</html>
+
+<!-- last build: 2021-09-24 11:20:52 +0300 -->

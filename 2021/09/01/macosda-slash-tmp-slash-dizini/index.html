@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>macOS'da /tmp/ Dizini &mdash; Biges Ar-Ge Merkezi</title>
+    <meta name="title" content="macOS'da /tmp/ Dizini &mdash; Biges Ar-Ge Merkezi">
+    <link rel="canonical" href="https://arge.biges.com/posts/2021-09-01-macosda-slash-tmp-slash-dizini.html">
+    <meta property="og:title" content="macOS'da /tmp/ Dizini &mdash; Biges Ar-Ge Merkezi"/>
+    <meta property="og:url" content="https://arge.biges.com/posts/2021-09-01-macosda-slash-tmp-slash-dizini.html"/>
+    <meta property="og:image" content="https://arge.biges.com/public/images/cover.jpg"/>
+    <meta property="og:description" content="Gündelik işleri yaparken bazen denemeler yapmak için çeşitli dosyalarya da dizinler oluşturmak gerekebilir."/>
+    <meta name="description" content="Gündelik işleri yaparken bazen denemeler yapmak için çeşitli dosyalarya da dizinler oluşturmak gerekebilir."/>
+    <meta property="og:site_name" content="Biges Ar-Ge Merkezi">
+    <link rel="shortcut icon" href="/public/images/favicon.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/public/images/logo.png"/>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://arge.biges.com/feed.xml" />
+    <link href="//fonts.googleapis.com/css?family=Roboto:400,700,300,900&subset=latin,latin-ext" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="/public/css/application.css" rel="stylesheet" />
+    <script src="//kit.fontawesome.com/be9a716db5.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <section class="site-nav">
+        <header>
+            <nav id="navigation">
+                <a class="brand" href="/"><img src="/public/images/logo.png" alt="Logo" /></a>
+                <a href="/" class="home">Anasayfa</a>
+                
+                <a href="/hakkinda/">Hakkında</a>
+                <a href="/kariyer/">Kariyer</a>
+                <a href="/arsiv/">Arşiv</a>
+                <a target="_blank" title="Biges Güvenli Hayat Teknolojileri A.Ş." href="https://biges.com">Biges</a>
+            </nav>
+
+        </header>
+    </section>
+
+        <div class="article-cover">
+        <div>
+            <img src="/public/images/posts/cover-tweets.png" class="image" alt="" />
+        </div>
+    </div>
+    
+
+    <article>
+        <div class="container">
+            <header>
+                <div class="meta">
+                    <address><a rel="author" href="https://ugur.ozyilmazel.com" title="Uğur Özyılmazel" target="_blank">Uğur Özyılmazel</a></address> &mdash;
+                    <time pubdate datetime="2021-09-01T09:36:00+03:00" title="01 Eylül 2021, Çarşamba 09:36">01 Eylül 2021, Çarşamba 09:36</time>
+                </div>
+                <h1 class="title">macOS'da /tmp/ Dizini</h1>
+                <h2 class="subtitle">Yaz/boz tahtası...</h2>
+                    <div class="tags">
+                        <span class="badge"><a href="/etiket/macos/">macos</a></span>
+                        <span class="badge"><a href="/etiket/bash/">bash</a></span>
+                    </div>
+                
+            </header>
+            
+            <section id="article-detail">
+                <p>Gündelik işleri yaparken bazen denemeler yapmak için çeşitli dosyalar
+ya da dizinler oluşturmak gerekebilir.</p>
+
+<p></p>
+
+<p>Deneme amaçlı yüzlerce dosya ya da dizin oluşturup daha sonra bu oluşan
+çöp dosyaları silmek ya da silmeyi unutmamak size ilave bir yük oluşturabilir.</p>
+
+<p>İşte bu tip durumlarda çöplük olarak kullanabileceğimiz bir yer var: <code>/tmp/</code>.
+Aslında bu lokasyon gizli bir yerde durur ve kolayca erişebilmemiz için <code>/tmp/</code>
+bir kısa yoldur. Asıl amacı, kurduğunuz uygulamalar ya da çalıştırdığınız
+uygulamalar geçici olarak dosya sistemini kullanıp bilgisayara bir şeyler
+kaydetmek istediğinde <strong>geçici</strong> olarak bu alanı kullanır.</p>
+
+<p>Zaten İngilizce <strong>temporary</strong> kelimesinin kısa yazılışıdır. Sadece uygulamalar
+değil bizler de kullanabiliriz. Gerçek lokasyonu;</p>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="nv">$TMPDIR</span>
+</code></pre></div>
+<p>değişkenini ekrana yazdırarak bulabiliriz. İşin asıl güzel kısmı bu dizinin
+altındaki dosyaları silmekle uğraşmamamız. Eğer bir uygulama bu alanı kullanıyorsa,
+uygulama kapanırken bu dizinden oluşturduğu dosyalar otomatik olarak
+silinir.</p>
+
+<p>Siz kullanıyorsanız yine aynı şekilde eğer dosyalara herhangi bir erişim
+yoksa <strong>3 gün</strong> sonra bu dosyalar da otomatik olarak silinir. macOS özünde
+BSD tabanlı bir işletim sitemi olduğu için, <code>periodic.conf</code> kullanır:</p>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">cat</span> /etc/defaults/periodic.conf
+
+<span class="c">#!/bin/sh</span>
+<span class="c">#</span>
+<span class="c"># This is defaults/periodic.conf - a file full of useful variables that</span>
+<span class="c"># you can set to change the default behaviour of periodic jobs on your</span>
+<span class="c"># system.  You should not edit this file!  Put any overrides into one of the</span>
+<span class="c"># $periodic_conf_files instead and you will be able to update these defaults</span>
+<span class="c"># later without spamming your local configuration information.</span>
+<span class="c">#</span>
+<span class="c"># The $periodic_conf_files files should only contain values which override</span>
+<span class="c"># values set in this file.  This eases the upgrade path when defaults</span>
+<span class="c"># are changed and new features are added.</span>
+<span class="c">#</span>
+<span class="c"># For a more detailed explanation of all the periodic.conf variables, please</span>
+<span class="c"># refer to the periodic.conf(5) manual page.</span>
+<span class="c">#</span>
+<span class="c"># $FreeBSD: src/etc/defaults/periodic.conf,v 1.47 2008/01/08 07:22:43 dds Exp $</span>
+<span class="c">#</span>
+
+<span class="c"># What files override these defaults ?</span>
+<span class="nv">periodic_conf_files</span><span class="o">=</span><span class="s2">"/etc/periodic.conf /etc/periodic.conf.local"</span>
+
+<span class="c"># periodic script dirs</span>
+<span class="nv">local_periodic</span><span class="o">=</span><span class="s2">"/usr/local/etc/periodic"</span>
+
+
+<span class="c"># Daily options</span>
+
+<span class="c"># These options are used by periodic(8) itself to determine what to do</span>
+<span class="c"># with the output of the sub-programs that are run, and where to send</span>
+<span class="c"># that output.  $daily_output might be set to /var/log/daily.log if you</span>
+<span class="c"># wish to log the daily output and have the files rotated by newsyslog(8)</span>
+<span class="c">#</span>
+<span class="nv">daily_output</span><span class="o">=</span><span class="s2">"/var/log/daily.out"</span>           <span class="c"># user or /file</span>
+<span class="nv">daily_show_success</span><span class="o">=</span><span class="s2">"YES"</span>                <span class="c"># scripts returning 0</span>
+<span class="nv">daily_show_info</span><span class="o">=</span><span class="s2">"YES"</span>                   <span class="c"># scripts returning 1</span>
+<span class="nv">daily_show_badconfig</span><span class="o">=</span><span class="s2">"NO"</span>               <span class="c"># scripts returning 2</span>
+
+<span class="c"># 110.clean-tmps</span>
+<span class="nv">daily_clean_tmps_enable</span><span class="o">=</span><span class="s2">"YES"</span>               <span class="c"># Delete stuff daily</span>
+<span class="nv">daily_clean_tmps_dirs</span><span class="o">=</span><span class="s2">"/tmp"</span>                <span class="c"># Delete under here</span>
+<span class="nv">daily_clean_tmps_days</span><span class="o">=</span><span class="s2">"3"</span>               <span class="c"># If not accessed for</span>
+<span class="nv">daily_clean_tmps_ignore</span><span class="o">=</span><span class="s2">".X*-lock .X11-unix .ICE-unix .font-unix .XIM-unix"</span>
+<span class="nv">daily_clean_tmps_ignore</span><span class="o">=</span><span class="s2">"</span><span class="nv">$daily_clean_tmps_ignore</span><span class="s2"> quota.user quota.group"</span>
+                            <span class="c"># Don't delete these</span>
+<span class="nv">daily_clean_tmps_verbose</span><span class="o">=</span><span class="s2">"YES"</span>              <span class="c"># Mention files deleted</span>
+
+<span class="c"># 130.clean-msgs</span>
+<span class="nv">daily_clean_msgs_enable</span><span class="o">=</span><span class="s2">"YES"</span>               <span class="c"># Delete msgs daily</span>
+<span class="nv">daily_clean_msgs_days</span><span class="o">=</span>                  <span class="c"># If not modified for</span>
+
+<span class="c"># 140.clean-rwho</span>
+<span class="nv">daily_clean_rwho_enable</span><span class="o">=</span><span class="s2">"YES"</span>               <span class="c"># Delete rwho daily</span>
+<span class="nv">daily_clean_rwho_days</span><span class="o">=</span>7                 <span class="c"># If not modified for</span>
+<span class="nv">daily_clean_rwho_verbose</span><span class="o">=</span><span class="s2">"YES"</span>              <span class="c"># Mention files deleted</span>
+
+<span class="c"># 310.accounting</span>
+<span class="nv">daily_accounting_enable</span><span class="o">=</span><span class="s2">"YES"</span>               <span class="c"># Rotate acct files</span>
+<span class="nv">daily_accounting_compress</span><span class="o">=</span><span class="s2">"NO"</span>              <span class="c"># Gzip rotated files</span>
+<span class="nv">daily_accounting_flags</span><span class="o">=</span><span class="nt">-q</span>               <span class="c"># Flags to /usr/sbin/sa</span>
+<span class="nv">daily_accounting_save</span><span class="o">=</span>3                 <span class="c"># How many files to save</span>
+
+<span class="c"># 400.status-disks</span>
+<span class="nv">daily_status_disks_enable</span><span class="o">=</span><span class="s2">"YES"</span>             <span class="c"># Check disk status</span>
+<span class="nv">daily_status_disks_df_flags</span><span class="o">=</span><span class="s2">"-l -h"</span>     <span class="c"># df(1) flags for check</span>
+
+<span class="c"># 420.status-network</span>
+<span class="nv">daily_status_network_enable</span><span class="o">=</span><span class="s2">"YES"</span>           <span class="c"># Check network status</span>
+<span class="nv">daily_status_network_usedns</span><span class="o">=</span><span class="s2">"YES"</span>           <span class="c"># DNS lookups are ok</span>
+
+<span class="c"># 430.status-rwho</span>
+<span class="nv">daily_status_rwho_enable</span><span class="o">=</span><span class="s2">"YES"</span>              <span class="c"># Check system status</span>
+
+<span class="c"># 440.status-mailq</span>
+<span class="nv">daily_status_mailq_enable</span><span class="o">=</span><span class="s2">"YES"</span>             <span class="c"># Check mail status</span>
+<span class="nv">daily_status_mailq_shorten</span><span class="o">=</span><span class="s2">"NO"</span>             <span class="c"># Shorten output</span>
+<span class="nv">daily_status_include_submit_mailq</span><span class="o">=</span><span class="s2">"YES"</span>         <span class="c"># Also submit queue</span>
+
+<span class="c"># 999.local</span>
+<span class="nv">daily_local</span><span class="o">=</span><span class="s2">"/etc/daily.local"</span>              <span class="c"># Local scripts</span>
+
+
+<span class="c"># Weekly options</span>
+
+<span class="c"># These options are used by periodic(8) itself to determine what to do</span>
+<span class="c"># with the output of the sub-programs that are run, and where to send</span>
+<span class="c"># that output.  $weekly_output might be set to /var/log/weekly.log if you</span>
+<span class="c"># wish to log the weekly output and have the files rotated by newsyslog(8)</span>
+<span class="c">#</span>
+<span class="nv">weekly_output</span><span class="o">=</span><span class="s2">"/var/log/weekly.out"</span>         <span class="c"># user or /file</span>
+<span class="nv">weekly_show_success</span><span class="o">=</span><span class="s2">"YES"</span>               <span class="c"># scripts returning 0</span>
+<span class="nv">weekly_show_info</span><span class="o">=</span><span class="s2">"YES"</span>                  <span class="c"># scripts returning 1</span>
+<span class="nv">weekly_show_badconfig</span><span class="o">=</span><span class="s2">"NO"</span>              <span class="c"># scripts returning 2</span>
+
+<span class="c"># 999.local</span>
+<span class="nv">weekly_local</span><span class="o">=</span><span class="s2">"/etc/weekly.local"</span>            <span class="c"># Local scripts</span>
+
+
+<span class="c"># Monthly options</span>
+
+<span class="c"># These options are used by periodic(8) itself to determine what to do</span>
+<span class="c"># with the output of the sub-programs that are run, and where to send</span>
+<span class="c"># that output.  $monthly_output might be set to /var/log/monthly.log if you</span>
+<span class="c"># wish to log the monthly output and have the files rotated by newsyslog(8)</span>
+<span class="c">#</span>
+<span class="nv">monthly_output</span><span class="o">=</span><span class="s2">"/var/log/monthly.out"</span>           <span class="c"># user or /file</span>
+<span class="nv">monthly_show_success</span><span class="o">=</span><span class="s2">"YES"</span>              <span class="c"># scripts returning 0</span>
+<span class="nv">monthly_show_info</span><span class="o">=</span><span class="s2">"YES"</span>                 <span class="c"># scripts returning 1</span>
+<span class="nv">monthly_show_badconfig</span><span class="o">=</span><span class="s2">"NO"</span>             <span class="c"># scripts returning 2</span>
+
+<span class="c"># 200.accounting</span>
+<span class="nv">monthly_accounting_enable</span><span class="o">=</span><span class="s2">"YES"</span>             <span class="c"># Login accounting</span>
+
+<span class="c"># 999.local</span>
+<span class="nv">monthly_local</span><span class="o">=</span><span class="s2">"/etc/monthly.local"</span>          <span class="c"># Local scripts</span>
+
+
+<span class="c"># Define source_periodic_confs, the mechanism used by /etc/periodic/*/*</span>
+<span class="c"># scripts to source defaults/periodic.conf overrides safely.</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="k">${</span><span class="nv">source_periodic_confs_defined</span><span class="k">}</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nv">source_periodic_confs_defined</span><span class="o">=</span><span class="nb">yes
+        </span>source_periodic_confs <span class="o">()</span> <span class="o">{</span>
+                <span class="nb">local </span>i sourced_files
+
+                <span class="k">for </span>i <span class="k">in</span> <span class="k">${</span><span class="nv">periodic_conf_files</span><span class="k">}</span><span class="p">;</span> <span class="k">do
+                        case</span> <span class="k">${</span><span class="nv">sourced_files</span><span class="k">}</span> <span class="k">in</span>
+                        <span class="k">*</span>:<span class="nv">$i</span>:<span class="k">*</span><span class="p">)</span>
+                                <span class="p">;;</span>
+                        <span class="k">*</span><span class="p">)</span>
+                                <span class="nv">sourced_files</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">sourced_files</span><span class="k">}</span><span class="s2">:</span><span class="nv">$i</span><span class="s2">:"</span>
+                                <span class="o">[</span> <span class="nt">-r</span> <span class="nv">$i</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">.</span> <span class="nv">$i</span>
+                                <span class="p">;;</span>
+                        <span class="k">esac</span>
+                <span class="k">done</span>
+        <span class="o">}</span>
+<span class="k">fi</span>
+</code></pre></div>
+<p>Bu konfigürasyon dosyasında <code>/tmp/</code> ile ilgili kısım: <code>110.clean-tmps</code> kısmıdır.</p>
+<div class="highlight"><pre class="highlight shell"><code><span class="c"># 110.clean-tmps</span>
+<span class="nv">daily_clean_tmps_enable</span><span class="o">=</span><span class="s2">"YES"</span>               <span class="c"># Delete stuff daily</span>
+<span class="nv">daily_clean_tmps_dirs</span><span class="o">=</span><span class="s2">"/tmp"</span>                <span class="c"># Delete under here</span>
+<span class="nv">daily_clean_tmps_days</span><span class="o">=</span><span class="s2">"3"</span>               <span class="c"># If not accessed for</span>
+<span class="nv">daily_clean_tmps_ignore</span><span class="o">=</span><span class="s2">".X*-lock .X11-unix .ICE-unix .font-unix .XIM-unix"</span>
+<span class="nv">daily_clean_tmps_ignore</span><span class="o">=</span><span class="s2">"</span><span class="nv">$daily_clean_tmps_ignore</span><span class="s2"> quota.user quota.group"</span>
+                            <span class="c"># Don't delete these</span>
+<span class="nv">daily_clean_tmps_verbose</span><span class="o">=</span><span class="s2">"YES"</span>              <span class="c"># Mention files deleted</span>
+</code></pre></div>
+<p><code>daily_clean_tmps_days</code> değişkeninde <strong>3 gün</strong> olarak ön tanımlanmıştır.
+<code>periodic.conf</code> işletim siteminde periyodik olarak yapılacak işlerin
+ayarlandığı dosyadır. Dikkat ettiyseniz; günlük, haftalık ve aylık rutin işler
+tanımlanmıştır. Diğer otomatik yapılan işlerin bilgilerini de bu dosyadan
+görebilir ve isterseniz değiştirebilirsiniz.</p>
+
+<p>Özetle, <code>/tmp/</code> dizini altında istediğiniz kadar yaz/boz yapabilirsiniz. Bilgisayarı
+restart ettiğinizde ya da işlem üzerinden 3 gün geçtiğinde bu dosyalar otomatik
+olarak silinir. Kafanızı meşgul etmez.</p>
+
+            </section>
+
+            <footer>
+                <address>
+                    <img class="avatar" src="http://www.gravatar.com/avatar/04cabd98cc4bd5e3eeddc2738a8b55e5" />
+                    <p>
+                        <strong>
+                            <a rel="author" href="https://ugur.ozyilmazel.com" title="Uğur Özyılmazel - sitesine gitmek için tıklayın." target="_blank">Uğur Özyılmazel</a>
+                            <a ref="author-twitter-account" title="@BigesEng - Twitter sayfasına gitmek için tıklayın." target="_blank" href="https://twitter.com/BigesEng"><i class="fab fa-twitter"></i></a>
+                            <a ref="author-github-account" title=" @vigo - GitHub sayfasına gitmek için tıklayın." target="_blank" href="https://github.com/vigo"><i class="fab fa-github"></i></a>
+                        </strong><br>
+                        <span class="muted">Apple Fanboy</span><br />
+                    </p>
+                </address>
+            </footer>
+            
+                <section class="index related-articles">
+        <h2 class="title">İlişkili Makale (1)</h2>
+    </section>
+    
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2021/09/09/temel-bash-komutlari/" rel="prefetch" title="Detaylar için tıklayın">Temel Bash Komutları &raquo;</a>
+        </div>
+    </section>
+    <section class="index related-articles"><hr/></section>
+
+    <section class="index related-articles">
+        <h2 class="title">Yazarın Diğer Makaleleri (7)</h2>
+    </section>
+
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2021/09/24/ayni-proje-altindaki-yerel-paketler/" rel="prefetch" title="Detaylar için tıklayın">Aynı Proje Altındaki Yerel Paketler &raquo;</a> <small>24 Eylül 2021</small>
+        </div>
+    </section>
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2021/09/09/temel-bash-komutlari/" rel="prefetch" title="Detaylar için tıklayın">Temel Bash Komutları &raquo;</a> <small>09 Eylül 2021</small>
+        </div>
+    </section>
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2021/08/27/senior-junior-ve-daha-fazlasi/" rel="prefetch" title="Detaylar için tıklayın">Senior, Junior ve Daha Fazlası &raquo;</a> <small>27 Ağustos 2021</small>
+        </div>
+    </section>
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2021/08/25/modern-gelistiricinin-olmazsa-olmazlari/" rel="prefetch" title="Detaylar için tıklayın">Modern Geliştiricinin Olmazsa Olmazları &raquo;</a> <small>25 Ağustos 2021</small>
+        </div>
+    </section>
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2021/08/22/goroutine-ve-channelsi-anlamak/" rel="prefetch" title="Detaylar için tıklayın">Goroutine ve Channels'ı Anlamak &raquo;</a> <small>22 Ağustos 2021</small>
+        </div>
+    </section>
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2021/08/21/basit-islerin-otomasyonu-rakefile/" rel="prefetch" title="Detaylar için tıklayın">Basit işlerin otomasyonu: Rakefile &raquo;</a> <small>21 Ağustos 2021</small>
+        </div>
+    </section>
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2018/10/18/nesnenin-string-goruntusu/" rel="prefetch" title="Detaylar için tıklayın">Pythonistalar için Nesnenin String() Görüntüsü &raquo;</a> <small>18 Ekim 2018</small>
+        </div>
+    </section>
+    <section class="index related-articles"><hr/></section>
+
+            
+        </div>
+    </article>
+
+
+    <footer class="site-footer">
+        <div class="container">
+            <nav>
+                
+                <a href="/">Anasayfa</a> &middot;
+                
+                <a href="/hakkinda/">Hakkında</a> &middot;
+                <a href="/arsiv/">Arşiv</a>
+            </nav>
+        
+            <nav class="social">
+                <a href="https://twitter.com/BigesEng" title="Twitter" target="_blank"><i class="fab fa-twitter-square"></i></a>
+                <a href="https://github.com/biges" title="GitHub" target="_blank"><i class="fab fa-github-square"></i></i></a>
+                <a href="https://vimeo.com/biges" title="Vimeo" target="_blank"><i class="fab fa-vimeo-square"></i></a>
+                <a href="/feed.xml" title="RSS Feed"><i class="fas fa-rss-square"></i></a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    
+    <script src="/public/js/retina-0.0.2.js"></script>
+    <script src="/public/js/app.js"></script>
+    
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-125596610-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <script id="dsq-count-scr" src="//bigesarge.disqus.com/count.js" async></script>
+</body>
+</html>
+
+<!-- last build: 2021-09-24 11:20:52 +0300 -->

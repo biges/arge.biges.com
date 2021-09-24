@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Biges Ar-Ge Merkezi</title>
+  <subtitle>Yazılım Geliştirme Blogu</subtitle>
+  <id>https://arge.biges.com</id>
+  <link href="https://arge.biges.com"/>
+  <link href="https://arge.biges.com/feed.xml" rel="self"/>
+  <updated>2021-09-24T10:44:00+03:00</updated>
+  <author>
+    <name>Uğur Özyılmazel</name>
+  </author>
+  <entry>
+    <title>Aynı Proje Altındaki Yerel Paketler</title>
+    <link rel="alternate" href="https://arge.biges.com/2021/09/24/ayni-proje-altindaki-yerel-paketler/"/>
+    <id>https://arge.biges.com/2021/09/24/ayni-proje-altindaki-yerel-paketler/</id>
+    <published>2021-09-24T10:44:00+03:00</published>
+    <updated>2021-09-24T11:19:59+03:00</updated>
+    <author>
+      <name>Uğur Özyılmazel</name>
+    </author>
+    <summary type="html">&lt;p&gt; Go versiyon &lt;strong&gt;1.13&lt;/strong&gt;’le standart hale gelen modül yapısı, yeni başlayanlar
+için kafa karıştırıcı olabiliyor. Bu yazıda yerel paket ve &lt;code&gt;import&lt;/code&gt;
+kullanımını inceleyeceğiz. 
+
+ &lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <title>Temel Bash Komutları</title>
+    <link rel="alternate" href="https://arge.biges.com/2021/09/09/temel-bash-komutlari/"/>
+    <id>https://arge.biges.com/2021/09/09/temel-bash-komutlari/</id>
+    <published>2021-09-09T08:52:00+03:00</published>
+    <updated>2021-09-09T19:03:55+03:00</updated>
+    <author>
+      <name>Uğur Özyılmazel</name>
+    </author>
+    <summary type="html">&lt;p&gt; Temel bash/shell komutlarının üzerinden geçtik 
+
+ &lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <title>macOS'da /tmp/ Dizini</title>
+    <link rel="alternate" href="https://arge.biges.com/2021/09/01/macosda-slash-tmp-slash-dizini/"/>
+    <id>https://arge.biges.com/2021/09/01/macosda-slash-tmp-slash-dizini/</id>
+    <published>2021-09-01T09:36:00+03:00</published>
+    <updated>2021-09-01T09:55:37+03:00</updated>
+    <author>
+      <name>Uğur Özyılmazel</name>
+    </author>
+    <summary type="html">&lt;p&gt; Gündelik işleri yaparken bazen denemeler yapmak için çeşitli dosyalar
+ya da dizinler oluşturmak gerekebilir. 
+
+ &lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <title>Senior, Junior ve Daha Fazlası</title>
+    <link rel="alternate" href="https://arge.biges.com/2021/08/27/senior-junior-ve-daha-fazlasi/"/>
+    <id>https://arge.biges.com/2021/08/27/senior-junior-ve-daha-fazlasi/</id>
+    <published>2021-08-27T08:10:00+03:00</published>
+    <updated>2021-09-01T09:36:56+03:00</updated>
+    <author>
+      <name>Uğur Özyılmazel</name>
+    </author>
+    <summary type="html">&lt;p&gt; Kim &lt;strong&gt;Senior&lt;/strong&gt;? kim &lt;strong&gt;Junior&lt;/strong&gt;? kim &lt;strong&gt;Lead&lt;/strong&gt;? kafalar biraz karışık sanki.
+Haydi gelin hızlıca bakalım kim kimmiş? 
+
+ &lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <title>Modern Geliştiricinin Olmazsa Olmazları</title>
+    <link rel="alternate" href="https://arge.biges.com/2021/08/25/modern-gelistiricinin-olmazsa-olmazlari/"/>
+    <id>https://arge.biges.com/2021/08/25/modern-gelistiricinin-olmazsa-olmazlari/</id>
+    <published>2021-08-25T08:00:00+03:00</published>
+    <updated>2021-08-25T08:49:27+03:00</updated>
+    <author>
+      <name>Uğur Özyılmazel</name>
+    </author>
+    <summary type="html">&lt;p&gt; Yıl &lt;strong&gt;2021&lt;/strong&gt;, bir sürü yeni teknoloji, yeni programlama dili, platformlar, araçlar,
+işletim sistemleri, bilgisayarlar… Peki çağa ayak uydurmuş &lt;strong&gt;modern&lt;/strong&gt; bir
+geliştirici misiniz? 
+
+ &lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <title>Frontend Teknolojileri ve React’a Giriş Sunumu</title>
+    <link rel="alternate" href="https://arge.biges.com/2021/08/23/frontend-teknolojileri-ve-reactand-number-039-a-giris-sunumu/"/>
+    <id>https://arge.biges.com/2021/08/23/frontend-teknolojileri-ve-reactand-number-039-a-giris-sunumu/</id>
+    <published>2021-08-23T08:30:00+03:00</published>
+    <updated>2021-08-23T08:35:29+03:00</updated>
+    <author>
+      <name>Yılmaz Çakmakçı</name>
+    </author>
+    <summary type="html">&lt;p&gt; Geliştirdiğimiz platformda hali hazırda &lt;strong&gt;VueJS&lt;/strong&gt; kullandık. &lt;strong&gt;React&lt;/strong&gt;’e
+geçmeyi düşünüyoruz. 
+
+ &lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <title>Goroutine ve Channels'ı Anlamak</title>
+    <link rel="alternate" href="https://arge.biges.com/2021/08/22/goroutine-ve-channelsi-anlamak/"/>
+    <id>https://arge.biges.com/2021/08/22/goroutine-ve-channelsi-anlamak/</id>
+    <published>2021-08-22T12:02:00+03:00</published>
+    <updated>2021-08-23T08:28:43+03:00</updated>
+    <author>
+      <name>Uğur Özyılmazel</name>
+    </author>
+    <summary type="html">&lt;p&gt; Geçtiğimiz günlerde ekiple ufak bir &lt;code&gt;golang&lt;/code&gt; eğitimi yapıyorduk. &lt;strong&gt;Channels&lt;/strong&gt;
+konusuna değindik. 
+
+ &lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <title>Basit işlerin otomasyonu: Rakefile</title>
+    <link rel="alternate" href="https://arge.biges.com/2021/08/21/basit-islerin-otomasyonu-rakefile/"/>
+    <id>https://arge.biges.com/2021/08/21/basit-islerin-otomasyonu-rakefile/</id>
+    <published>2021-08-21T14:15:00+03:00</published>
+    <updated>2021-08-22T14:47:28+03:00</updated>
+    <author>
+      <name>Uğur Özyılmazel</name>
+    </author>
+    <summary type="html">&lt;p&gt; Özellikle &lt;code&gt;C&lt;/code&gt; ile uğraşanların yakından tanıdığı &lt;code&gt;Makefile&lt;/code&gt;, zamanının en çok
+işe yarayan araçlarındandı. Halen de çok kullanılır. Peki daha basit ve
+rahat bir alternatifi var mı? 
+
+ &lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <title>Gopher'lar Neredesiniz?</title>
+    <link rel="alternate" href="https://arge.biges.com/2021/08/20/gopherlar-neredesiniz/"/>
+    <id>https://arge.biges.com/2021/08/20/gopherlar-neredesiniz/</id>
+    <published>2021-08-20T10:01:00+03:00</published>
+    <updated>2021-08-25T09:08:06+03:00</updated>
+    <author>
+      <name>ARGE Ekibi</name>
+    </author>
+    <summary type="html">&lt;p&gt; &lt;code&gt;Golang&lt;/code&gt; mi &lt;code&gt;Go&lt;/code&gt; mu? neden &lt;code&gt;ServeHTTP&lt;/code&gt; request’i pointer olarak alıyor da
+&lt;code&gt;ResponseWriter&lt;/code&gt;’ı almıyor? Cevap biliyorsan bizim ekiple çalışmaya ne dersin? 
+
+ &lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <title>DevOPS Arıyoruz</title>
+    <link rel="alternate" href="https://arge.biges.com/2021/08/20/devops-ariyoruz/"/>
+    <id>https://arge.biges.com/2021/08/20/devops-ariyoruz/</id>
+    <published>2021-08-20T09:45:00+03:00</published>
+    <updated>2021-08-25T09:03:57+03:00</updated>
+    <author>
+      <name>ARGE Ekibi</name>
+    </author>
+    <summary type="html">&lt;p&gt; &lt;strong&gt;Google Cloud Computing&lt;/strong&gt; benim işimdir, &lt;strong&gt;Kubernetes&lt;/strong&gt; candır, Pod ile iPod
+arasında fark var diyorsanız bize ulaşın! 
+
+ &lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <title>Pythonistalar Arıyoruz</title>
+    <link rel="alternate" href="https://arge.biges.com/2021/08/20/pythonistalar-ariyoruz/"/>
+    <id>https://arge.biges.com/2021/08/20/pythonistalar-ariyoruz/</id>
+    <published>2021-08-20T09:20:00+03:00</published>
+    <updated>2021-08-25T09:07:48+03:00</updated>
+    <author>
+      <name>ARGE Ekibi</name>
+    </author>
+    <summary type="html">&lt;p&gt; Biges Ar-Ge ekibi olarak geliştirdiğimiz ve geliştirmekte olduğumuz yazılım ve
+donanım projelerinde sıkça &lt;strong&gt;Python&lt;/strong&gt; programlama dilini kullanıyoruz. 
+
+ &lt;/p&gt;</summary>
+  </entry>
+</feed>

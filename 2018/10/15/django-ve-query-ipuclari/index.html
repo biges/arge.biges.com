@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django ve Query İpuçları &mdash; Biges Ar-Ge Merkezi</title>
+    <meta name="title" content="Django ve Query İpuçları &mdash; Biges Ar-Ge Merkezi">
+    <link rel="canonical" href="https://arge.biges.com/posts/2018-10-15-django-ve-query-ipuclari.html">
+    <meta property="og:title" content="Django ve Query İpuçları &mdash; Biges Ar-Ge Merkezi"/>
+    <meta property="og:url" content="https://arge.biges.com/posts/2018-10-15-django-ve-query-ipuclari.html"/>
+    <meta property="og:image" content="https://arge.biges.com/public/images/cover.jpg"/>
+    <meta property="og:description" content="Üzerinde çalıştığımız Django projesinde artık sıra iyileştirmeler kısmına gelmişti.Kullandığımız veritabanı PostgreSQL’di ve Django View’larındaki sorgu miktarlarınıincelemeye başlamıştım."/>
+    <meta name="description" content="Üzerinde çalıştığımız Django projesinde artık sıra iyileştirmeler kısmına gelmişti.Kullandığımız veritabanı PostgreSQL’di ve Django View’larındaki sorgu miktarlarınıincelemeye başlamıştım."/>
+    <meta property="og:site_name" content="Biges Ar-Ge Merkezi">
+    <link rel="shortcut icon" href="/public/images/favicon.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/public/images/logo.png"/>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://arge.biges.com/feed.xml" />
+    <link href="//fonts.googleapis.com/css?family=Roboto:400,700,300,900&subset=latin,latin-ext" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="/public/css/application.css" rel="stylesheet" />
+    <script src="//kit.fontawesome.com/be9a716db5.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <section class="site-nav">
+        <header>
+            <nav id="navigation">
+                <a class="brand" href="/"><img src="/public/images/logo.png" alt="Logo" /></a>
+                <a href="/" class="home">Anasayfa</a>
+                
+                <a href="/hakkinda/">Hakkında</a>
+                <a href="/kariyer/">Kariyer</a>
+                <a href="/arsiv/">Arşiv</a>
+                <a target="_blank" title="Biges Güvenli Hayat Teknolojileri A.Ş." href="https://biges.com">Biges</a>
+            </nav>
+
+        </header>
+    </section>
+
+        <div class="article-cover">
+        <div>
+            <img src="/public/images/posts/django-ve-query-tips.jpg" class="image" alt="" />
+        </div>
+    </div>
+    
+
+    <article>
+        <div class="container">
+            <header>
+                <div class="meta">
+                    <address><a rel="author" href="https://arge.biges.com" title="Erdi Mollahüseyinoğlu" target="_blank">Erdi Mollahüseyinoğlu</a></address> &mdash;
+                    <time pubdate datetime="2018-10-15T10:00:00+03:00" title="15 Ekim 2018, Pazartesi 10:00">15 Ekim 2018, Pazartesi 10:00</time>
+                </div>
+                <h1 class="title">Django ve Query İpuçları</h1>
+                
+                    <div class="tags">
+                        <span class="badge"><a href="/etiket/django/">django</a></span>
+                        <span class="badge"><a href="/etiket/django-query/">django-query</a></span>
+                    </div>
+                
+            </header>
+            
+            <section id="article-detail">
+                <p>Üzerinde çalıştığımız Django projesinde artık sıra iyileştirmeler kısmına gelmişti.
+Kullandığımız veritabanı PostgreSQL’di ve Django View’larındaki sorgu miktarlarını
+incelemeye başlamıştım.</p>
+
+<p></p>
+
+<p><a href="https://github.com/jazzband/django-debug-toolbar" title="Django Debug Toolbar">Django Debug Toolbar</a>’da, <code>ProductListView</code>’un render ettiği html’e
+bakarken <strong>80</strong> tane tekrar sorgu yapıldığını gördüm. <code>Product</code> modelim
+aşağıdaki gibiydi;</p>
+<div class="highlight"><pre class="highlight python"><code><span class="k">class</span> <span class="nc">Product</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">category</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span>
+        <span class="n">to</span><span class="o">=</span><span class="s">'ProductCategory'</span><span class="p">,</span>
+        <span class="n">related_name</span><span class="o">=</span><span class="s">'products'</span><span class="p">,</span>
+        <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="p">.</span><span class="n">CASCADE</span><span class="p">,</span>
+        <span class="n">verbose_name</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s">'category'</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">product_filter_feature</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">ManyToManyField</span><span class="p">(</span>
+        <span class="n">to</span><span class="o">=</span><span class="s">'ProductFilterFeature'</span><span class="p">,</span>
+        <span class="n">related_name</span><span class="o">=</span><span class="s">'products'</span>
+    <span class="p">)</span>
+    <span class="n">stock_code</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span>
+        <span class="n">verbose_name</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s">'stock code'</span><span class="p">),</span>
+    <span class="p">)</span>
+</code></pre></div>
+<p>Modelin içinden <code>ForeignKey</code> verdiğim <code>ProductCategory</code> modeliyse aşağıdaki
+gibiydi;</p>
+<div class="highlight"><pre class="highlight python"><code><span class="k">class</span> <span class="nc">ProductCategory</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span>
+        <span class="n">verbose_name</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s">'name'</span><span class="p">),</span>
+    <span class="p">)</span>
+</code></pre></div>
+<p>Son olarak <code>ManyToManyField</code> verdiğim <code>ProductFilterFeature</code> modeli ise;</p>
+<div class="highlight"><pre class="highlight python"><code><span class="k">class</span> <span class="nc">ProductFilterFeature</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span> 
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span>
+        <span class="n">verbose_name</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s">'name'</span><span class="p">),</span>
+    <span class="p">)</span> 
+</code></pre></div>
+<p>şeklindeydi. Veriyi gösteren html şablonda aşağıdaki gibiydi;</p>
+<div class="highlight"><pre class="highlight jinja"><code><span class="nt">&lt;ul&gt;</span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">product</span> <span class="ow">in</span> <span class="nv">product_list</span> <span class="cp">%}</span>
+    <span class="nt">&lt;p&gt;</span><span class="cp">{{</span> <span class="nv">product.category.name</span> <span class="cp">}}</span><span class="nt">&lt;/p&gt;</span>
+
+    <span class="cp">{%</span> <span class="k">for</span> <span class="nv">feature</span> <span class="ow">in</span> <span class="nv">product.product_filter_feature.all</span> <span class="cp">%}</span>
+        <span class="nt">&lt;span&gt;</span><span class="cp">{{</span> <span class="nv">feature.name</span> <span class="cp">}}</span><span class="nt">&lt;/span&gt;</span>
+    <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+<span class="nt">&lt;/ul&gt;</span>
+</code></pre></div>
+<p>Tekrar eden sorguların <code>related</code> sorguları yaptığım yerde olduğunu farkettim.
+Html şablonda <code>product.category.name</code> ve <code>product.product_filter_feature.all</code>
+buna sebep oluyordu. Hemen <a href="https://docs.djangoproject.com/en/2.1/ref/models/querysets/" title="Django QuerySet API Doc">Django’nun QuerySet API</a> dökümanına baktım.</p>
+
+<p><code>ForeignKey</code> ilişkisindeki takip etme yani <code>product.category.name</code> gibi
+sorgulama yapmaya imkan veren durumlar bize fazla sorgu olarak dönüyor. Bunu
+çözmek için Django bize <code>select_related</code> <a href="https://docs.djangoproject.com/en/2.1/ref/models/querysets/#select-related" title="Django QuerySet - select_related">metodunu</a> öneriyor. Bu sayede veritabanı
+tarafından ilişkili tabloları birbirleriyle <code>JOIN</code> yapmayı sağlıyor. Bu method 
+parametre olarak sadece alan adı alıyor ve klasik <strong>dunder lookup</strong> yani;
+<code>field__field__field</code> şeklinde kullanmayı sağlıyor. <code>ForeignKey</code> ve <code>OneToOne</code>
+alanlar için çok kullanışlı.</p>
+
+<p><code>ProductListView</code>’da hemen aşağıdaki düzenlemeyi yaptım;</p>
+<div class="highlight"><pre class="highlight python"><code><span class="k">class</span> <span class="nc">ProductListView</span><span class="p">(</span><span class="n">ListView</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Product</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="n">select_related</span><span class="p">(</span><span class="s">'category)
+</span></code></pre></div>
+<p>Sorgu tekrarı sayısı düşmüştü ama halen istediğim gibi olmamıştı. Debug Toolbar
+beni halen uyarıyordu. Bu durumda Django dokümantasyonuna geri döndüm ve asıl
+sorunun <code>ManyToManyField</code> alanından kaynaklandığını anladım. Django bu tür sorunlar
+için <code>prefetch_related</code> metodu yapmış. Argüman olarak <em>lookup</em> yani sorgulanacakları
+alıyor. <code>select_related</code> ile farkı şu, <code>JOIN</code> operasyonunu <code>python</code> katmanında
+yapıyor ve her ilişkili sorgu için ayrı ayrı işlem yapıyor. Bu sayede <code>select_related</code>’ın
+yapamayacağı <a href="https://docs.djangoproject.com/en/2.1/ref/models/querysets/#prefetch-related" title="Django QuerySet - prefetch_related">işleri de yapıyor</a>. Özellikle <code>ManyToMany</code> ve <code>ManyToOne</code> için
+ideal.</p>
+
+<p>Hemen <code>product_filter_feature</code> (<em>ManyToMany olduğu için</em>) ile ilgili işleri de
+<code>get_queryset</code>’e ekliyorum:</p>
+<div class="highlight"><pre class="highlight python"><code><span class="k">class</span> <span class="nc">ProductListView</span><span class="p">(</span><span class="n">ListView</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Product</span><span class="p">.</span><span class="n">objects</span>\
+            <span class="p">.</span><span class="n">select_related</span><span class="p">(</span><span class="s">'category)</span><span class="se">\
+</span><span class="s">            .prefetch_related('</span><span class="n">product_filter_feature</span><span class="s">')
+</span></code></pre></div>
+<p><code>.prefetch_related(&#39;product_filter_feature&#39;)</code> aslında içeride <code>product_filter_feature.all()</code>
+yapıyor ve birleştirme işlerini <code>python</code> katmanında yapıp kendince bir <strong>caching</strong>
+yapıyor. Bu sayede aynı sorgu tekrar edilmiyor. </p>
+
+<p>Şimdi tekrar baktığımda, başlangıçta <strong>80 tane tekrar eden</strong> sorgu varken şimdi
+sayfanın oluşturulması sonucunda toplam sorgu sayısı <strong>12</strong>’ye düştü.</p>
+
+<h5>Foto Kredileri</h5>
+
+<ul>
+<li><a href="https://www.flickr.com/photos/anthonyalbright/" title="Kapak Fotoğrafı">Anthony Albright</a> - <a href="https://flic.kr/p/92KA9C">https://flic.kr/p/92KA9C</a></li>
+</ul>
+
+            </section>
+
+            <footer>
+                <address>
+                    <img class="avatar" src="http://www.gravatar.com/avatar/c17d5d52de098697b18b87499499d19e" />
+                    <p>
+                        <strong>
+                            <a rel="author" href="https://arge.biges.com" title="Erdi Mollahüseyinoğlu - sitesine gitmek için tıklayın." target="_blank">Erdi Mollahüseyinoğlu</a>
+                            <a ref="author-twitter-account" title="@BigesEng - Twitter sayfasına gitmek için tıklayın." target="_blank" href="https://twitter.com/BigesEng"><i class="fab fa-twitter"></i></a>
+                            <a ref="author-github-account" title=" @vigo - GitHub sayfasına gitmek için tıklayın." target="_blank" href="https://github.com/vigo"><i class="fab fa-github"></i></a>
+                        </strong><br>
+                        <span class="muted">Yazılım Geliştiricisi</span><br />
+                    </p>
+                </address>
+            </footer>
+            
+                <section class="index related-articles">
+        <h2 class="title">İlişkili Makale (1)</h2>
+    </section>
+    
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2021/08/21/basit-islerin-otomasyonu-rakefile/" rel="prefetch" title="Detaylar için tıklayın">Basit işlerin otomasyonu: Rakefile &raquo;</a>
+        </div>
+    </section>
+    <section class="index related-articles"><hr/></section>
+
+
+            
+        </div>
+    </article>
+
+
+    <footer class="site-footer">
+        <div class="container">
+            <nav>
+                
+                <a href="/">Anasayfa</a> &middot;
+                
+                <a href="/hakkinda/">Hakkında</a> &middot;
+                <a href="/arsiv/">Arşiv</a>
+            </nav>
+        
+            <nav class="social">
+                <a href="https://twitter.com/BigesEng" title="Twitter" target="_blank"><i class="fab fa-twitter-square"></i></a>
+                <a href="https://github.com/biges" title="GitHub" target="_blank"><i class="fab fa-github-square"></i></i></a>
+                <a href="https://vimeo.com/biges" title="Vimeo" target="_blank"><i class="fab fa-vimeo-square"></i></a>
+                <a href="/feed.xml" title="RSS Feed"><i class="fas fa-rss-square"></i></a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    
+    <script src="/public/js/retina-0.0.2.js"></script>
+    <script src="/public/js/app.js"></script>
+    
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-125596610-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <script id="dsq-count-scr" src="//bigesarge.disqus.com/count.js" async></script>
+</body>
+</html>
+
+<!-- last build: 2021-09-24 11:20:52 +0300 -->

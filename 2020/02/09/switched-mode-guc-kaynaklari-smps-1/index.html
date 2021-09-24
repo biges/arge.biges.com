@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Switched Mode Güç Kaynakları (SMPS) (1) &mdash; Biges Ar-Ge Merkezi</title>
+    <meta name="title" content="Switched Mode Güç Kaynakları (SMPS) (1) &mdash; Biges Ar-Ge Merkezi">
+    <link rel="canonical" href="https://arge.biges.com/posts/2020-02-09-switched-mode-guc-kaynaklari-smps-1.html">
+    <meta property="og:title" content="Switched Mode Güç Kaynakları (SMPS) (1) &mdash; Biges Ar-Ge Merkezi"/>
+    <meta property="og:url" content="https://arge.biges.com/posts/2020-02-09-switched-mode-guc-kaynaklari-smps-1.html"/>
+    <meta property="og:image" content="https://arge.biges.com/public/images/cover.jpg"/>
+    <meta property="og:description" content="Bugün ki yazımda sizlere genel anlamda Switched Mode Power Supply (SMPS)yani halk arasında bilinen tabiriyle Anahtarlamalı Güç Kaynaklarındanbahsedeceğim"/>
+    <meta name="description" content="Bugün ki yazımda sizlere genel anlamda Switched Mode Power Supply (SMPS)yani halk arasında bilinen tabiriyle Anahtarlamalı Güç Kaynaklarındanbahsedeceğim"/>
+    <meta property="og:site_name" content="Biges Ar-Ge Merkezi">
+    <link rel="shortcut icon" href="/public/images/favicon.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/public/images/logo.png"/>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://arge.biges.com/feed.xml" />
+    <link href="//fonts.googleapis.com/css?family=Roboto:400,700,300,900&subset=latin,latin-ext" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="/public/css/application.css" rel="stylesheet" />
+    <script src="//kit.fontawesome.com/be9a716db5.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <section class="site-nav">
+        <header>
+            <nav id="navigation">
+                <a class="brand" href="/"><img src="/public/images/logo.png" alt="Logo" /></a>
+                <a href="/" class="home">Anasayfa</a>
+                
+                <a href="/hakkinda/">Hakkında</a>
+                <a href="/kariyer/">Kariyer</a>
+                <a href="/arsiv/">Arşiv</a>
+                <a target="_blank" title="Biges Güvenli Hayat Teknolojileri A.Ş." href="https://biges.com">Biges</a>
+            </nav>
+
+        </header>
+    </section>
+
+        
+
+    <article>
+        <div class="container">
+            <header>
+                <div class="meta">
+                    <address><a rel="author" href="https://sonerboztas.blogspot.com" title="Soner Boztaş" target="_blank">Soner Boztaş</a></address> &mdash;
+                    <time pubdate datetime="2020-02-09T10:00:00+03:00" title="09 Şubat 2020, Pazar 10:00">09 Şubat 2020, Pazar 10:00</time>
+                </div>
+                <h1 class="title">Switched Mode Güç Kaynakları (SMPS) (1)</h1>
+                
+                
+            </header>
+            
+            <section id="article-detail">
+                <p>Bugün ki yazımda sizlere genel anlamda <strong>Switched Mode Power Supply</strong> (<em>SMPS</em>)
+yani halk arasında bilinen tabiriyle <strong>Anahtarlamalı Güç Kaynakları</strong>ndan
+bahsedeceğim</p>
+
+<p></p>
+
+<p>Konu hayli uzun ve detaylı olduğundan birkaç yazıda bu konudan bahsetmeye
+devam edeceğim. Bu yazı giriş niteliğinde olup, SMPS’lerin genel çalışma
+prensipleri, avantajları ve dezavantajlarıyla ilgili olacak. Bir sonraki
+yazımda günümüzde sıklıkla kullanılan topolojilerden bahsedeceğim ve son
+olarak da bu bölümde bahsettiğim bazı özel devreler hakkında detaylı bilgiler
+vereceğim.</p>
+
+<p>Dünya tarihi boyunca icatlar her zaman belirli ihtiyaçları karşılamak amacıyla
+doğmuştur. SMPS devrelerinin doğuşu da aslında tam olarak böyle olmuştur. SMPS
+devrelerinden önce kullanılan Linear Power Supply yani Doğrusal Güç
+Kaynakları, büyük boyutları ve kararlı çalışmalarına rağmen düşük verimleri
+nedeniyle sektörü yeni bir yöntemi aramaya mecbur kılmıştır. </p>
+
+<p>1960’lı yılların başında <em>Apollo Uzay Gemisi</em> için NASA’da yürütülen
+çalışmalar sonucu ilk SMPS devresi Apollo’nun bilgisayar birimlerinin
+beslemesini sağlamak için doğmuştur. Böylece daha verimli ve daha küçük bir
+güç kaynağı tasarımı yapılmış olunup SMPS devrelerinin de tarihsel süreci
+başlamıştır.</p>
+
+<div class="full zoomable">
+    <img src="/public/images/posts/clips/module-in-front-of-agc-w700.jpg" alt="Apollo Uzay Gemisinde Kullanılan ilk SMPS Tasarımı">
+    <p>Apollo Uzay Gemisinde Kullanılan ilk SMPS Tasarımı</p>
+</div>
+
+<p>SMPS’lerden bahsetmeden önce SMPS teknolojisinin gelişimine değinmek
+istiyorum. Elektriğin insanların hayatına ciddi anlamda girmeye başlamasıyla
+beraber elektroniğin gelişimi de temel olarak tasarımcıların tasarımları için
+gerekli olan gücü sağlayabilmeleri ile başlamıştır. Burada çok eski bir
+teknoloji olarak bildiğimiz <em>Linear/Doğrusal Güç Kaynakları</em> varoluşundan bu
+yana görmeye alışık olduğumuz bir yöntemdir. </p>
+
+<p>Bu yöntem günümüzde hassas, ölçeklenebilirlik ve yüksek verim kaygısı olmayan
+tasarımlarda hala kullanılmaktadır. Lineer Regülatörler temel olarak şebekeden
+(220V/50Hz) alınan gerilimi bir sac trafonun primer-sekonder sargılarının
+oranına bağlı olarak daha düşük bir gerilime dönüştürdükten sonra (örneğin;
+24V, 12V, 9V vb.) bir köprü diyot yardımıyla tam dalga doğrultarak op-amp,
+transistör ve direnç grubuyla çıkış gücünü sağlayan regülatör devreleridir.</p>
+
+<p>Aşağıda temel yapısıyla günümüzde kullanılan haliyle bir lineer regülatör
+devresi gösterilmiştir. Op-ampların gelişiminden önce bu devrelerin
+tasarımları tamamen transistör ve direnç gruplarıyla kontrol edilmekteydi.</p>
+
+<div class="full zoomable">
+    <img src="/public/images/posts/clips/lineer-dogrusal-gk.jpg" alt="Temel Yapısıyla Lineer/Doğrusal Güç Kaynağı Devresi">
+    <p>Temel Yapısıyla Lineer/Doğrusal Güç Kaynağı Devresi</p>
+</div>
+
+<p>Devrede giriş bölümü şebeke voltajına bağlanmıştır, bu değer 50 Hz frekanslı
+220 VAC’dir. Bu gerilim bir sac trafo yardımıyla daha düşük bir gerilime
+dönüştürülür sonrasında bu gerilim bir köprü diyot yardımıyla sağdaki resimde
+görüldüğü gibi tam dalga doğrultulur.</p>
+
+<p>Sonrasında giriş kondansatörü köprü diyotun çıkışındaki gerilimi yine yandaki
+şekilde görüldüğü gibi şarj/deşarj aralıklarındaki zamana bağlı olarak DC
+gerilime yaklaştırır. Bu kondansatörün değeri kullanacağınız gerilimin
+değerine göre farklılık gösterebilir. Devrenin üzerinde bulunan NPN transistör
+çıkış akımını sağlamakla görevlidir. </p>
+
+<div class="full zoomable">
+    <img src="/public/images/posts/clips/full-wave-rectifier-with-capacitor-filter-waveform.jpg" alt="Kapasitör filtresi dalga formu">
+    <p>Kapasitör filtresi dalga formu</p>
+</div>
+
+<p>Çıkış akımının değerine bağlı olarak bu transistör değişiklik gösterebilir
+ancak burada yüksek kazançlı bir “Darlington Transistör” kullanmakta fayda
+vardır. Rcb direnci bir pull-up direncidir ve transistörün base ile op-ampın
+çıkışının boşta kalmaması için kullanılmıştır ve kullanılmasında fayda vardır.
+Kullanılan op-amp non-inverting amplifier olarak bilinen yöntem ile
+kullanılmıştır ve regülasyon işlemini yapan devre elemanıdır. Regülasyon
+işlemi sırasında dikkat edilmesi gereken bir nokta op-ampın non-inverting (+)
+ucuna bağlı bulunan Zener Diyottur. </p>
+
+<p>Çünkü bu diyot regülatör devresinin referans gerilimini oluşturmaktadır.
+Üzerinde bulunan direnç ise zener diyotun çekmesi gereken akımı sağlayabilmek
+amacıyla kullanılmıştır ve 1k değeri yeterlidir. Hassasiyet gerektiren
+uygulamalarda zener diyot yerine TL431 gibi bir gerilim referans kaynağı
+tercih edilmelidir. </p>
+
+<p>Tasarımın çalışma prensibi aşağıda verilen formülle açıklanmaktadır.
+Formüldeki Vref gerilimi op-ampın <code>+</code> ucuna uygulanan gerilimdir. Bir lineer
+regülatör tasarımı yapılırken unutulmaması gereken detaylardan birisi de çıkış
+akımını sınırlayan bir akım sınırı devresi kullanmaktır.</p>
+
+<div class="full zoomable">
+    <img src="/public/images/posts/clips/out-ref-formula.jpg" alt="Formül">
+</div>
+
+<p>Lineer regülatör devrelerinin çalışma prensiplerinden de kısaca bahsettikten
+sonra avantaj ve dezavantajlarından bahsederek artık yavaş yavaş SMPS
+devrelerine geçmek istiyorum. Lineer regülatörler kolay tasarımları, ekstra
+filtreleme işlemleri gerektirmemeleri, kararlı çıkışları ve ucuz tasarımları
+nedeniyle günümüzde hala güncel ve hassas uygulamalarda kullanılmaktadır.</p>
+
+<p>Ancak bunca avantajının yanı sıra izolasyon ve şebeke gerilimini daha düşük
+bir gerilime düşürmek için kullanılan sac trafoların boyutlarının ve
+ağırlıklarının oldukça fazla olması başta olmak üzere kararlı çıkışlarına
+rağmen regülatör verimlerinin oldukça düşük olması sebebiyle de kullanım
+oranları SMPS’lerin gerisinde kalmıştır. Verimleri hakkındaki temel
+hesaplamayı bir önceki yazımda paylaştım isteyenler <a href="/2020/02/02/dc-dc-guc-regulatorleri-hakkinda-bilinmeyenler/">buraya</a> tıklayarak bir
+önceki yazıma ulaşabilirler.</p>
+
+<div class="full zoomable">
+    <img src="/public/images/posts/clips/lineer-power-supply.jpg" alt="Linear / Doğrusal Power Supply">
+    <p>Linear / Doğrusal Power Supply</p>
+</div>
+
+<p>Günümüzde kullandığımız elektronik cihazların içerisinde ya da harici olarak
+cihazlarla birlikte verilen ürünlerin bir çoğunun içerisinde SMPS devreleri
+bulunmaktadır. Çünkü üretici şirketler daha hafif daha küçük ve taşınabilir
+cihazlar üreterek minimum boyutlardan maksimum kazançları sağlamayı
+hedeflemektedir. </p>
+
+<p>Bu ürünlere birkaç örnek vermek gerekirse, telefon şarj aletlerimiz ve
+bilgisayar şarj aletlerimiz ve bilgisayarlarımızın içerisindeki besleme
+devreleri gözle görülen örneklerdendir. Bunun yanı sıra adaptör ile çalışan
+bütün cihazlarda yine adaptörlerin içerisinde bulunan SMPS devreleri ile
+çalışmaktadır.</p>
+
+<p>Aşağıdaki fotoğrafta SMPS devrelerinin bütün topolojilerinde geçerli
+sayılabilecek bir blok diyagram görülmektedir. SMPS devreleri genel olarak bu
+diyagramda görüldüğü gibi çalışmaktadır. Burada kullanılan topolojilere veya
+devrelerin gerekliliklerine bağlı olarak kullanılan yani kullanılması zorunlu
+olmayan birimleri “opsiyonel” olarak belirttim. Bu bölümleri detaylı olarak
+üçüncü SMPS yazımda açıklayacağım.</p>
+
+<div class="full zoomable">
+    <img src="/public/images/posts/clips/smpps-bd-ayarli.jpg" alt="SMPS Devrelerinin Genel Blok Diyagramı">
+    <p>SMPS Devrelerinin Genel Blok Diyagramı</p>
+</div>
+
+<p>SMPS devreleri 20 kHz’den ihtiyaca göre 1-2 MHz’e kadar anahtarlama
+frekanslarında çalışabilen devrelerdir. Anahtarlama frekanslarının bu denli
+yüksek olması aslında boyutların küçülmesi ile direkt ilişkilidir. Bu ilişkiyi
+gösteren denklem aşağıda gösterilmiştir.</p>
+
+<div class="full zoomable">
+    <img src="/public/images/posts/clips/waac.jpg" alt="SMPS Devrelerinin Genel Blok Diyagramı">
+</div>
+
+<p>Formülde “Wa” parametresi trafonun pencere açıklığını (window area) ifade eder
+, “Ac” ise trafonun nüvesinin kesit alanıdır (cross sectional area). Görüldüğü
+üzere “fs” yani anahtarlama frekansı, formülün paydasında yer almaktadır ve
+bu denklem bize anahtarlama frekansının yükselmesinin, trafonun boyutlarının
+küçülmesiyle olan ilgisini açıklamaktadır.</p>
+
+<p>SMPS teknolojisinin en önemli avantajlarından bir diğeri regülatör
+kazançlarının %90’nın üzerinde olmasıdır. Bu minimum güç ile maksimum verimi
+elde etmek anlamına gelmektedir ve üreticileri SMPS teknolojisine yaklaştıran
+diğer bir önemli nedendir.</p>
+
+<p>Verimlilik konusunda yapılan çalışmalar artık günümüzde SMPS devrelerinin
+şebekeden çektiği güce bağlı verimlerini de yükseltmiştir. Burada
+bahsedeceğimiz teknoloji PFC’dir. İngilizce açılımı “Power Factor Correction”
+yani “Güç Oranı Düzeltme” anlamına gelmektedir. PFC kullanılmayan devrelerde
+güç çarpanı temel olarak <code>0.5</code> veya <code>0.6</code> olarak kabul edilir. Bu da çıkışı 100
+Watt olan bir SMPS devresinin şebekeden yaklaşık 150 Watt bir güç çekeceği
+anlamına gelmektedir.</p>
+
+<p>PFC devrelerinin hedefi kullanımları dışında <code>0.5</code> olarak kabul edilen güç
+çarpanı değerini &ldquo;1&rdquo; e yaklaştırmaktır. Bunu da biraz daha açmak gerekirse,
+şebeke tarafından çekilecek olan RMS giriş akımının miktarını azaltmak olarak
+açıklayabiliriz. Bunun yanı sıra devre üzerindeki güç dağılımının
+verimliliğini de olumlu yönde etkilemektedirler.</p>
+
+<p>PFC devreleri “Active” ve “Passive” olarak ikiye ayrılır. Active PFC devreleri
+günümüzde güç çarpanı değerini <code>0.99</code>’a kadar yaklaştırmıştır. Güç çarpanı
+değerinin ideal olarak <code>1</code> olduğu düşünüldüğünde bu değer mükemmele yakındır.
+PFC devrelerinin günümüzde verimliliğin önemli olduğu ciddi projelerde
+kullanımları kaçınılmaz hale gelmiştir. </p>
+
+<p>Kullanıldığı yerlere verilebilecek en güzel örnek bilgisayarlarımızın
+içerisinde bulunan power supply devreleridir. Passive PFC devreleri temel
+olarak bir sac trafo ve kondansatörden oluşmaktadır. Büyük boyutları ve
+<code>0.7 - 0.8</code> arasında değişen güç çarpanları nedeniyle active PFC devrelerinin
+gerisinde kalmıştır. Active PFC devreleri ise temel olarak bir SMPS devresinin
+içerisinde bulunan başka bir SMPS devresi gibi düşünülebilir. Güç Çarpanı
+değerleri <code>0.9</code> ile <code>0.99</code> arasında değişmektedir.</p>
+
+<div class="full zoomable">
+    <img src="/public/images/posts/clips/passive-pfc.jpg" alt="Passive PFC Devresi">
+    <p>Passive PFC Devresi</p>
+</div>
+
+<div class="full zoomable">
+    <img src="/public/images/posts/clips/active-pfc.jpg" alt="Active PFC Devresi">
+    <p>Active PFC Devresi</p>
+</div>
+
+<p>SMPS’lerin avantajlarını ve bu avantajları sağlayan durumları açıkladıktan
+sonra SMPS devreleri hakkında genel bilgiler vermek istiyorum. SMPS
+devrelerinin giriş bölümlerinde bulunan kondansatörler SMPS’lere ilk enerji
+verildiği anda yüksek bir şarj akımı çekerler. </p>
+
+<p>Bu akım devrenin normal sınırlarının üzerinde olur ve devreye zarar verebilme
+ihtimali söz konusudur. Bu nedenle SMPS devrelerin girişlerinde “inrush
+dirençleri” kullanılmaktadır. Bu dirençler genellikle NTC termistörler olarak
+seçilir. Bu dirençlerin kullanılmasının nedeni ani şarj akımlarına karşı
+devrenin akımını sınırlandırmak ve devreyi korumaktır.</p>
+
+<p>Burada bahsedilmesi gereken diğer bir eleman ise “sigortalardır”. Sigortalar
+olağan dışı koşullarda şebekeden aşırı akım çekilmesini engellemekle görevli
+devre elemanlarıdır. Devrenin aşırı akım çekmesi durumunda patlayarak açık
+devre konumuna geçer ve devrenin şebekeyle olan ilişkisini keserek devrenin
+geri kalanını korurlar. Şebeke bölümüne yerleştirilen sigortaların birkaç
+farklı modeli bulunmaktadır ve tasarımcı devrenin parametrelerine göre sigorta
+seçimi yapabilmektedir.</p>
+
+<p>SMPS’lerden bahsedildiği zaman filtreleme işlemleri bu tasarımların göz ardı
+edilemez bir parçasıdır. Çünkü SMPS’ler yüksek frekanslarda çalışan devreler
+olduğu için bu frekanslarda oldukça gürültü ve harmonik üretme kabiliyetine
+sahiptirler. Bu gürültülere örnek verilecek olursa; şebeke hattındaki
+gürültüler, anahtarlama gürültüleri ve hat gürültüleri gösterilebilir. SMPS
+devreleri üzerinde şebeke tarafından gelebilecek gürültüleri ve şebeke
+tarafına gidebilecek gürültüleri önlemek için devrenin AC bölümünde
+kullanılabilecek filtreleme yöntemleri bulunmaktadır. </p>
+
+<p>Bu yöntemler devrenin gürültü hassasiyetine göre tasarlanıp, seçilebilir.
+Yöntemlerden biri ve kolay olanı hatlardaki gürültüleri kondansatör
+gruplarıyla engellemektir. Diğer bir yöntem ise EMI Filtre yöntemidir. EMI
+Filtre RLC gruplarından oluşan bir filtreleme yöntemidir ve sonuçları oldukça
+başarılıdır. Endüstriyel bir power supply tasarımı yapılırken tasarlanan
+devrenin belirli bazı EMI (Electro Magnetic Interferance) değerleri vardır. Bu
+değerlerin üzerinde bulunan tasarımlar onay alamayarak satışa sunulamaz.
+Filtreleme işlemleri tasarımların gerektirdikleri hassasiyetlere göre
+detaylandırılabilir. </p>
+
+<p>EMI’yi önlemek için EMI Filtre tasarımları yapıldığı gibi PCB’lerin
+katmanlarını arttırmak, devrenin çevresini ve manyetik salınım yapabilecek
+komponentleri (trafolar, bobinler vb.) ekranlamak gibi yöntemler sıklıkla
+kullanılan diğer yöntemlerdendir. Filtreleme içerisinde bazı parametreler
+barındıran bir işlemdir. Bunu açıklayacak olursak; devrenin kendi üzerinde
+oluşan EMI ve gürültüler, devrenin dışarıya yaydığı EMI, devrenin dışardan
+içeriye aldığı EMI, devrenin şebeke hattından gelen gürültüler ve devrenin
+şebeke hattına aktarabileceği gürültülerden bahsedebiliriz. Bir SMPS tasarımı
+yapılırken tüm bu parametreler göz önünde bulundurulmalıdır. Aşağıdaki örnekte
+en basit haliyle bir EMI Filtre devresi gösterilmiştir.</p>
+
+<div class="full zoomable">
+    <img src="/public/images/posts/clips/temel-emi-filtre-devresi.png" alt="Temel EMI Filtre Devresi">
+    <p>Temel EMI Filtre Devresi</p>
+</div>
+
+<p>SMPS devrelerinin diğer özel elemanlarından bir tanesi switchleri yani
+anahtarlarıdır. Seçilen topolojiye bağlı olarak düşük güçlü tasarımlarda
+anahtarlar entegre sürücü devrelerinin içerisinde de bulunabilmektedirler. Bu
+anahtarlar gerek entegrelerin içerisinde gerekse harici olarak dışardan
+bağlanan tasarımlarda günümüzde en çok MOSFET’ler olarak seçilmekte ve
+kullanılmaktadır. </p>
+
+<p>Bunun nedeni MOSFET’lerin çok hızlı anahtarlama yapabiliyor olmaları ve çok
+yüksek peak akımlarına karşı dayanıklı olmalarıdır. MOSFET’ler devrenin
+anahtarlama frekansında anahtarlama yaparak oluşturdukları PWM sinyallerini
+regülatör trafolarına iletirler.</p>
+
+<p>Burada bahsetmemiz gereken bir diğer konu ise PWM Controller Entegreleridir.
+MOSFET’lerin gatelerini istenilen frekanslarda sürebilmek için kullanılan bu
+entegreler topolojilere göre farklılık göstermektedirler. PWM Controller
+entegreleri SMPS devrelerinin Primer yani yüksek güç barındıran bölgelerinde
+konumlanmaktadır. Bazı tasarımlarda bu entegreler devrenin primerinden tamamen
+izole edilirken bazı tasarımlarda ise primer bölgesiyle beraber
+değerlendirilip devrenin sekonder bölgesinden izole edilirler. </p>
+
+<p>Devrenin primerinden izole edildikleri iki yöntem bulunmaktadır. Bu
+yöntemlerden ilki ve en sağlıklısı Gate Drive Trafosu kullanılan yöntemdir.
+Gate Drive Trafosu endüstriyel ve yüksek güçlü uygulamalarda, çift MOSFET’li
+topolojilerde görmeye alışık olduğumuz bir yöntemdir. Bu yöntem sayesinde PWM
+Controller Entegresi devrenin primer kısmından izole edilirken çift
+anahtarlamalı topolojilerde MOSFET’lerin gatelerine gelen sinyalleri de
+fazlandırarak anahtarlama işlemine katkı sağlamaktadır. Bu yöntem düşük güç
+yoğunluklu SMPS devrelerinde tercih edilmeyen bir yöntemdir. </p>
+
+<p>Bunun nedeni Gate Drive Trafosu ile tasarlanan SMPS devrelerinin harici bir
+izole besleme devresi (Isolated Aux Supply) gerektirmesidir. İkinci yöntem ise
+Low Side ve High Side Gate Drive Sürücü Entegrelerinin opto-couplerlar ile
+beraber kullanılmasıdır. Bu yöntem de Gate Drive Trafosu yerine kullanılabilir
+ancak daha az tercih edilen bir tasarım yöntemidir. Son yöntem ise günümüzde
+sıklıkla karşılaştığımız düşük güç yoğunluklu, tek MOSFET’li devrelerde ve
+hatta MOSFET’leri PWM Controller entegrelerinde dahili olarak bulunan
+tasarımlarda kullanılan yöntemdir. </p>
+
+<p>Bu yöntemin tasarımı devrenin primer ve sekonderi arasındaki izolasyonu
+sağlayan opto-coupler ile yapılmaktadır. Tek MOSFET’li tasarımlar için
+kullanılan en kolay yöntemdir. Günümüzde PWM Controller teknolojisinin
+gelişimiyle bu entegreler SMPS devrelerinin vazgeçilmez bir parçası
+olmuşlardır. Ayrıca entegrelerin akım veya gerilim feedbacki yapabiliyor
+olmaları da regülasyonu kolaylaştıran diğer bir etkendir. Üzerlerinde termal
+kapama bulundurmaları da güvenliği arttıran diğer bir etkendir.</p>
+
+<p>MOSFET’lerin anahtarladıkları pulselar regülatör trafosuna ulaştıktan sonra
+trafo sarım oranına bağlı olarak sekonder bölgesinde AC görünümlü bir kare
+dalga oluşturur. Bu pulse topolojiye bağlı olarak diyot/diyotlar yardımıyla
+tam dalga doğrultulur. Doğrultulan dalganın formunun negatif alternansı
+yandaki şekilde gösterildiği gibi pozitif alternansının yanına eklenmiştir.
+Ancak bu dalga formuna DC gerilim demek doğru değildir. </p>
+
+<p>Bu formdan temiz bir DC gerilim elde edebilmek için çıkış filtrelerine ihtiyaç
+duyulmaktadır. Bu filtreler topolojiye bağlı olarak bobin&amp;kondansatör veya
+kondansatör gruplarından oluşabilir. SMPS devrelerinin çıkışlarında kullanılan
+kondansatörler için dikkat edilmesi gereken noktalardan birisi de seçilen
+kondansatörlerin Low ESR olmasıdır. ESR Eşdeğer Seri Direnç anlamına
+gelmektedir ve bu kondansatörlerin ESR değerinin yüksek olması çıkış
+gerilimini olumsuz yönde etkilemektedir.</p>
+
+<div class="full zoomable">
+    <img src="/public/images/posts/clips/tam-dalga-pwm.jpg" alt="Trafo Çıkışındaki Dalga formu ve Tam Dalga Doğrultulmuş Hali">
+    <p>Trafo Çıkışındaki Dalga formu ve Tam Dalga Doğrultulmuş Hali</p>
+</div>
+
+<p>Buraya kadar temel olarak bir SMPS devresinin nasıl çalıştığını anlattık.
+Ancak bu koşullarda çalışan bir devrenin çıkış gerilimi regülesizdir. Bir güç
+kaynağı devresinin çıkışının yaşanacak her türlü durum göz önüne alınarak
+regüleli olması gerekmektedir. Bu durumda SMPS devrelerinde kullanılan PWM
+Controller entegreleri kompanzasyon/feedback girişleriyle tasarımcıların
+yardımına koşmaktadır. </p>
+
+<p>Ancak tasarımcı bu uçların yanı sıra kendi feedback devrelerini de
+uygulayabilmektedir. Bu durumlarda tasarımcı hızlı opamplar kullanarak “Error
+Amplifier” (<em>Hata Amplifikatörü</em>) tasarlamak durumundadır. Bu amplifikatörler
+voltaj ve akım feedback’i yapabilirler ve devrenin özelliklerine bağlı olarak
+farklı yöntemlerle tasarlanabilirler. Bunun yanı sıra tasarımcı çıkış akımının
+aşırı yükselmesini engellemek için de bir akım limit devresi tasarlayabilir.</p>
+
+<p>Bu devrenin tasarlanması devrenin akımının kontrolsüz yükselmesini
+engelleyerek devrenin geri kalan komponentlerinin zarar görmesini
+engellemektedir. Bu tasarım da yine Hata Amplifikatörü tasarımı şeklindedir.
+Aşağıda bir Error Amplifier tasarımının örneği verilmiştir.</p>
+
+<div class="full zoomable">
+    <img src="/public/images/posts/clips/error-amplifier-with-pole-zero-compensation.png" alt="Type II Hata Amplifikatörü">
+    <p>Type II Hata Amplifikatörü</p>
+</div>
+
+<p>Böylelikle SMPS devrelerinin genel tasarım süreçlerine değinmiş olduk.
+Aşağıdaki fotoğrafta Half Bridge Topolojisi ile tasarlanmış Passive PFC
+devreli bir 8 renk WEB matbaa makinesinin sürücülerini, kontrol panellerini,
+işlemcilerini ve bilgisayarlarını beslemek için kullanılan, çoklu sabit
+çıkışlı bir ATX Power Supply görüyoruz. Bu devrede gerilim/akım ayarı hariç
+blok-diyagram üzerinde bulunan bütün birimler aktif olarak kullanılmıştır.</p>
+
+<div class="full zoomable">
+    <img src="/public/images/posts/clips/half-bridge-smps.jpg" alt="Yarım Köprü Anahtarlamalı Mod Güç Kaynağı">
+    <p>Yarım Köprü Anahtarlamalı Mod Güç Kaynağı</p>
+</div>
+
+<hr>
+
+<h2>Kaynaklar</h2>
+
+<ol>
+<li><a href="http://www.righto.com/2019/08/reliable-after-50-years-apollo-guidance.html">http://www.righto.com/2019/08/reliable-after-50-years-apollo-guidance.html</a></li>
+<li><a href="http://www.circuitstoday.com/filter-circuits/full-wave-rectifier-with-capacitor-filter-waveform">http://www.circuitstoday.com/filter-circuits/full-wave-rectifier-with-capacitor-filter-waveform</a></li>
+<li><a href="https://tr.farnell.com/solahd/slcasc-cvr/power-supply-safety-cover/dp/4848949">https://tr.farnell.com/solahd/slcasc-cvr/power-supply-safety-cover/dp/4848949</a></li>
+<li><a href="https://incompliancemag.com/article/be-careful-with-input-output-feedback-in-filters/">https://incompliancemag.com/article/be-careful-with-input-output-feedback-in-filters/</a></li>
+<li><a href="https://incompliancemag.com/article/be-careful-with-input-output-feedback-in-filters/">https://incompliancemag.com/article/be-careful-with-input-output-feedback-in-filters/</a></li>
+<li><a href="https://www.st.com/content/dam/technology-tour-2017/session-3_track-5_acdc-power-conversion.pdf">https://www.st.com/content/dam/technology-tour-2017/session-3_track-5_acdc-power-conversion.pdf</a></li>
+</ol>
+
+            </section>
+
+            <footer>
+                <address>
+                    <img class="avatar" src="http://www.gravatar.com/avatar/5c96566720116eb623a5813f434d7a70" />
+                    <p>
+                        <strong>
+                            <a rel="author" href="https://sonerboztas.blogspot.com" title="Soner Boztaş - sitesine gitmek için tıklayın." target="_blank">Soner Boztaş</a>
+                            <a ref="author-twitter-account" title="@SonerBoztas - Twitter sayfasına gitmek için tıklayın." target="_blank" href="https://twitter.com/SonerBoztas"><i class="fab fa-twitter"></i></a>
+                            <a ref="author-github-account" title=" @vigo - GitHub sayfasına gitmek için tıklayın." target="_blank" href="https://github.com/vigo"><i class="fab fa-github"></i></a>
+                        </strong><br>
+                        <span class="muted">Elektronik Mühendisi</span><br />
+                    </p>
+                </address>
+            </footer>
+            
+            
+    <section class="index related-articles">
+        <h2 class="title">Yazarın Diğer Makalesi (1)</h2>
+    </section>
+
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2020/02/02/dc-dc-guc-regulatorleri-hakkinda-bilinmeyenler/" rel="prefetch" title="Detaylar için tıklayın">DC - DC Güç Regülatörleri Hakkında Bilinmeyenler &raquo;</a> <small>02 Şubat 2020</small>
+        </div>
+    </section>
+    <section class="index related-articles"><hr/></section>
+
+            
+        </div>
+    </article>
+
+
+    <footer class="site-footer">
+        <div class="container">
+            <nav>
+                
+                <a href="/">Anasayfa</a> &middot;
+                
+                <a href="/hakkinda/">Hakkında</a> &middot;
+                <a href="/arsiv/">Arşiv</a>
+            </nav>
+        
+            <nav class="social">
+                <a href="https://twitter.com/BigesEng" title="Twitter" target="_blank"><i class="fab fa-twitter-square"></i></a>
+                <a href="https://github.com/biges" title="GitHub" target="_blank"><i class="fab fa-github-square"></i></i></a>
+                <a href="https://vimeo.com/biges" title="Vimeo" target="_blank"><i class="fab fa-vimeo-square"></i></a>
+                <a href="/feed.xml" title="RSS Feed"><i class="fas fa-rss-square"></i></a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    
+    <script src="/public/js/retina-0.0.2.js"></script>
+    <script src="/public/js/app.js"></script>
+    
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-125596610-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <script id="dsq-count-scr" src="//bigesarge.disqus.com/count.js" async></script>
+</body>
+</html>
+
+<!-- last build: 2021-09-24 11:20:52 +0300 -->

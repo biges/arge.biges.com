@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pythonistalar için Nesnenin String() Görüntüsü &mdash; Biges Ar-Ge Merkezi</title>
+    <meta name="title" content="Pythonistalar için Nesnenin String() Görüntüsü &mdash; Biges Ar-Ge Merkezi">
+    <link rel="canonical" href="https://arge.biges.com/posts/2018-10-18-nesnenin-string-goruntusu.html">
+    <meta property="og:title" content="Pythonistalar için Nesnenin String() Görüntüsü &mdash; Biges Ar-Ge Merkezi"/>
+    <meta property="og:url" content="https://arge.biges.com/posts/2018-10-18-nesnenin-string-goruntusu.html"/>
+    <meta property="og:image" content="https://arge.biges.com/public/images/cover.jpg"/>
+    <meta property="og:description" content="python’daki __str__ ve __repr__ metodlarının golang karşılığınıarıyordum. Karşıma String() çıktı…"/>
+    <meta name="description" content="python’daki __str__ ve __repr__ metodlarının golang karşılığınıarıyordum. Karşıma String() çıktı…"/>
+    <meta property="og:site_name" content="Biges Ar-Ge Merkezi">
+    <link rel="shortcut icon" href="/public/images/favicon.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/public/images/logo.png"/>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://arge.biges.com/feed.xml" />
+    <link href="//fonts.googleapis.com/css?family=Roboto:400,700,300,900&subset=latin,latin-ext" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="/public/css/application.css" rel="stylesheet" />
+    <script src="//kit.fontawesome.com/be9a716db5.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <section class="site-nav">
+        <header>
+            <nav id="navigation">
+                <a class="brand" href="/"><img src="/public/images/logo.png" alt="Logo" /></a>
+                <a href="/" class="home">Anasayfa</a>
+                
+                <a href="/hakkinda/">Hakkında</a>
+                <a href="/kariyer/">Kariyer</a>
+                <a href="/arsiv/">Arşiv</a>
+                <a target="_blank" title="Biges Güvenli Hayat Teknolojileri A.Ş." href="https://biges.com">Biges</a>
+            </nav>
+
+        </header>
+    </section>
+
+        <div class="article-cover">
+        <div>
+            <img src="/public/images/posts/girl-gopher.png" class="image" alt="" />
+        </div>
+    </div>
+    
+
+    <article>
+        <div class="container">
+            <header>
+                <div class="meta">
+                    <address><a rel="author" href="https://ugur.ozyilmazel.com" title="Uğur Özyılmazel" target="_blank">Uğur Özyılmazel</a></address> &mdash;
+                    <time pubdate datetime="2018-10-18T13:21:00+03:00" title="18 Ekim 2018, Perşembe 13:21">18 Ekim 2018, Perşembe 13:21</time>
+                </div>
+                <h1 class="title">Pythonistalar için Nesnenin String() Görüntüsü</h1>
+                
+                    <div class="tags">
+                        <span class="badge"><a href="/etiket/golang/">golang</a></span>
+                        <span class="badge"><a href="/etiket/python-golang/">python+golang</a></span>
+                    </div>
+                
+            </header>
+            
+            <section id="article-detail">
+                <p><code>python</code>’daki <code>__str__</code> ve <code>__repr__</code> metodlarının <code>golang</code> karşılığını
+arıyordum. Karşıma <code>String()</code> çıktı&hellip;</p>
+
+<p></p>
+
+<p>Örneğin <code>python</code>’da <code>User</code> adlı bir nesne yazmaya karar verdik:</p>
+<div class="highlight"><pre class="highlight python"><code><span class="k">class</span> <span class="nc">User</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+<span class="n">u</span> <span class="o">=</span> <span class="n">User</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="c1"># &lt;__main__.User object at 0x10c92d940&gt;
+</span></code></pre></div>
+<p><code>python</code> bize nesnenin adını ve hafızadaki adresini döner geriye. Eğer <code>__repr__</code>
+metodunu düzenlersek;</p>
+<div class="highlight"><pre class="highlight python"><code><span class="k">class</span> <span class="nc">User</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">'&lt;{name}&gt;'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">__class__</span><span class="p">.</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="n">u</span> <span class="o">=</span> <span class="n">User</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="c1"># &lt;User&gt;
+</span></code></pre></div>
+<p>şeklinde çıktı alırız.</p>
+
+<p>Benzer işlemi <code>golang</code>’da yapmak için bize built-in gelen <code>Stringer</code> interface’ini
+kullanıyoruz:</p>
+<div class="highlight"><pre class="highlight go"><code><span class="k">type</span> <span class="n">Stringer</span> <span class="k">interface</span> <span class="p">{</span>
+   <span class="n">String</span><span class="p">()</span> <span class="kt">string</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Herhangi bir tip, eğer <code>Stringer</code> interface’inin <code>String()</code> metodunu memnun
+ediyorsa ya da bu görevi yerine getiriyorsa (<em>satisfiy</em>) <code>Print</code> türevleri
+tüm fonksiyonlarda aynı <code>python</code>’daki <code>__repr__</code> işini yapmak mümkün hale
+geliyor.</p>
+
+<p>Şimdi <code>vigo</code> adında uydurma bir <code>int</code> tipi yapıp <code>Printf</code> ile çıktıya bakalım:</p>
+<div class="highlight"><pre class="highlight go"><code><span class="k">package</span> <span class="n">main</span>
+
+<span class="k">import</span> <span class="s">"fmt"</span>
+
+<span class="k">type</span> <span class="n">vigo</span> <span class="kt">int</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">v</span> <span class="n">vigo</span><span class="p">)</span> <span class="n">String</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+    <span class="c">// example purpose only</span>
+    <span class="k">switch</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">v</span> <span class="o">&gt;</span> <span class="m">20</span><span class="o">:</span>
+        <span class="k">return</span> <span class="s">"20+"</span>
+    <span class="k">case</span> <span class="n">v</span> <span class="o">&gt;</span> <span class="m">10</span><span class="o">:</span>
+        <span class="k">return</span> <span class="s">"10+"</span>
+    <span class="k">default</span><span class="o">:</span>
+        <span class="k">return</span> <span class="n">fmt</span><span class="o">.</span><span class="n">Sprintf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">number</span> <span class="o">:=</span> <span class="n">vigo</span><span class="p">(</span><span class="m">22</span><span class="p">)</span>
+    <span class="n">compareNumber</span> <span class="o">:=</span> <span class="m">21</span>
+
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"vigo(12): %v</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">vigo</span><span class="p">(</span><span class="m">12</span><span class="p">))</span> <span class="c">// vigo(12): 10+</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"vigo(12): %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">vigo</span><span class="p">(</span><span class="m">12</span><span class="p">))</span> <span class="c">// vigo(12): 10+</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"vigo(12): %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">vigo</span><span class="p">(</span><span class="m">12</span><span class="p">))</span> <span class="c">// vigo(12): 12</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"vigo(21): %v</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">vigo</span><span class="p">(</span><span class="m">21</span><span class="p">))</span> <span class="c">// vigo(21): 20+</span>
+
+    <span class="k">if</span> <span class="n">number</span> <span class="o">&gt;</span> <span class="n">vigo</span><span class="p">(</span><span class="n">compareNumber</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"%d is greater than %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">number</span><span class="p">,</span> <span class="n">compareNumber</span><span class="p">)</span>
+        <span class="c">// 22 is greater than 21</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>func (v vigo) String() string</code> ile printer fonksiyonlarının ihtiyacı olan
+metodu tamamlamış oluyoruz. Tanımladığımız <code>vigo</code> tipindeki sayı <code>10</code> değerinden
+sayısal olarak büyük olunca <code>10+</code>, <code>20</code> değerinden büyük olunca da <code>20+</code>
+yazdırıyoruz. İç dünyasında <code>int</code> değer taşımasına rağmen, yazdırma durumunda
+yani <code>%v</code> ve <code>%s</code> kullanımında bizim <code>String()</code> metodu devreye giriyor. <code>%d</code>
+formatında ise sayısal değeri olan <code>12</code>’yi görmeye devam ediyoruz.</p>
+
+<p><code>number</code> değişkeni <code>vigo</code> tipinde <code>22</code> tutuyor, <code>compareNumber</code> değişkeni de
+bildiğimiz <code>int</code> tipinde <code>21</code> tutuyor. <code>number</code>’ın <code>compareNumber</code>’dan
+büyük olup olmadığını test etmek için <code>compareNumber</code>’ı <code>vigo</code> tipine çeviriyoruz.</p>
+
+<p>Özetle printer formatlama değerleri için farklı gösterimler yapmak mümkün :)</p>
+
+            </section>
+
+            <footer>
+                <address>
+                    <img class="avatar" src="http://www.gravatar.com/avatar/04cabd98cc4bd5e3eeddc2738a8b55e5" />
+                    <p>
+                        <strong>
+                            <a rel="author" href="https://ugur.ozyilmazel.com" title="Uğur Özyılmazel - sitesine gitmek için tıklayın." target="_blank">Uğur Özyılmazel</a>
+                            <a ref="author-twitter-account" title="@BigesEng - Twitter sayfasına gitmek için tıklayın." target="_blank" href="https://twitter.com/BigesEng"><i class="fab fa-twitter"></i></a>
+                            <a ref="author-github-account" title=" @vigo - GitHub sayfasına gitmek için tıklayın." target="_blank" href="https://github.com/vigo"><i class="fab fa-github"></i></a>
+                        </strong><br>
+                        <span class="muted">Retrolog</span><br />
+                    </p>
+                </address>
+            </footer>
+            
+                <section class="index related-articles">
+        <h2 class="title">İlişkili Makaleler (2)</h2>
+    </section>
+    
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2021/09/24/ayni-proje-altindaki-yerel-paketler/" rel="prefetch" title="Detaylar için tıklayın">Aynı Proje Altındaki Yerel Paketler &raquo;</a>
+        </div>
+    </section>
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2021/08/22/goroutine-ve-channelsi-anlamak/" rel="prefetch" title="Detaylar için tıklayın">Goroutine ve Channels'ı Anlamak &raquo;</a>
+        </div>
+    </section>
+    <section class="index related-articles"><hr/></section>
+
+    <section class="index related-articles">
+        <h2 class="title">Yazarın Diğer Makaleleri (7)</h2>
+    </section>
+
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2021/09/24/ayni-proje-altindaki-yerel-paketler/" rel="prefetch" title="Detaylar için tıklayın">Aynı Proje Altındaki Yerel Paketler &raquo;</a> <small>24 Eylül 2021</small>
+        </div>
+    </section>
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2021/09/09/temel-bash-komutlari/" rel="prefetch" title="Detaylar için tıklayın">Temel Bash Komutları &raquo;</a> <small>09 Eylül 2021</small>
+        </div>
+    </section>
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2021/09/01/macosda-slash-tmp-slash-dizini/" rel="prefetch" title="Detaylar için tıklayın">macOS'da /tmp/ Dizini &raquo;</a> <small>01 Eylül 2021</small>
+        </div>
+    </section>
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2021/08/27/senior-junior-ve-daha-fazlasi/" rel="prefetch" title="Detaylar için tıklayın">Senior, Junior ve Daha Fazlası &raquo;</a> <small>27 Ağustos 2021</small>
+        </div>
+    </section>
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2021/08/25/modern-gelistiricinin-olmazsa-olmazlari/" rel="prefetch" title="Detaylar için tıklayın">Modern Geliştiricinin Olmazsa Olmazları &raquo;</a> <small>25 Ağustos 2021</small>
+        </div>
+    </section>
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2021/08/22/goroutine-ve-channelsi-anlamak/" rel="prefetch" title="Detaylar için tıklayın">Goroutine ve Channels'ı Anlamak &raquo;</a> <small>22 Ağustos 2021</small>
+        </div>
+    </section>
+    <section class="index related-articles">
+        <div class="links">
+            <a href="/2021/08/21/basit-islerin-otomasyonu-rakefile/" rel="prefetch" title="Detaylar için tıklayın">Basit işlerin otomasyonu: Rakefile &raquo;</a> <small>21 Ağustos 2021</small>
+        </div>
+    </section>
+    <section class="index related-articles"><hr/></section>
+
+            
+        </div>
+    </article>
+
+
+    <footer class="site-footer">
+        <div class="container">
+            <nav>
+                
+                <a href="/">Anasayfa</a> &middot;
+                
+                <a href="/hakkinda/">Hakkında</a> &middot;
+                <a href="/arsiv/">Arşiv</a>
+            </nav>
+        
+            <nav class="social">
+                <a href="https://twitter.com/BigesEng" title="Twitter" target="_blank"><i class="fab fa-twitter-square"></i></a>
+                <a href="https://github.com/biges" title="GitHub" target="_blank"><i class="fab fa-github-square"></i></i></a>
+                <a href="https://vimeo.com/biges" title="Vimeo" target="_blank"><i class="fab fa-vimeo-square"></i></a>
+                <a href="/feed.xml" title="RSS Feed"><i class="fas fa-rss-square"></i></a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    
+    <script src="/public/js/retina-0.0.2.js"></script>
+    <script src="/public/js/app.js"></script>
+    
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-125596610-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <script id="dsq-count-scr" src="//bigesarge.disqus.com/count.js" async></script>
+</body>
+</html>
+
+<!-- last build: 2021-09-24 11:20:52 +0300 -->
