@@ -1,0 +1,109 @@
+---
+title: "Aynı Proje Altındaki Yerel Paketler"
+date: Sep 24, 2021 10:44
+tags: golang,gomodule
+subtitle: "go mod init &lt;module name&gt;"
+cover: "girl-gopher.png"
+comments: false 
+author:
+  name: Uğur Özyılmazel
+  email: ugur.ozyilmazel@biges.com
+  link: https://ugur.ozyilmazel.com
+  github: vigo
+  bio: Retrolog
+  twitter: 
+---
+
+Go versiyon **1.13**’le standart hale gelen modül yapısı, yeni başlayanlar
+için kafa karıştırıcı olabiliyor. Bu yazıda yerel paket ve `import`
+kullanımını inceleyeceğiz.
+
+READ_MORE
+
+Hemen basit bir golang projesi oluşturalım, projemizin adı `hello` olsun;
+
+```bash
+$ mkdir hello && cd $_ && go mod init hello && touch main.go && mkdir world && cd $_ && touch {hi,bye}.go && cd ../..
+```
+
+Bu çılgın [one-liner](http://www.bashoneliners.com)’dan sonra hemen oluşan
+dizinlere bakalım:
+
+```bash
+$ tree hello/
+hello/
+├── world
+│   ├── bye.go
+│   └── hi.go
+├── go.mod
+└── main.go
+
+1 directory, 4 files
+```
+
+Hemen `go.mod`’a bakalım ne yazıyor?
+
+```bash
+$ cd hello/
+$ cat go.mod 
+module hello
+
+go 1.17
+```
+
+Modülümüzün adı `hello`... Üstte `go mod init hello` kısmında bu modülün adını
+belirttik.
+
+Hemen `world/`’ü yerel bir paket haline getirelim ve sırasıyla; `hi.go` ve `bye.go`
+dosyalarını düzenleyelim:
+
+`world/hi.go`
+
+```go
+package world
+
+// Hi says Hi to given name!
+func Hi(name string) string {
+	return "Hi " + name + "!"
+}
+```
+
+`world/bye.go`
+
+```go
+package world
+
+// Bye says Bye to given name!
+func Bye(name string) string {
+	return "Bye " + name + "!"
+}
+```
+
+Yerel olarak geliştirdiğimiz `world` paketini asıl uygulama içinde kullanalım;
+
+`main.go`
+
+```go
+package main
+
+import (
+	"fmt"
+	"hello/world"
+)
+
+func main() {
+	sayHi := world.Hi("vigo")
+	sayBye := world.Bye("vigo")
+
+	fmt.Println(sayHi)  // Hi vigo!
+	fmt.Println(sayBye) // Bye vigo!
+}
+```
+
+Aynı proje içinde bulunan `hello/` dizini `hello` paketi oldu ve içinde 2 tane
+`.go` dosyası ve bunların da içinde 2 tane **exportable** yani başka paketler
+tarafından **import** edilebilir fonksiyon oldu.
+
+Bu yöntemle sayesinde, bir tür; özel/private yerel paket kullanımı
+yapabilirsiniz. Projeyi [GitHub](https://github.com/biges/demo-yerel-paket)
+repomuzdan da inceleyebilirsiniz.
